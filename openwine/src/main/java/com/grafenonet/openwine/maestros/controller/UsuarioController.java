@@ -36,5 +36,19 @@ public class UsuarioController {
 		
 		LOG.debug("Finalizando controlador usuarios.");
 		return "/admin/maestros/usuario/usuarios";
-	}	
+	}
+	
+	@RequestMapping(value = "/admin/maestros/usuario/novo", method = RequestMethod.GET)
+	public String newUsuario(Model model) {
+		LOG.debug("Iniciando controlador usuarios ...");
+		
+		Usuario usuario = new Usuario();
+		
+		model.addAttribute("moduleTitle", "Alta de usuarios");
+		
+		model.addAttribute("usuario", usuario);
+		
+		LOG.debug("Finalizando controlador nuevo usuario.");
+		return "/admin/maestros/usuario/newUsuario";
+	}		
 }

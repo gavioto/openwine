@@ -7,6 +7,8 @@ import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotEmpty;
@@ -45,6 +47,7 @@ public class Usuario implements Serializable {
 	private String apellidos;
 	
 	@Column(name = "fecha_nacimiento", nullable = true)
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date fechaNacimiento;
 	
 	@Column(name = "numero_telefono", length=15, nullable = true)
