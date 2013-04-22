@@ -1,5 +1,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -53,6 +54,77 @@
 				
 				</ul>	
 					
+				<div class="box-content">
+					<form:form class="form-horizontal" method="POST" modelAttribute="usuario" action="">
+						<form:errors path="*" cssClass="errorblock" element="div" />
+				
+						<fieldset>
+							<legend>Novo usuario:</legend>  
+						
+							<div class="control-group">
+								<form:label class="control-label" path="username">Login:</form:label>
+								<div class="controls">
+									<form:input class="input-xlarge focused" id="username" type="text" path="username" value="${usuario.username}"/>
+								</div>
+							</div>	
+							
+							<div class="control-group">
+						  		<form:label class="control-label" path="password">Contrasena:</form:label>
+						  		<div class="controls">
+						  			<form:input class="input-xlarge" id="password" type="text" path="password"/>
+						  		</div>
+							</div>
+							
+							<div class="control-group">
+						  		<form:label class="control-label" path="password">Contrasena:</form:label>
+						  		<div class="controls">
+						  			<form:input class="input-xlarge" id="password" type="text" path="password"/>
+						  		</div>
+							</div>							
+							
+							<div class="control-group">
+						  		<form:label class="control-label" path="nombre">Nombre:</form:label>
+						  		<div class="controls">
+									<form:input class="input-xlarge" id="nombre" type="text" path="nombre"/>
+						  		</div>
+							</div>
+							
+							<div class="control-group">
+						  		<form:label class="control-label" path="apellidos">Apellidos:</form:label>
+						  		<div class="controls">
+									<form:input class="input-xlarge" id="apellidos" type="text" path="apellidos"/>
+						  		</div>
+							</div>							
+							
+							<div class="control-group">
+						  		<form:label class="control-label" path="fechaNacimiento">Fecha de nacimiento:</form:label>
+						  		<div class="controls">
+									<form:input class="input-xlarge" id="fechaNacimiento" type="text" path="fechaNacimiento" value="${usuario.fechaNacimiento}"/>
+						  		</div>
+							</div>
+
+							<div class="control-group">
+						  		<form:label class="control-label" path="numeroTelefono">Número teléfono:</form:label>
+						  		<div class="controls">
+									<form:input class="input-xlarge" id="numeroTelefono" type="text" path="numeroTelefono"/>
+						  		</div>
+							</div>							
+
+							<div class="control-group">
+						  		<form:label class="control-label" path="numeroMovil">Número móbil:</form:label>
+						  		<div class="controls">
+									<form:input class="input-xlarge" id="numeroMovil" type="text" path="numeroMovil"/>
+						  		</div>
+							</div>							
+							
+							<div class="form-actions">
+						  		<button type="submit" class="btn btn-primary">Gardar</button>
+						  		<button type="reset" class="btn">Limpar</button>
+							</div>
+						
+						</fieldset>
+					</form:form>
+				</div>
 										
 
 			</div>

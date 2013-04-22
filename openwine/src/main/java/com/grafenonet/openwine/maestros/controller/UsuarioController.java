@@ -24,7 +24,7 @@ public class UsuarioController {
 	@Autowired
 	UsuarioService usuarioService;
 	
-	@RequestMapping(value = "/admin/maestros/usuario", method = RequestMethod.GET)
+	@RequestMapping(value = "", method = RequestMethod.GET)
 	public String usuarios(Model model) {
 		LOG.debug("Iniciando controlador usuarios ...");
 		
@@ -33,12 +33,13 @@ public class UsuarioController {
 		model.addAttribute("moduleTitle", "Xestión de usuarios");
 		
 		model.addAttribute("usuarios", usuarios);
+		model.addAttribute("numRegistros", usuarios != null ? usuarios.size() : 0);
 		
 		LOG.debug("Finalizando controlador usuarios.");
 		return "/admin/maestros/usuario/usuarios";
 	}
 	
-	@RequestMapping(value = "/admin/maestros/usuario/novo", method = RequestMethod.GET)
+	@RequestMapping(value = "/novo", method = RequestMethod.GET)
 	public String newUsuario(Model model) {
 		LOG.debug("Iniciando controlador usuarios ...");
 		
@@ -46,7 +47,7 @@ public class UsuarioController {
 		
 		model.addAttribute("moduleTitle", "Alta de usuarios");
 		
-		model.addAttribute("usuario", usuario);
+		model.addAttribute("usuario", usuario );
 		
 		LOG.debug("Finalizando controlador nuevo usuario.");
 		return "/admin/maestros/usuario/newUsuario";
