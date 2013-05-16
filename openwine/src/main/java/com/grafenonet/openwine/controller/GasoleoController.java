@@ -17,8 +17,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.grafenonet.openwine.domain.TicketGasoil;
-import com.grafenonet.openwine.service.TicketGasoilService;
+import com.grafenonet.openwine.caderno.domain.Gasoleo;
+import com.grafenonet.openwine.caderno.service.TicketGasoilService;
 
 @Controller
 public class GasoleoController {
@@ -36,7 +36,7 @@ public class GasoleoController {
 		Integer year = Calendar.getInstance().get(Calendar.YEAR);
 		year = year - 1;
 		
-		List<TicketGasoil> lista = ticketGasoilService.findAll(year);
+		List<Gasoleo> lista = ticketGasoilService.findAll(year);
 		
 		model.addAttribute("moduleTitle", "Tickets de Gasóleo");
 		model.addAttribute("tickets", lista);
@@ -52,7 +52,7 @@ public class GasoleoController {
 		Calendar calendar = Calendar.getInstance();
 		Integer year = calendar.get(Calendar.YEAR);
 		String today = DATE_FORMAT.format(calendar.getTime());
-		TicketGasoil ticket = new TicketGasoil();
+		Gasoleo ticket = new Gasoleo();
 		
 		model.addAttribute("moduleTitle", "Novo ticket de gasóleo:");
 		model.addAttribute("year", year.toString());
@@ -64,7 +64,7 @@ public class GasoleoController {
 	}
 	
 	@RequestMapping(value = "/caderno/gasoleo/novo", method = RequestMethod.POST)
-	public String create(@Valid @ModelAttribute("ticket") TicketGasoil ticket, BindingResult result) {
+	public String create(@Valid @ModelAttribute("ticket") Gasoleo ticket, BindingResult result) {
 		LOG.debug("Iniciando controlador create ...");
 		
 		if (result.hasErrors()) {

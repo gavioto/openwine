@@ -3,9 +3,16 @@
 <decorators defaultdir="/WEB-INF/decorator">
 	<!-- Any urls that are excluded will never be decorated by Sitemesh -->
     <excludes>
-        <pattern>/login</pattern>
-        <pattern>/about</pattern>
+        <!-- <pattern>/login</pattern> 
+        <pattern>/signup</pattern>
+        <pattern>/about</pattern> -->
     </excludes>
+
+	<decorator name="register" page="register.jsp">
+		<pattern>/login</pattern>
+		<pattern>/signup</pattern>
+		<pattern>/about</pattern>
+	</decorator>
 
 	<decorator name="admin" page="admin.jsp">
         <pattern>/admin/*</pattern>     

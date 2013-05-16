@@ -1,17 +1,19 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://www.opensymphony.com/sitemesh/decorator" prefix="decorator" %>
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+
 
 <!DOCTYPE html>
 <html lang="en">
 
 	<head>
 		<meta charset="utf-8">
-		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-		<title>Administracion :: OpenWine :: GrafenoNet</title>
+		<title>OpenWine :: GrafenoNet</title>		
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">		
 		<meta name="viewport" content="width=device-width, inital-scale=1.0">
 		<meta name="description" content="">
 		<meta name="author" content="GrafenoNet">
+  		
   		<link href="<c:url value="/resources/css/default.css" />" rel="stylesheet"  type="text/css" />    
   		<link href="<c:url value="/resources/css/bootstrap.min.css" />" rel="stylesheet"  type="text/css" />    
   		<link href="<c:url value="/resources/css/bootstrap-responsive.min.css" />" rel="stylesheet"  type="text/css" />
@@ -27,7 +29,7 @@
 			<div class="navbar navbar-inverse navbar-fixed-top">
 				<div class="navbar-inner">
 					<div class="container-fluid">
-						<c:import url="/WEB-INF/decorator/default/admin_navbar.jsp"/> 
+						<c:import url="/WEB-INF/decorator/default/register_navbar.jsp"/> 
 					</div>
 				</div>
 			</div>
@@ -37,10 +39,7 @@
 			<div class="container-fluid">
 				<div class="row-fluid">
 					
-					<!-- menu left begin -->
-					<c:import url="/WEB-INF/decorator/default/admin_menu.jsp"/> 
-					<!-- menu left end -->
-					
+				
 					<!-- body begin -->
 					<div class="span10">
 						<div class="row-fluid">

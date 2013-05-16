@@ -1,6 +1,7 @@
 package com.grafenonet.openwine;
 
 import java.text.DateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -14,8 +15,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.grafenonet.openwine.domain.TicketGasoil;
-import com.grafenonet.openwine.service.TicketGasoilService;
+import com.grafenonet.openwine.caderno.domain.Gasoleo;
+import com.grafenonet.openwine.caderno.service.TicketGasoilService;
 
 /**
  * Handles requests for the application home page.
@@ -40,8 +41,11 @@ public class HomeController {
 		String formattedDate = dateFormat.format(date);
 		Integer year = Calendar.getInstance().get(Calendar.YEAR);
 		
+		List<Gasoleo> tickets = new ArrayList<Gasoleo>(); 
+		
 		model.addAttribute("serverTime", formattedDate );
-		model.addAttribute("tickets", ticketGasoilService.findAll(year));
+		model.addAttribute("tickets", tickets);
+		//model.addAttribute("tickets", ticketGasoilService.findAll(year));
 		
 		LOG.debug("Finalizando controlador home ...");
 		return "home";

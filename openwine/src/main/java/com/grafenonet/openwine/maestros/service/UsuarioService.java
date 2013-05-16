@@ -13,5 +13,6 @@ public interface UsuarioService {
 	
 	List<Usuario> list();
 	
-	Usuario getById(Integer id);	
+	Usuario get(Integer id);	
+	
 }

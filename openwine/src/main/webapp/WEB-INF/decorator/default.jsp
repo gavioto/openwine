@@ -16,7 +16,7 @@
   		<link href="<c:url value="/resources/css/bootstrap.min.css" />" rel="stylesheet"  type="text/css" />    
   		<link href="<c:url value="/resources/css/bootstrap-responsive.min.css" />" rel="stylesheet"  type="text/css" />
   		
-  		<link rel="shortcut icon" href="/resources/favicon.ico">
+  		<link rel="shortcut icon" href="<c:url value="/resources/favicon.ico" />">
 	</head>
 	
 	<body>

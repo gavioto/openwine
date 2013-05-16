@@ -11,7 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.grafenonet.openwine.domain.TicketGasoil;
+import com.grafenonet.openwine.caderno.domain.Gasoleo;
 import com.grafenonet.openwine.maestros.domain.Usuario;
 import com.grafenonet.openwine.maestros.service.UsuarioService;
 import com.grafenonet.openwine.maestros.service.impl.UsuarioServiceImpl;
@@ -19,7 +19,7 @@ import com.grafenonet.openwine.maestros.service.impl.UsuarioServiceImpl;
 @Controller
 @RequestMapping(value = "/admin/maestros/usuario")
 public class UsuarioController {
-	private static Logger LOG = LoggerFactory.getLogger(UsuarioServiceImpl.class);
+	private static Logger LOG = LoggerFactory.getLogger(UsuarioController.class);
 	
 	@Autowired
 	UsuarioService usuarioService;

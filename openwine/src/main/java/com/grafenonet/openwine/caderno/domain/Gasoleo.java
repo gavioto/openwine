@@ -1,4 +1,4 @@
-package com.grafenonet.openwine.domain;
+package com.grafenonet.openwine.caderno.domain;
 
 
 import java.io.Serializable;
@@ -13,30 +13,38 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
 @Entity
-@Table(name = "TicketGasoil")
-public class TicketGasoil implements Serializable {
+@Table(name = "Gasoleo")
+public class Gasoleo implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(length=32)
+	@Column(name = "id_gasoleo", length=32)
 	private Integer id;
 	
 	@Column
 	@NotNull
+	@NotEmpty(message = "'fecha' no especificado.")
 	//@Temporal(TemporalType.DATE)
 	//@DateTimeFormat(iso = ISO.DATE)
 	private Date fecha;
 
-	@Column
+	@Column(name = "litros")
 	@NotNull
+	@NotEmpty(message = "'litros' no especificado.")
 	private BigDecimal litros;
 	
-	@Column
+	@Column(name = "importe")
 	@NotNull
+	@NotEmpty(message = "'importe' no especificado.")
 	private BigDecimal importe;
+	
+	@Column(name = "fecha_baja", nullable = true)
+	private Date fechaBaja;
 	
 	public Integer getId() {
 		return id;
@@ -61,6 +69,17 @@ public class TicketGasoil implements Serializable {
 	}
 	public void setImporte(BigDecimal importe) {
 		this.importe = importe;
+	}
+	public Date getFechaBaja() {
+		return fechaBaja;
+	}
+	public void setFechaBaja(Date fechaBaja) {
+		this.fechaBaja = fechaBaja;
+	}
+	@Override
+	public String toString() {
+		return "Gasoleo [id=" + id + ", fecha=" + fecha + ", litros=" + litros
+				+ ", importe=" + importe + "]";
 	}
 	
 	

@@ -1,4 +1,4 @@
-package com.grafenonet.openwine.service.impl;
+package com.grafenonet.openwine.caderno.service.impl;
 
 import java.math.BigDecimal;
 import java.util.Date;
@@ -9,9 +9,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.grafenonet.openwine.domain.TicketGasoil;
-import com.grafenonet.openwine.service.CadernoService;
-import com.grafenonet.openwine.service.TicketGasoilService;
+import com.grafenonet.openwine.caderno.domain.Gasoleo;
+import com.grafenonet.openwine.caderno.service.CadernoService;
+import com.grafenonet.openwine.caderno.service.TicketGasoilService;
 
 @Service
 public class CadernoServiceImpl implements CadernoService {
@@ -22,22 +22,22 @@ public class CadernoServiceImpl implements CadernoService {
 	private TicketGasoilService ticketGasoilService;
 
 	@Override
-	public TicketGasoil getResumenTickets(int year) {
+	public Gasoleo getResumenTickets(int year) {
 		LOG.debug("Iniciando getResumenTickets ...");
 		
 		BigDecimal importe = new BigDecimal(0);
 		BigDecimal litros = new BigDecimal(0);
 		Date date = new Date();
 		
-		List<TicketGasoil> tickets = ticketGasoilService.findAll(year);
-		for (TicketGasoil ticket : tickets) {
+		List<Gasoleo> tickets = ticketGasoilService.findAll(year);
+		for (Gasoleo ticket : tickets) {
 			
 				importe = importe.add(ticket.getImporte());
 				litros = litros.add(ticket.getLitros());
 			
 		}
 		
-		TicketGasoil ticketGasoil = new TicketGasoil();
+		Gasoleo ticketGasoil = new Gasoleo();
 		ticketGasoil.setFecha(date);
 		ticketGasoil.setImporte(importe);
 		ticketGasoil.setLitros(litros);

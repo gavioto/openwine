@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+	xmlns:beans="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- <beans:bean id="customUserDetailsService" class="com.grafenonet.openwine.maestros.service.impl.CustomUserDetailsService" /> -->
+	
+	<beans:bean id="customAuthenticationProvider" class="com.grafenonet.openwine.authentication.CustomAuthenticationProvider" />
+	
+	<beans:bean id="md5PasswordEncoder" class="org.springframework.security.authentication.encoding.Md5PasswordEncoder"/>
+
+	<http access-denied-page="/login" use-expressions="true">
+		<intercept-url pattern="/admin/**" access="hasAnyRole('ROLE_ADMIN')"/>
+		<intercept-url pattern="/caderno/**" access="hasAnyRole('ROLE_ADMIN','ROLE_CADERNO')" />
+		<intercept-url pattern="/home*" access="hasAnyRole('ROLE_ADMIN','ROLE_CADERNO')" />
+		
+		<intercept-url pattern="/login*" access="isAnonymous()" />
+		<intercept-url pattern="/signup*" access="isAnonymous()" /> 	
+		
+		<form-login login-page="/login" 
+					default-target-url="/"
+					always-use-default-target="false"
+					authentication-failure-url="/login?error=true"
+					login-processing-url="/j_security_check" />
+					
+		<logout />
+		
+		<anonymous/>
+		
+		<session-management invalid-session-url="/">
+			<concurrency-control max-sessions="1"/>
+		</session-management>
+
+
+	</http>
+	
+	<authentication-manager alias="authenticationManager" erase-credentials="false">
+		<authentication-provider ref="customAuthenticationProvider" />
+		<!-- 
+		<authentication-provider user-service-ref="customUserDetailsService">
+			<password-encoder hash="plaintext"/>
+		</authentication-provider>
+		-->
+	</authentication-manager>	
+
+</beans:beans>

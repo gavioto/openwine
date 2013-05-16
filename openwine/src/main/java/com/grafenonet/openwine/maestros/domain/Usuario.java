@@ -1,19 +1,33 @@
 package com.grafenonet.openwine.maestros.domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotEmpty;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
-public class Usuario implements Serializable {
+@Entity
+@Table(name = "Usuario")
+public class Usuario implements UserDetails, Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	@Id
@@ -59,14 +73,21 @@ public class Usuario implements Serializable {
 	private String numeroMovil;
 	
 	
-	@Column(name = "fechaAlta", nullable = false)
+	@Column(name = "fecha_alta", nullable = false)
 	private Date fechaAlta;
 	
-	@Column(name = "fechaModificacion", nullable = true)
+	@Column(name = "fecha_modificacion", nullable = true)
 	private Date fechaModificacion;
 	
-	@Column(name = "fechaBaja", nullable = true)
+	@Column(name = "fecha_baja", nullable = true)
 	private Date fechaBaja;
+	
+	@ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.MERGE} )
+	@JoinTable(name="Usuario_Rol",
+		joinColumns = {@JoinColumn(name="id_usuario")},
+		inverseJoinColumns = {@JoinColumn(name="id_rol")}
+	)
+	private List<Rol> roles = new ArrayList<Rol>();
 	
 	public Integer getId() {
 		return id;
@@ -210,13 +231,20 @@ public class Usuario implements Serializable {
 
 
 
+	public List<Rol> getRoles() {
+		return roles;
+	}
+
+	public void setRoles(List<Rol> roles) {
+		this.roles = roles;
+	}
+
 	@Override
 	public String toString() {
 		return "Usuario [id=" + id + ", username=" + username + ", email="
 				+ email + ", nombre=" + nombre + ", apellidos=" + apellidos
 				+ "]";
 	}
-
 	
 	public String getNombreApellidos() {
 		return this.nombre + " " + this.apellidos;
@@ -224,6 +252,36 @@ public class Usuario implements Serializable {
 	
 	public String getApellidosNombre() {
 		return this.apellidos + ", " + this.nombre;
+	}
+
+	@Override
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean isAccountNonExpired() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean isAccountNonLocked() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean isCredentialsNonExpired() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean isEnabled() {
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 }

@@ -1,4 +1,4 @@
-package com.grafenonet.openwine.service.impl;
+package com.grafenonet.openwine.caderno.service.impl;
 
 import java.util.List;
 
@@ -9,20 +9,20 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.grafenonet.openwine.dao.TicketGasoilDao;
-import com.grafenonet.openwine.domain.TicketGasoil;
-import com.grafenonet.openwine.service.TicketGasoilService;
+import com.grafenonet.openwine.caderno.dao.GasoleoDao;
+import com.grafenonet.openwine.caderno.domain.Gasoleo;
+import com.grafenonet.openwine.caderno.service.TicketGasoilService;
 
 @Service("ticketGasoilService")
+@Transactional(rollbackFor = Throwable.class, timeout = 300, propagation = Propagation.REQUIRED)
 public class TicketGasoilServiceImpl implements TicketGasoilService {
 	private static Logger LOG = LoggerFactory.getLogger(TicketGasoilService.class);
 	
 	@Autowired 
-	TicketGasoilDao ticketGasoilDao;
+	GasoleoDao ticketGasoilDao;
 
 	@Override
-	@Transactional(propagation = Propagation.REQUIRED, readOnly = false)
-	public void save(TicketGasoil ticketGasoil) {
+	public void save(Gasoleo ticketGasoil) {
 		LOG.debug("Iniciando save ...");
 		
 		if (ticketGasoil == null) {
@@ -41,8 +41,8 @@ public class TicketGasoilServiceImpl implements TicketGasoilService {
 	}
 
 	@Override
-	@Transactional(propagation = Propagation.REQUIRED, readOnly = true)
-	public List<TicketGasoil> findAll(Integer year) {
+	@Transactional(readOnly = true)
+	public List<Gasoleo> findAll(Integer year) {
 		LOG.debug("Iniciando findAll ...");
 		
 		if (LOG.isDebugEnabled()) {
@@ -54,7 +54,8 @@ public class TicketGasoilServiceImpl implements TicketGasoilService {
 	}
 
 	@Override
-	public TicketGasoil findResume(int year) {
+	@Transactional(readOnly = true)
+	public Gasoleo findResume(int year) {
 		LOG.debug("Iniciando findResume ...");
 		
 		if (LOG.isDebugEnabled()) {

@@ -13,9 +13,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.grafenonet.openwine.domain.TicketGasoil;
-import com.grafenonet.openwine.service.CadernoService;
-import com.grafenonet.openwine.service.TicketGasoilService;
+import com.grafenonet.openwine.caderno.domain.Gasoleo;
+import com.grafenonet.openwine.caderno.service.CadernoService;
+import com.grafenonet.openwine.caderno.service.TicketGasoilService;
 
 @Controller
 @RequestMapping(value = "caderno")
@@ -36,7 +36,7 @@ public class CadernoController {
 		
 		Integer year = Calendar.getInstance().get(Calendar.YEAR);
 		
-		TicketGasoil ticket = cadernoService.getResumenTickets(year);
+		Gasoleo ticket = cadernoService.getResumenTickets(year);
 		
 		model.addAttribute("moduleTitle", "Cadro de mando do Caderno de Campo");
 		model.addAttribute("year", year.toString());
