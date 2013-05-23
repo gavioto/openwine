@@ -24,14 +24,8 @@
 		<div id="wrap">
 	
 			<!-- navbar begin -->
-			<div class="navbar navbar-inverse navbar-fixed-top">
-				<div class="navbar-inner">
-					<div class="container-fluid">
-						<c:import url="/WEB-INF/decorator/default/admin_navbar.jsp"/> 
-					</div>
-				</div>
-			</div>
-			<!-- navbar nd -->
+			<c:import url="/WEB-INF/decorator/default/admin_navbar.jsp"/>
+			<!-- navbar end -->
 			
 			<!-- content begin -->
 			<div class="container-fluid">
@@ -42,12 +36,10 @@
 					<!-- menu left end -->
 					
 					<!-- body begin -->
-					<div class="span10">
+					<div class="span9">
 						<div class="row-fluid">
-							<div class="span8">
-								<div class="container">
-									<decorator:body />
-								</div>
+							<div class="container-fluid">
+								<decorator:body />
 							</div>
 						</div>
 					</div>

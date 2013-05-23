@@ -58,39 +58,39 @@
 			      	
 			      	<tbody>							
 				
-						<c:if test="${not empty tickets}">			
-							<c:forEach var="ticket" items="${tickets}">											
-								<tr>
-									<td>${ticket.fecha}</td>
-									<td>${ticket.litros}</td>
-									<td>${ticket.importe}</td>
-									<td class="last links">								
-										<ul class='inline'>
-											<li title="Show" rel="tooltip" class="icon show_member_link ">
-												<a class="pjax" href="<c:url value="/caderno/gasoleo/show" />">
-											    	<i class="icon-info-sign"></i>
-											    	<span style='display:none'>Ver</span>
-												</a>
-											</li>
-	        
-								          	<li title="Editar" rel="tooltip" class="icon edit_member_link ">
-								            	<a class="pjax" href="<c:url value="/caderno/gasoleo/edit" />">
-								              		<i class="icon-pencil"></i>
-								              		<span style='display:none'>Editar</span>
-								            	</a>
-								          	</li>
-	        
-								          	<li title="Borrar" rel="tooltip" class="icon delete_member_link ">
-								            	<a class="pjax" href="<c:url value="/caderno/gasoleo/delete" />">
-								              		<i class="icon-remove"></i>
-								              		<span style='display:none'>Borrar</span>
-								            	</a>
-								          	</li>
-	        							</ul>								
-									</td>
-								</tr>
-							</c:forEach>
-						</c:if>
+						
+							<tr th:each="ticket : ${tickets} }">
+								<td th:text="${ticket.fecha}">${ticket.fecha}</td>
+								<td>${ticket.litros}</td>
+								<td>${ticket.importe}</td>
+								<td class="last links">								
+									<ul class='inline'>
+										<li title="Show" rel="tooltip" class="icon show_member_link ">
+											<a class="pjax" href="<c:url value="/caderno/gasoleo/show" />">
+										    	<i class="icon-info-sign"></i>
+										    	<span style='display:none'>Ver</span>
+											</a>
+										</li>
+        
+							          	<li title="Editar" rel="tooltip" class="icon edit_member_link ">
+							            	<a class="pjax" href="<c:url value="/caderno/gasoleo/edit" />">
+							              		<i class="icon-pencil"></i>
+							              		<span style='display:none'>Editar</span>
+							            	</a>
+							          	</li>
+        
+							          	<li title="Borrar" rel="tooltip" class="icon delete_member_link ">
+							            	<a class="pjax" href="<c:url value="/caderno/gasoleo/delete" />">
+							              		<i class="icon-remove"></i>
+							              		<span style='display:none'>Borrar</span>
+							            	</a>
+							          	</li>
+        							</ul>								
+								</td>							
+							</tr>
+									
+
+
 					
 					</tbody>
 				

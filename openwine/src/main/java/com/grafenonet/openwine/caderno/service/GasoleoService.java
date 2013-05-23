@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.grafenonet.openwine.caderno.domain.Gasoleo;
 
-public interface TicketGasoilService {
+public interface GasoleoService {
 	
 	public void save(Gasoleo ticketGasoil);
 	

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+		"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+		"http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory>
+        <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+        <property name="hibernate.connection.password">eAdmin.1</property>
+        <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/caderno20</property>
+        <property name="hibernate.connection.username">root</property>
+        <property name="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</property>
+        <property name="hibernate.hbm2ddl.auto">validate</property>
+        
+        <!-- maestros mapping -->
+        <mapping class="com.grafenonet.openwine.maestros.domain.Usuario" />
+        <mapping class="com.grafenonet.openwine.maestros.domain.Rol" />
+        <mapping class="com.grafenonet.openwine.maestros.domain.Pais" />
+        <mapping class="com.grafenonet.openwine.maestros.domain.Provincia" />
+        <mapping class="com.grafenonet.openwine.maestros.domain.Concello" />
+        
+        <!-- caderno mapping -->
+        <mapping class="com.grafenonet.openwine.caderno.domain.Gasoleo" />
+    </session-factory>
+</hibernate-configuration>

@@ -26,7 +26,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 @Entity
-@Table(name = "Usuario")
+@Table(name = "usuario")
 public class Usuario implements UserDetails, Serializable {
 	private static final long serialVersionUID = 1L;
 	
@@ -36,28 +36,28 @@ public class Usuario implements UserDetails, Serializable {
 	private Integer id;
 
 	@Column(name = "username", length=20, unique=true, nullable = false)
-	@NotEmpty(message = "'username' no especificado.")
+	@NotEmpty(message = "Campo 'username' no especificado.")
 	@Length(min = 4, max = 20)
 	private String username;
 	
 	@Column(name = "password", length=20, nullable = false)
-	@NotEmpty(message = "'password' no especificado.")
+	@NotEmpty(message = "Campo 'password' no especificado.")
 	@Length(min = 4, max = 20)
 	private String password;
 		
 	@Column(name = "email", length=200, unique=true, nullable = false)
 	@Length(max = 200)
-	@NotEmpty(message = "'email' no especificado.")
+	@NotEmpty(message = "Campo 'email' no especificado.")
 	private String email;
 	
 	@Column(name = "nombre", length=200, nullable = false)
 	@Length(max = 200)
-	@NotEmpty(message = "'nombre' no especificado.")
+	@NotEmpty(message = "Campo 'nombre' no especificado.")
 	private String nombre;
 	
 	@Column(name = "apellidos", length=200, nullable = false)
 	@Length(max = 200)
-	@NotEmpty(message = "'apellidos' no especificado.")
+	@NotEmpty(message = "Campo 'apellidos' no especificado.")
 	private String apellidos;
 	
 	@Column(name = "fecha_nacimiento", nullable = true)
@@ -82,6 +82,19 @@ public class Usuario implements UserDetails, Serializable {
 	@Column(name = "fecha_baja", nullable = true)
 	private Date fechaBaja;
 	
+	@Column(name = "usuario_alta", length=20, nullable = false)
+	@NotEmpty(message = "Campo 'usuario_alta' no especificado.")
+	@Length(max = 20)
+	private String usuarioAlta;
+	
+	@Column(name = "usuario_modificacion", length=20, nullable = true)
+	@Length(max = 20)
+	private String usuarioModificacion;
+	
+	@Column(name = "usuario_baja", length=20, nullable = true)
+	@Length(max = 20)
+	private String usuarioBaja;	
+	
 	@ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.MERGE} )
 	@JoinTable(name="Usuario_Rol",
 		joinColumns = {@JoinColumn(name="id_usuario")},
@@ -97,139 +110,117 @@ public class Usuario implements UserDetails, Serializable {
 		this.id = id;
 	}
 
-
-
 	public String getUsername() {
 		return username;
 	}
-
-
 
 	public void setUsername(String username) {
 		this.username = username;
 	}
 
-
-
 	public String getPassword() {
 		return password;
 	}
-
-
 
 	public void setPassword(String password) {
 		this.password = password;
 	}
 
-
-
 	public String getEmail() {
 		return email;
 	}
-
-
 
 	public void setEmail(String email) {
 		this.email = email;
 	}
 
-
-
 	public String getNombre() {
 		return nombre;
 	}
-
-
 
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
 
-
-
 	public String getApellidos() {
 		return apellidos;
 	}
-
-
 
 	public void setApellidos(String apellidos) {
 		this.apellidos = apellidos;
 	}
 
-
-
 	public Date getFechaNacimiento() {
 		return fechaNacimiento;
 	}
-
-
 
 	public void setFechaNacimiento(Date fechaNacimiento) {
 		this.fechaNacimiento = fechaNacimiento;
 	}
 
-
-
 	public String getNumeroTelefono() {
 		return numeroTelefono;
 	}
-
-
 
 	public void setNumeroTelefono(String numeroTelefono) {
 		this.numeroTelefono = numeroTelefono;
 	}
 
-
-
 	public String getNumeroMovil() {
 		return numeroMovil;
 	}
-
-
 
 	public void setNumeroMovil(String numeroMovil) {
 		this.numeroMovil = numeroMovil;
 	}
 
-
-
 	public Date getFechaAlta() {
 		return fechaAlta;
 	}
-
-
 
 	public void setFechaAlta(Date fechaAlta) {
 		this.fechaAlta = fechaAlta;
 	}
 
-
-
 	public Date getFechaModificacion() {
 		return fechaModificacion;
 	}
-
-
 
 	public void setFechaModificacion(Date fechaModificacion) {
 		this.fechaModificacion = fechaModificacion;
 	}
 
-
-
 	public Date getFechaBaja() {
 		return fechaBaja;
 	}
-
-
 
 	public void setFechaBaja(Date fechaBaja) {
 		this.fechaBaja = fechaBaja;
 	}
 
+	public String getUsuarioAlta() {
+		return usuarioAlta;
+	}
 
+	public void setUsuarioAlta(String usuarioAlta) {
+		this.usuarioAlta = usuarioAlta;
+	}
+
+	public String getUsuarioModificacion() {
+		return usuarioModificacion;
+	}
+
+	public void setUsuarioModificacion(String usuarioModificacion) {
+		this.usuarioModificacion = usuarioModificacion;
+	}
+
+	public String getUsuarioBaja() {
+		return usuarioBaja;
+	}
+
+	public void setUsuarioBaja(String usuarioBaja) {
+		this.usuarioBaja = usuarioBaja;
+	}
 
 	public List<Rol> getRoles() {
 		return roles;

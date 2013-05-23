@@ -1,6 +1,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
-<div class="span2 main-menu-span">
+<div class="span3 main-menu-span">
 	<div class="well nav-collapse sidebar-nav">
 		<ul class="nav nav-tabs nav-stacked main-menu">
 			<li class="nav-header hidden-tablet">Ferramentas</li>

@@ -13,7 +13,7 @@ import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
-@Table(name = "Rol")
+@Table(name = "rol")
 public class Rol implements Serializable, Comparable<Rol> {
 	private static final long serialVersionUID = 1L;
 	
@@ -22,10 +22,10 @@ public class Rol implements Serializable, Comparable<Rol> {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)	
 	private Integer id;
 	
-	@Column(name = "role", length=20, unique=true, nullable = false)
-	@NotEmpty(message = "'role' no especificado.")
+	@Column(name = "nombre", length=20, unique=true, nullable = false)
+	@NotEmpty(message = "Campo 'role' no especificado.")
 	@Length(min = 2, max = 20)	
-	private String role;
+	private String nombre;
 	
 	public Integer getId() {
 		return id;
@@ -35,17 +35,17 @@ public class Rol implements Serializable, Comparable<Rol> {
 		this.id = id;
 	}
 
-	public String getRole() {
-		return role;
+	public String getNombre() {
+		return nombre;
 	}
 
-	public void setRole(String role) {
-		this.role = role;
+	public void getNombre(String nombre) {
+		this.nombre = nombre;
 	}
 
 	@Override
 	public String toString() {
-		return "Rol [id=" + id + ", role=" + role + "]";
+		return "Rol [id=" + id + ", nombre=" + nombre + "]";
 	}
 
 	@Override
@@ -53,7 +53,7 @@ public class Rol implements Serializable, Comparable<Rol> {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		result = prime * result + ((role == null) ? 0 : role.hashCode());
+		result = prime * result + ((nombre == null) ? 0 : nombre.hashCode());
 		return result;
 	}
 
@@ -71,18 +71,18 @@ public class Rol implements Serializable, Comparable<Rol> {
 				return false;
 		} else if (!id.equals(other.id))
 			return false;
-		if (role == null) {
-			if (other.role != null)
+		if (nombre == null) {
+			if (other.nombre != null)
 				return false;
-		} else if (!role.equals(other.role))
+		} else if (!nombre.equals(other.nombre))
 			return false;
 		return true;
 	}
 
 	@Override
 	public int compareTo(Rol o) {
-		if (this.role.compareTo(o.getRole()) != 0) {
-			return this.role.compareTo(o.getRole());
+		if (this.nombre.compareTo(o.getNombre()) != 0) {
+			return this.nombre.compareTo(o.getNombre());
 		}
 		if (this.id == null) {
 			return -1;

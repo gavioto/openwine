@@ -1,8 +1,6 @@
 package com.grafenonet.openwine.maestros.domain;
 
 import java.io.Serializable;
-import java.util.Date;
-import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -13,42 +11,40 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
-import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
-@Table(name = "Pais")
+@Table(name = "pais")
 public class Pais implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_pais", nullable = false)
-	private Integer idPais;
+	private Integer id;
 	
 	@Column(name = "codigo", length = 2, unique = true, nullable = false)
-	@NotEmpty
+	@NotEmpty(message = "Campo 'codigo' no especificado.")
 	@Length(max=2)
 	private String codigo;
 	
 	@Column(name = "nombre", length = 2, unique = true, nullable = false)
-	@NotEmpty
+	@NotEmpty(message = "Campo 'nombre' no especificado.")
 	@Length(max=250)
 	private String nombre;
 	
-//	@OneToMany(fetch = FetchType.LAZY, mappedBy = "pais", cascade = CascadeType.ALL)
-//	private Set<Provincia> provincias;
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "pais", cascade = CascadeType.ALL)
+	private Set<Provincia> provincias;
 
 	public Integer getIdPais() {
-		return idPais;
+		return id;
 	}
 
 	public void setIdPais(Integer id) {
-		this.idPais = id;
+		this.id = id;
 	}
 
 	public String getCodigo() {
@@ -67,17 +63,17 @@ public class Pais implements Serializable {
 		this.nombre = nombre;
 	}
 
-//	public Set<Provincia> getProvincias() {
-//		return provincias;
-//	}
-//
-//	public void setProvincias(Set<Provincia> provincias) {
-//		this.provincias = provincias;
-//	}
+	public Set<Provincia> getProvincias() {
+		return provincias;
+	}
+
+	public void setProvincias(Set<Provincia> provincias) {
+		this.provincias = provincias;
+	}
 
 	@Override
 	public String toString() {
-		return "Pais [id=" + idPais + ", codigo=" + codigo + ", nombre=" + nombre
+		return "Pais [id=" + id + ", codigo=" + codigo + ", nombre=" + nombre
 				+ "]";
 	}
 	

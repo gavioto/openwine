@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.grafenonet.openwine.caderno.domain.Gasoleo;
-import com.grafenonet.openwine.caderno.service.TicketGasoilService;
+import com.grafenonet.openwine.caderno.service.GasoleoService;
 
 @Controller
 public class GasoleoController {
@@ -27,7 +27,7 @@ public class GasoleoController {
 	private static DateFormat DATE_FORMAT = new SimpleDateFormat("dd/MM/yyy");
 	
 	@Autowired
-	TicketGasoilService ticketGasoilService;
+	GasoleoService ticketGasoilService;
 	
 	@RequestMapping(value = "/caderno/gasoleo", method = RequestMethod.GET)
 	public String gasoleo(Model model) {
@@ -42,6 +42,7 @@ public class GasoleoController {
 		model.addAttribute("tickets", lista);
 		model.addAttribute("numRegistros", lista.size());
 		
+		LOG.debug("Se han encontrado " + lista.size() + ".");
 		LOG.debug("Finalizando controlador gasoleo.");
 		return "caderno/gasoleo/gasoleo";
 	}

@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.grafenonet.openwine.caderno.domain.Gasoleo;
 import com.grafenonet.openwine.caderno.service.CadernoService;
-import com.grafenonet.openwine.caderno.service.TicketGasoilService;
+import com.grafenonet.openwine.caderno.service.GasoleoService;
 
 @Controller
 @RequestMapping(value = "caderno")
@@ -27,7 +27,7 @@ public class CadernoController {
 	CadernoService cadernoService;
 	
 	@Autowired 
-	TicketGasoilService ticketGasoilService;	
+	GasoleoService ticketGasoilService;	
 	
 	@RequestMapping(value = "/caderno", method = RequestMethod.GET)
 	public String gasoleo(Model model) {

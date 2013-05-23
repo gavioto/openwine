@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.grafenonet.openwine.caderno.domain.Gasoleo;
-import com.grafenonet.openwine.caderno.service.TicketGasoilService;
+import com.grafenonet.openwine.caderno.service.GasoleoService;
 
 /**
  * Handles requests for the application home page.
@@ -27,7 +27,7 @@ public class HomeController {
 	private static final Logger LOG = LoggerFactory.getLogger(HomeController.class);
 	
 	@Autowired
-	TicketGasoilService ticketGasoilService;
+	GasoleoService ticketGasoilService;
 	
 	/**
 	 * Simply selects the home view to render by returning its name.

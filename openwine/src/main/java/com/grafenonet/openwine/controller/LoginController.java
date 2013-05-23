@@ -71,13 +71,13 @@ public class LoginController {
 		return "redirect:home";
 	}	
 
-	@RequestMapping(value = "/signup", method=RequestMethod.GET)
+	@RequestMapping(value = "/signup", method=RequestMethod.POST)
 	public String signup(ModelMap model) {
 		LOG.debug("Controller 'signup'.");
 		return "signup";
 	}
 	
-	@RequestMapping(value = "/logoff", method=RequestMethod.GET)
+	@RequestMapping(value = "/logout", method=RequestMethod.GET)
 	public String logoff(ModelMap model) {
 		LOG.debug("Controller 'logoff'.");
 		return "logoff";

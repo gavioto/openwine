@@ -11,12 +11,12 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.grafenonet.openwine.caderno.dao.GasoleoDao;
 import com.grafenonet.openwine.caderno.domain.Gasoleo;
-import com.grafenonet.openwine.caderno.service.TicketGasoilService;
+import com.grafenonet.openwine.caderno.service.GasoleoService;
 
 @Service("ticketGasoilService")
 @Transactional(rollbackFor = Throwable.class, timeout = 300, propagation = Propagation.REQUIRED)
-public class TicketGasoilServiceImpl implements TicketGasoilService {
-	private static Logger LOG = LoggerFactory.getLogger(TicketGasoilService.class);
+public class GasoleoServiceImpl implements GasoleoService {
+	private static Logger LOG = LoggerFactory.getLogger(GasoleoService.class);
 	
 	@Autowired 
 	GasoleoDao ticketGasoilDao;

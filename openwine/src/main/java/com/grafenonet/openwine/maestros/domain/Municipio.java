@@ -1,17 +1,13 @@
 package com.grafenonet.openwine.maestros.domain;
 
 import java.io.Serializable;
-import java.util.Set;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlTransient;
@@ -20,35 +16,31 @@ import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
-@Table(name = "provincia")
-public class Provincia implements Serializable {
+@Table(name = "municipio")
+public class Municipio implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id_provincia", nullable = false)
+	@Column(name = "id_concello", nullable = false)
 	private Integer id;
 	
-	@Column(name = "codigo", length = 2, unique = true, nullable = false)
+	@Column(name = "codigo", length = 3, unique = true, nullable = false)
 	@NotEmpty(message = "Campo 'codigo' no especificado.")
-	@Length(max=2)	
+	@Length(max=3)	
 	private String codigo;
 	
-	@Column(name = "nombre", length = 2, nullable = false)
+	@Column(name = "nombre", length = 250, nullable = false)
 	@NotEmpty(message = "Campo 'nombre' no especificado.")
 	@Length(max=250)	
 	private String nombre;
 	
-	@JoinColumn(name = "id_pais")
+	@JoinColumn(name = "id_provincia")
 	@NotNull
-	@NotEmpty(message = "Campo 'pais' no especificado.")
+	@NotEmpty(message = "Campo 'provincia' no especificado.")
 	@XmlTransient
-	private Pais pais;
-	
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "id_provincia", cascade = CascadeType.ALL)
-	@XmlTransient
-	private Set<Municipio> municipios;	
+	private Provincia provincia;
 
 	public Integer getId() {
 		return id;
@@ -74,25 +66,17 @@ public class Provincia implements Serializable {
 		this.nombre = nombre;
 	}
 
-	public Pais getPais() {
-		return pais;
+	public Provincia getProvincia() {
+		return provincia;
 	}
 
-	public void setPais(Pais pais) {
-		this.pais = pais;
-	}
-	
-	public Set<Municipio> getMunicipios() {
-		return municipios;
-	}
-
-	public void setMunicipios(Set<Municipio> municipios) {
-		this.municipios = municipios;
+	public void setProvincia(Provincia provincia) {
+		this.provincia = provincia;
 	}
 
 	@Override
 	public String toString() {
-		return "Provincia [id=" + id + ", codigo=" + codigo + ", nombre="
-				+ nombre + ", pais=" + pais + "]";
-	}	
+		return "Municipio [id=" + id + ", codigo=" + codigo + ", nombre="
+				+ nombre + ", provincia=" + provincia + "]";
+	}
 }

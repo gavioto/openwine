@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 
 import com.grafenonet.openwine.caderno.domain.Gasoleo;
 import com.grafenonet.openwine.caderno.service.CadernoService;
-import com.grafenonet.openwine.caderno.service.TicketGasoilService;
+import com.grafenonet.openwine.caderno.service.GasoleoService;
 
 @Service
 public class CadernoServiceImpl implements CadernoService {
@@ -19,7 +19,7 @@ public class CadernoServiceImpl implements CadernoService {
 	private static Logger LOG = LoggerFactory.getLogger(CadernoServiceImpl.class);
 	
 	@Autowired
-	private TicketGasoilService ticketGasoilService;
+	private GasoleoService ticketGasoilService;
 
 	@Override
 	public Gasoleo getResumenTickets(int year) {
