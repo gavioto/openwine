@@ -40,13 +40,13 @@ public class Provincia implements Serializable {
 	@Length(max=250)	
 	private String nombre;
 	
-	@JoinColumn(name = "id_pais")
+	@JoinColumn(name = "id")
 	@NotNull
 	@NotEmpty(message = "Campo 'pais' no especificado.")
 	@XmlTransient
 	private Pais pais;
 	
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "id_provincia", cascade = CascadeType.ALL)
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "id", cascade = CascadeType.ALL)
 	@XmlTransient
 	private Set<Municipio> municipios;	
 

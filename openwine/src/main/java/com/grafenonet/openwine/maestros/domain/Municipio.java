@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlTransient;
@@ -23,7 +24,7 @@ public class Municipio implements Serializable {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id_concello", nullable = false)
+	@Column(name = "id_municipio", nullable = false)
 	private Integer id;
 	
 	@Column(name = "codigo", length = 3, unique = true, nullable = false)
@@ -36,6 +37,7 @@ public class Municipio implements Serializable {
 	@Length(max=250)	
 	private String nombre;
 	
+	@ManyToOne
 	@JoinColumn(name = "id_provincia")
 	@NotNull
 	@NotEmpty(message = "Campo 'provincia' no especificado.")

@@ -60,7 +60,7 @@ public class Tecnico implements Serializable {
 	@Size(min = 5, max = 5)	
 	private String codigoPostal;
 	
-	@JoinColumn(name = "id_municipio")
+	@JoinColumn(name = "id_municipio", nullable = false)
 	@NotNull
 	@NotEmpty(message = "Campo 'municipio' no especificado.")
 	@XmlTransient

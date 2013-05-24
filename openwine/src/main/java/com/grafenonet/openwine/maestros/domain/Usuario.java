@@ -96,7 +96,7 @@ public class Usuario implements UserDetails, Serializable {
 	private String usuarioBaja;	
 	
 	@ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.MERGE} )
-	@JoinTable(name="Usuario_Rol",
+	@JoinTable(name="usuario_rol",
 		joinColumns = {@JoinColumn(name="id_usuario")},
 		inverseJoinColumns = {@JoinColumn(name="id_rol")}
 	)

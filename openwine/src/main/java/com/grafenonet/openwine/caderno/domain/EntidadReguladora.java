@@ -11,7 +11,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlTransient;
@@ -54,7 +57,8 @@ public class EntidadReguladora implements Serializable {
 	@Column(name = "anho_designacion", nullable = false)
 	@NotNull
 	@NotEmpty(message = "Campo 'año designación' no especificado.")	
-	@Size(min = 1900, max = 2020, message = "El campo 'año designación' debe estar entre 1900 y 2020")
+	@Min(value = 1900)
+	@Max(value = 2020)
 	private Integer anhoDesignacion;
 	
 	@Column(name = "nif", length = 12, nullable = false)
@@ -69,7 +73,8 @@ public class EntidadReguladora implements Serializable {
 	@Size(min = 5, max = 5)	
 	private String codigoPostal;
 	
-	@JoinColumn(name = "id_municipio")
+	@ManyToOne
+	@JoinColumn(name = "id_municipio", nullable = false)
 	@NotNull
 	@NotEmpty(message = "Campo 'municipio' no especificado.")
 	@XmlTransient

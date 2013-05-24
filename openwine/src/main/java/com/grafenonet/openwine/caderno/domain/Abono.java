@@ -16,7 +16,7 @@ import com.grafenonet.openwine.caderno.enums.TipoAbono;
 //@Table(name = "Abono")
 public class Abono implements Serializable {
 	
-//	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 //	
 //	@Id
 //	@GeneratedValue(strategy=GenerationType.IDENTITY)
