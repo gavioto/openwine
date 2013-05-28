@@ -26,11 +26,12 @@ import org.hibernate.validator.constraints.NotEmpty;
 import com.grafenonet.openwine.caderno.enums.ConduccionPlantacion;
 import com.grafenonet.openwine.caderno.enums.EstadoParcela;
 import com.grafenonet.openwine.caderno.enums.RegimenTenencia;
+import com.grafenonet.openwine.domain.IGenericDomain;
 import com.grafenonet.openwine.maestros.domain.Municipio;
 
 @Entity
 @Table(name = "parcela")
-public class Parcela implements Serializable {
+public class Parcela implements Serializable, IGenericDomain {
 
 	private static final long serialVersionUID = 1L;
 	
@@ -58,13 +59,14 @@ public class Parcela implements Serializable {
 	@Enumerated(EnumType.STRING)
 	private EstadoParcela estado;
 	
-	@Column(name = "regimen", length=20, nullable = false)
+	@Column(name = "regimen_tenecia", length=20, nullable = false)
 	@NotNull
 	@NotEmpty(message = "Campo 'regimen' no especificado.")
 	@Enumerated(EnumType.STRING)
 	private RegimenTenencia regimen;
 	
-	@JoinColumn(name = "id", nullable = false)
+	@ManyToOne
+	@JoinColumn(name = "id_municipio", nullable = false)
 	@NotNull
 	@NotEmpty(message = "Campo 'municipio' no especificado.")
 	@XmlTransient
@@ -122,7 +124,7 @@ public class Parcela implements Serializable {
 	private Integer anhoPlantacion;	
 	
 	@Column(name = "conduccion_plantacion", length=20, nullable = false)
-	@NotNull
+	@NotNull		
 	@NotEmpty(message = "Campo 'conduccion' no especificado.")
 	@Enumerated(EnumType.STRING)
 	private ConduccionPlantacion conduccion;
@@ -133,7 +135,8 @@ public class Parcela implements Serializable {
 	@Enumerated(EnumType.STRING)
 	private ConduccionPlantacion sistemaRiego;	
 	
-	@JoinColumn(name = "id", nullable = false)
+	@ManyToOne
+	@JoinColumn(name = "id_patron", nullable = false)
 	@NotNull
 	@NotEmpty(message = "Campo 'patron' no especificado.")
 	@XmlTransient
@@ -149,6 +152,7 @@ public class Parcela implements Serializable {
 	@NotEmpty(message = "Campo 'marco plantacion cepa' no especificado.")
 	private BigDecimal marcoPlantacionCepa;	
 	
+	@ManyToOne
 	@JoinColumn(name = "id_variedad_1", nullable = false)
 	@NotNull
 	@NotEmpty(message = "Campo 'variedad 1' no especificado.")
@@ -162,6 +166,7 @@ public class Parcela implements Serializable {
 	@Max(value = 100000000)
 	private Integer cantidadVariedad1;
 	
+	@ManyToOne
 	@JoinColumn(name = "id_variedad_2", nullable = true)
 	@XmlTransient
 	private Variedad variedad2;
@@ -171,6 +176,7 @@ public class Parcela implements Serializable {
 	@Max(value = 100000000)
 	private Integer cantidadVariedad2;
 	
+	@ManyToOne
 	@JoinColumn(name = "id_variedad_3", nullable = true)
 	@XmlTransient
 	private Variedad variedad3;

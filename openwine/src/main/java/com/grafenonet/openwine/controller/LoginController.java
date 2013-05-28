@@ -5,8 +5,6 @@ import javax.validation.Valid;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -17,18 +15,12 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.ResponseStatus;
 
-import com.grafenonet.openwine.authentication.CustomAuthenticationProvider;
-import com.grafenonet.openwine.maestros.domain.Login;
+import com.grafenonet.openwine.maestros.domain.LoginUser;
 
 @Controller
 public class LoginController {
 	private static final Logger LOG = LoggerFactory.getLogger(LoginController.class);
-	
-//	@Resource(name = "customAuthenticationProvider")
-//	CustomAuthenticationProvider customAuthenticationProvider;
 	
 	@Resource
 	AuthenticationProvider customAuthenticationProvider;
@@ -44,9 +36,7 @@ public class LoginController {
 	}
 	
 	@RequestMapping(value = "/login", method=RequestMethod.POST)
-	//@ResponseStatus(HttpStatus.OK)
-	//@ResponseBody
-	public String loginForm(@Valid @ModelAttribute("login") Login login, final BindingResult errors, ModelMap model) {
+	public String loginForm(@Valid @ModelAttribute("login") LoginUser login, final BindingResult errors, ModelMap model) {
 		LOG.debug("Controller 'loginForm'.");
 		
 		if (LOG.isDebugEnabled()) {

@@ -19,9 +19,11 @@ import javax.xml.bind.annotation.XmlTransient;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotEmpty;
 
+import com.grafenonet.openwine.domain.IGenericDomain;
+
 @Entity
 @Table(name = "gasoleo")
-public class Gasoleo implements Serializable {
+public class Gasoleo implements Serializable, IGenericDomain {
 	
 	private static final long serialVersionUID = 1L;
 	

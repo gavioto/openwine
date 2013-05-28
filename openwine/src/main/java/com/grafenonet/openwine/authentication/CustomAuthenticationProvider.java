@@ -15,7 +15,6 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -31,7 +30,8 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
 	private static final List<GrantedAuthority> AUTHORITIES = new ArrayList<GrantedAuthority>();
 	static {
 		AUTHORITIES.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
-		AUTHORITIES.add(new SimpleGrantedAuthority("ROLE_CADERNO"));
+		AUTHORITIES.add(new SimpleGrantedAuthority("ROLE_VITICULTOR"));
+		AUTHORITIES.add(new SimpleGrantedAuthority("ROLE_TECNICO"));
 	}
 		
 	@Autowired
@@ -41,6 +41,8 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
 	@Transactional(readOnly = true)
 	public Authentication authenticate(Authentication authentication)
 			throws AuthenticationException {
+		Usuario user = null;
+		
 		LOG.debug("Iniciando autenticación del usuario ...");
 		
 		UsernamePasswordAuthenticationToken token = (UsernamePasswordAuthenticationToken) authentication;
@@ -52,17 +54,19 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
 		if (LOG.isDebugEnabled()) {
 			LOG.debug(" - username = " + token.getName());
 			LOG.debug(" - credentials = " + token.getCredentials());
-		}		
-		
-		Usuario user = null;
+		}				
 		
 		// Se comprueba que el usuario existe
 		String username = token.getName();
 		if (username != null && !username.isEmpty()) {
-			user = usuarioDao.loadUserByUsername(username);
+			user = this.usuarioDao.loadUserByUsername(username);
 		}
 		if (user == null) {
 			throw new UsernameNotFoundException("El usuario '" + username + "' no existe.");
+		}
+		
+		if (user.getFechaBaja() != null) {
+			throw new UsernameNotFoundException("El usuario '" + username + "' está dado de baja.");
 		}
 		
 		// Se comprueba la credencial de la contraseña
@@ -71,7 +75,7 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
 			throw new BadCredentialsException("La contraseña del usuario '" + username + "' no es correcta.");
 		}			
 	
-		LOG.debug("Finalizando autenticación del usuario.");
+		LOG.debug("Finalizando autenticación del usuario '" + username + "'.");
 		return new UsernamePasswordAuthenticationToken(username, password, AUTHORITIES);
 	}
 

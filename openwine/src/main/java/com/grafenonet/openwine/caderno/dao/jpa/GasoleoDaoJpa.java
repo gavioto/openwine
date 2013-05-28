@@ -1,4 +1,4 @@
-package com.grafenonet.openwine.caderno.dao.impl;
+package com.grafenonet.openwine.caderno.dao.jpa;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,8 +13,8 @@ import com.grafenonet.openwine.caderno.dao.GasoleoDao;
 import com.grafenonet.openwine.caderno.domain.Gasoleo;
 import com.grafenonet.openwine.maestros.domain.Usuario;
 
-@Repository
-public class GasoleoDaoImpl implements GasoleoDao {
+@Repository("gasoleoDao")
+public class GasoleoDaoJpa implements GasoleoDao {
 	
 	@Autowired
 	SessionFactory sessionFactory;
@@ -27,9 +27,8 @@ public class GasoleoDaoImpl implements GasoleoDao {
 	}
 
 	@Override
-	public void save(Gasoleo ticketGasoil) {
-		//sessionFactory.getCurrentSession().save(ticketGasoil);	
-		this.getCurrentSession().save(ticketGasoil);
+	public void save(Gasoleo gasoleo) {	
+		this.getCurrentSession().save(gasoleo);
 	}
 
 	@SuppressWarnings("unchecked")
@@ -67,19 +66,19 @@ public class GasoleoDaoImpl implements GasoleoDao {
 	}
 
 	@Override
-	public void update(Gasoleo ticketGasoil) {
+	public void update(Gasoleo gasoleo) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void delete(Integer idTicketGasoil) {
+	public void delete(Integer id) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public Gasoleo find(Integer idTicketGasoil) {
+	public Gasoleo find(Integer id) {
 		// TODO Auto-generated method stub
 		return null;
 	}

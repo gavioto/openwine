@@ -5,11 +5,12 @@ import java.util.List;
 import com.grafenonet.openwine.maestros.domain.Usuario;
 
 public interface UsuarioService {
+	
 	void create(Usuario usuario);
 	
 	void update(Usuario usuario);
 	
-	void delete(Integer id);
+	void delete(Usuario usuario);
 	
 	List<Usuario> list();
 	

@@ -23,11 +23,12 @@ import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import com.grafenonet.openwine.caderno.enums.ClasificacionEntidadReguladora;
+import com.grafenonet.openwine.domain.IGenericDomain;
 import com.grafenonet.openwine.maestros.domain.Municipio;
 
 @Entity
 @Table(name="entidad_reguladora")
-public class EntidadReguladora implements Serializable {
+public class EntidadReguladora implements Serializable, IGenericDomain {
 
 	private static final long serialVersionUID = 1L;
 

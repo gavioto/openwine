@@ -7,7 +7,7 @@
 		<param name="Target" value="System.out" />
 		<layout class="org.apache.log4j.PatternLayout">
 			<!--<param name="ConversionPattern" value="%-5p: %c - %m%n" />-->
-			<param name="ConversionPattern" value="web - %date [%thread] %-5level %logger{36} - %message%n" />
+			<param name="ConversionPattern" value="%date [%thread] %-5level %logger{36} - %message%n" />
 		</layout>
 	</appender>
 	
@@ -28,9 +28,21 @@
 	<logger name="org.springframework.context">
 		<level value="info" />
 	</logger>
+	
+	<logger name="org.springframework.security">
+		<level value="debug" />
+	</logger>	
+	
+	<logger name="org.springframework.transaction">
+		<level value="debug" />
+	</logger>	
 
 	<logger name="org.springframework.web">
 		<level value="info" />
+	</logger>
+	
+	<logger name="org.hibernate">
+		<level value="debug" />
 	</logger>
 
 	<!-- Root Logger -->

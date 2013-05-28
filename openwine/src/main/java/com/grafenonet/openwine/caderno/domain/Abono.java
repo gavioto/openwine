@@ -2,19 +2,11 @@ package com.grafenonet.openwine.caderno.domain;
 
 import java.io.Serializable;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Enumerated;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
-
-import com.grafenonet.openwine.caderno.enums.TipoAbono;
+import com.grafenonet.openwine.domain.IGenericDomain;
 
 //@Entity
 //@Table(name = "Abono")
-public class Abono implements Serializable {
+public class Abono implements Serializable, IGenericDomain {
 	
 	private static final long serialVersionUID = 1L;
 //	

@@ -21,10 +21,11 @@ import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import com.grafenonet.openwine.caderno.enums.CaracterExplotacion;
+import com.grafenonet.openwine.domain.IGenericDomain;
 
 @Entity
 @Table(name = "explotacion")
-public class Explotacion implements Serializable {
+public class Explotacion implements Serializable, IGenericDomain {
 	
 	private static final long serialVersionUID = 1L;
 	

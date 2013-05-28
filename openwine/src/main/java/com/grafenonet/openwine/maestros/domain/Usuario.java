@@ -25,9 +25,11 @@ import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import com.grafenonet.openwine.domain.IGenericDomain;
+
 @Entity
 @Table(name = "usuario")
-public class Usuario implements UserDetails, Serializable {
+public class Usuario implements UserDetails, Serializable, IGenericDomain {
 	private static final long serialVersionUID = 1L;
 	
 	@Id
@@ -71,8 +73,7 @@ public class Usuario implements UserDetails, Serializable {
 	@Column(name = "numero_movil", length=15, nullable = true)
 	@Length(max = 15)
 	private String numeroMovil;
-	
-	
+		
 	@Column(name = "fecha_alta", nullable = false)
 	private Date fechaAlta;
 	

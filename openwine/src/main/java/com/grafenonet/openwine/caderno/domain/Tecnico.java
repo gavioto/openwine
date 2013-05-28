@@ -9,6 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -17,16 +18,17 @@ import javax.xml.bind.annotation.XmlTransient;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotEmpty;
 
+import com.grafenonet.openwine.domain.IGenericDomain;
 import com.grafenonet.openwine.maestros.domain.Municipio;
 
 @Entity
 @Table(name = "tecnico")
-public class Tecnico implements Serializable {
+public class Tecnico implements Serializable, IGenericDomain {
 
 	private static final long serialVersionUID = 1L;
 	
 	@Id
-	@Column(name = "id_usuario")
+	@Column(name = "id_tecnico")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)	
 	private Integer id;
 	
@@ -60,6 +62,7 @@ public class Tecnico implements Serializable {
 	@Size(min = 5, max = 5)	
 	private String codigoPostal;
 	
+	@ManyToOne
 	@JoinColumn(name = "id_municipio", nullable = false)
 	@NotNull
 	@NotEmpty(message = "Campo 'municipio' no especificado.")

@@ -21,14 +21,14 @@ public class RolServiceImpl implements RolService {
 	
 	@Override
 	@Transactional(readOnly = true)
-	public Rol getRol(Long id) {
+	public Rol get(Integer id) {
 		LOG.debug("Iniciando obtener rol ...");
 		
 		if (LOG.isDebugEnabled()) {
 			LOG.debug(" - id = " + id);
 		}
 		
-		Rol rol = this.rolDao.getRol(id);
+		Rol rol = this.rolDao.get(id);
 		
 		if (LOG.isDebugEnabled()) {
 			LOG.debug(" - rol = " + rol.toString());

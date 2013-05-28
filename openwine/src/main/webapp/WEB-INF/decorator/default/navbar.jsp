@@ -29,7 +29,7 @@
 					<ul class="dropdown-menu">
 						<li><a href="/perfil">Perfil</a></li>
 						<li class="divider"></li>
-						<li><a href="/logout">Sair</a></li>
+						<li><a href="<:url value="/j_spring_security_logout"" title="Sair">Sair</a></li>
 					</ul>
 				</div>
 	

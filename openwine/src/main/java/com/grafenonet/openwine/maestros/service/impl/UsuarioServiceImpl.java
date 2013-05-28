@@ -25,7 +25,7 @@ public class UsuarioServiceImpl implements UsuarioService {
 	public void create(Usuario usuario) {
 		LOG.debug("Iniciando crear usuario ...");
 		
-		this.usuarioDao.create(usuario);
+		this.usuarioDao.save(usuario);
 		
 		LOG.debug("Finalizando crear usuario.");
 	}
@@ -38,20 +38,20 @@ public class UsuarioServiceImpl implements UsuarioService {
 			LOG.debug(" - usuario = " + usuario.toString());
 		}
 		
-		this.usuarioDao.update(usuario);		
+		this.usuarioDao.save(usuario);		
 		
 		LOG.debug("-finalizando actualizar usuario.");
 	}
 
 	@Override
-	public void delete(Integer id) {
+	public void delete(Usuario usuario) {
 		LOG.debug("Iniciando borrar usuario ...");
 		
 		if (LOG.isDebugEnabled()) {
-			LOG.debug(" - id = " + id);
+			LOG.debug(" - usuario = " + usuario.toString());
 		}		
 		
-		this.usuarioDao.delete(id);
+		this.usuarioDao.save(usuario);
 		
 		LOG.debug("Finalizando borrar usuario.");
 	}
@@ -81,6 +81,13 @@ public class UsuarioServiceImpl implements UsuarioService {
 		}
 		
 		Usuario usuario = this.usuarioDao.get(id);
+		if (usuario == null || usuario.getId() == null) {
+			throw new RuntimeException("Error al obtener el usuario '" + id + "'.");
+		}
+		
+		if (usuario.getFechaBaja() != null) {
+			throw new RuntimeException("El usuario '" + id + "' está dado de baja.");
+		}
 		
 		if (LOG.isDebugEnabled()) {
 			LOG.debug(" - usuario = " + usuario.toString());
