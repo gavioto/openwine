@@ -9,7 +9,7 @@ import javax.persistence.Query;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Repository;
 
-import com.grafenonet.openwine.dao.hibernate.GenericDaoJpa;
+import com.grafenonet.openwine.core.dao.hibernate.GenericDaoJpa;
 import com.grafenonet.openwine.maestros.dao.UsuarioDao;
 import com.grafenonet.openwine.maestros.domain.Usuario;
 

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" 
+				xmlns:th="http://www.thymeleaf.org"
+				xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+				layout:decorator="decorators/admin">
+
+<head>
+	<meta charset="utf-8" />
+	<title>Variedades :: Cuaderno de Campo :: Administración :: OpenWine</title>   		
+</head>
+
+<body>
+
+	
+		<section layout:fragment="content">	
+		
+           	<header>
+            	<div class="icons"><i class="icon-magic"></i></div>
+                <h5 th:text="${moduleTitle}">[Titulo Modulo]</h5>
+                <div class="toolbar">
+                	<ul class="nav nav-tabs">
+                       	<li title="" class="active icon index_collection_link">
+	            			<a class="pjax" href="/admin/cuaderno/variedad/lista.html" th:href="@{/variedad}" >
+	              				<i class="icon-th-list"></i>
+	              				<span>Lista</span>
+	            			</a>
+          				</li>
+	          			<li title="" class="icon new_collection_link">
+	            			<a class="pjax" href="/admin/cuaderno/variedad/nuevo.html" th:href="@{/admin/cuaderno/variedad/nuevo}" >
+	              				<i class="icon-plus"></i>
+	              				<span>Nuevo</span>
+	            			</a>
+	          			</li>
+                   	</ul>
+               	</div>
+			</header>	
+                                
+       		<div class="body tab-content">
+				<div id="icon-container" class="tab-pane active">
+
+
+					<!-- #content -->
+					<div id="content">
+						<!-- .outer -->
+						<div class="container-fluid outer">
+					    	<div class="row-fluid">
+						        <!-- .inner -->
+						        <div class="span12 inner">
+						        	<!--Begin Datatables-->
+						            <div class="row-fluid">
+						            	<div class="span12">
+						                	<div class="box">
+						                    	<header>
+						              				<div class="icons"><i class="icon-move"></i></div>
+						                        </header>
+						                        <div id="collapse4" class="body">
+						                        	<table id="dataTable" class="table table-bordered table-condensed table-hover table-striped">
+						                        		<thead>
+						                        			<tr>
+						                        				<th th:text="#{web.nombre}">[Nombre]</th>
+						                        				<th th:text="#{web.tipo}">[Tipo]</th>
+						                        				<th>&nbsp;</th>
+						                        			</tr>
+						                        		</thead>
+						                        		<tbody>
+												      		<tr th:each="variedad : ${variedades}">
+												      			<td th:text="${variedad.nombre}">[nombre]</td>
+												      			<td th:text="${variedad.tipo}">[tipo]</td>
+												      			<td>
+												      				<button class="btn view"><i class="icon-view"></i></button>
+												      				<button class="btn edit"><i class="icon-edit"></i></button>
+												      				<button class="btn btn-danger remove"><i class="icon-remove"></i></button>
+												      			</td>
+												      		</tr> 				                        		
+						                        		</tbody>
+						                        	</table>
+						                        </div>
+						                   	</div>
+						              	</div>
+						          	</div>
+						      	</div>
+					     	</div>
+					 	</div>
+					</div>
+
+
+				</div>
+			</div>
+                                
+		</section>	
+		
+</body>
+</html>

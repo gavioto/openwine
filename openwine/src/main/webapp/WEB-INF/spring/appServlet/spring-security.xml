@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+	xmlns:beans="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+			http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd">
+
+	<!-- 
+	<beans:bean id="customAuthenticationSuccessHandler" class="com.grafenonet.openwine.authentication.CustomAuthenticationSuccessHandler" />
+	--> 
+	 
+	<beans:bean id="customAuthenticationProvider" class="com.grafenonet.openwine.core.authentication.CustomAuthenticationProvider" />
+
+	<beans:bean id="md5PasswordEncoder" class="org.springframework.security.authentication.encoding.Md5PasswordEncoder"/>
+	
+ 
+	<http pattern="/resources" security="none" />
+
+	<http use-expressions="true">
+		<intercept-url pattern="/admin/**" access="hasRole('ROLE_ADMIN')"/>
+		<intercept-url pattern="/cuaderno/**" access="hasAnyRole('ROLE_ADMIN','ROLE_VITICULTOR')" />
+		<intercept-url pattern="/home" access="hasAnyRole('ROLE_ADMIN','ROLE_VITICULTOR')" />		
+		<intercept-url pattern="/login*" access="isAnonymous()" />	
+		
+		<form-login login-page="/login" 
+					default-target-url="/"
+					always-use-default-target="false"
+					authentication-failure-url="/login?error=true"
+					login-processing-url="/j_security_check" />
+	
+		<access-denied-handler error-page="/denied" />
+					
+		<logout logout-url="/j_spring_security_logout"
+				logout-success-url="/login" 
+				invalidate-session="true"
+				delete-cookies="JSESSIONID"/>
+		
+		<anonymous/>
+		
+		<session-management invalid-session-url="/">
+			<concurrency-control max-sessions="1"/>
+		</session-management>
+
+	</http>
+	
+	<authentication-manager alias="authenticationManager" erase-credentials="false">
+		<authentication-provider user-service-ref="customAuthenticationProvider">
+			<!-- <password-encoder hash="md5" /> -->
+		</authentication-provider>
+	</authentication-manager>
+
+</beans:beans>

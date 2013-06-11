@@ -44,7 +44,7 @@ public class MunicipioServiceImpl implements MunicipioService {
 		municipio.setUsuarioAlta("admin");
 		municipio.setFechaAlta(new Date());
 		
-		this.municipioDao.save(municipio);
+		this.municipioDao.create(municipio);
 		
 		if (municipio.getId() == null) {
 			throw new RuntimeException("Error al crear el municipio.");
@@ -77,7 +77,7 @@ public class MunicipioServiceImpl implements MunicipioService {
 		municipio.setUsuarioModificacion("admin");
 		municipio.setFechaModificacion(new Date());
 		
-		this.municipioDao.save(municipio);
+		this.municipioDao.create(municipio);
 		
 		LOG.debug("Finalizando actualizar municipio.");
 	}
@@ -103,7 +103,7 @@ public class MunicipioServiceImpl implements MunicipioService {
 		municipio.setUsuarioBaja("admin");
 		municipio.setFechaBaja(new Date());
 		
-		this.municipioDao.save(municipio);
+		this.municipioDao.create(municipio);
 		
 		if (municipio.getFechaBaja() == null) {
 			throw new RuntimeException("Error al dar de baja el municipio.");

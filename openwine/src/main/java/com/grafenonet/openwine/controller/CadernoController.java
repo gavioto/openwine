@@ -13,9 +13,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.grafenonet.openwine.caderno.domain.Gasoleo;
-import com.grafenonet.openwine.caderno.service.CadernoService;
-import com.grafenonet.openwine.caderno.service.GasoleoService;
+import com.grafenonet.openwine.cuaderno.domain.Gasoleo;
+import com.grafenonet.openwine.cuaderno.service.CuadernoService;
+import com.grafenonet.openwine.cuaderno.service.GasoleoService;
 
 @Controller
 @RequestMapping(value = "caderno")
@@ -24,7 +24,7 @@ public class CadernoController {
 	private static final Logger LOG = LoggerFactory.getLogger(CadernoController.class);
 	
 	@Autowired
-	CadernoService cadernoService;
+	CuadernoService cadernoService;
 	
 	@Autowired 
 	GasoleoService ticketGasoilService;	

@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" 
+				xmlns:th="http://www.thymeleaf.org"
+				xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+				layout:decorator="decorators/admin">
+
+<head>
+	<meta charset="utf-8" />
+	<title>Crear Usuario :: Maestros :: Administración :: OpenWine</title>	
+</head>
+
+<body>
+
+	<section layout:fragment="content">
+	
+		<header>
+            <div class="icons"><i class="icon-magic"></i></div>
+               	<h5 th:text="${moduleTitle}">[Titulo Modulo]</h5>
+               	<div class="toolbar">
+               	<ul class="nav nav-tabs">
+               		<li title="" class="icon index_collection_link">
+            			<a class="pjax" href="/admin/maestros/usuario/lista.html" th:href="@{/admin/maestros/usuario}" >
+              				<i class="icon-th-list"></i>
+              				<span th:text="#{web.lista}">[Lista]</span>
+            			</a>
+         				</li>
+          			<li title="" class="active icon new_collection_link">
+            			<a class="pjax" href="/admin/maestros/usuario/nuevo.html" th:href="@{/admin/maestros/usuario/nuevo}" >
+              				<i class="icon-plus"></i>
+              				<span th:text="#{web.nuevo}">[Nuevo]</span>
+            			</a>
+          			</li>
+            	</ul>
+        	</div>
+		</header>	
+		
+     	<div class="body tab-content">
+			<div id="icon-container" class="tab-pane active">
+			
+           		<form id="form" class="form-horizontal" th:object="${usuario}" th:action="@{/admin/maestros/usuario/nuevo}" method="post">
+                	<fieldset>
+                	
+                		<div class="row">
+                		
+                			<div class="span6">
+                			
+		                    	<div class="control-group">
+		                        	<label for="nombre" class="control-label" th:text="#{web.usuario}">[Nombre de usuario]</label>
+		                            <div class="controls">
+		                            	<input type="text" size="20" maxLength="20" class="validate[required] text-input" name="username" id="username" th:field="*{username}" th:value="${username}" />
+		                         	</div>
+		                      	</div>     
+		                      	
+		                      	<div class="control-group">
+		                        	<label for="contrasena" class="control-label" th:text="#{web.contrasena}">[Contraseña]</label>
+		                            <div class="controls">
+		                            	<input type="password" size="20" maxLength="20" class="validate[required] text-input" name="contrasena" id="contrasena" th:field="*{password}" th:value="${password}" />
+		                         	</div>
+		                      	</div> 
+		                      	
+		                    	<div class="control-group">
+		                        	<label for="nombre" class="control-label" th:text="#{web.email}">[Email]</label>
+		                            <div class="controls">
+		                            	<input type="email" size="200" maxLength="200" class="validate[required] text-input" name="email" id="email" th:field="*{email}" th:value="${email}" />
+		                         	</div>
+		                      	</div> 		                      	
+		                      	
+		                    	<div class="control-group">
+		                        	<label for="rol" class="control-label" th:text="#{web.rol}">[Rol]</label>
+		                            <div class="controls">
+		                            	<select name="rol" id="rol" th:field="*{rol}" class="validate[required]" th:remove="all-but-first">
+		                                	<option th:each="rol : ${roles}" th:value="${rol}" th:text="${rol.nombre}" >[Rol]</option>
+										</select>
+		                         	</div>
+		                      	</div>		                      	
+                			
+                			</div>
+                			
+                			<div class="span4">
+                			
+		                    	<div class="control-group">
+		                        	<label for="nombre" class="control-label" th:text="#{web.nombre}">[Nombre]</label>
+		                            <div class="controls">
+		                            	<input type="text" size="200" maxLength="200" class="validate[required] text-input" name="nombre" id="nombre" th:field="*{nombre}" th:value="${nombre}" />
+		                         	</div>
+		                      	</div>
+		                      	
+		                    	<div class="control-group">
+		                        	<label for="apellidos" class="control-label" th:text="#{web.apellidos}">[Apellidos]</label>
+		                            <div class="controls">
+		                            	<input type="text" size="200" maxLength="200" class="validate[required] text-input" name="apellidos" id="apellidos" th:field="*{apellidos}" th:value="${apellidos}" />
+		                         	</div>
+		                      	</div>                      	
+		                 		
+		                       	<div class="control-group">
+		                        	<label for="nombre" class="control-label" th:text="#{web.fecha_nacimiento}">[Fecha de Nacimiento]</label>
+		                           	<div class="controls">                                                    	
+		                            	<input type="text" size="10" maxLength="10" class="validate[required] text-input" name="fechaNacimiento" id="fechaNacimiento" th:field="*{fechaNacimiento}" th:value="${fechaNacimiento}" placeholder="DD/MM/AAAA" />
+		                          	</div>
+		                     	</div>
+		                                      
+		                      	<div class="control-group">
+		                        	<label for="descripcion" class="control-label" th:text="#{web.numero_telefono}">[Numero de Telefono]</label>
+		                           	<div class="controls">
+		                            	<input type="tel" size="15" maxLength="15" class="validate[required] text-input" name="numeroTelefono" id="numeroTelefono" th:field="*{numeroTelefono}" placeholder="900900900" />
+		                         	</div>
+								</div>
+		                           
+		                      	<div class="control-group">
+		                        	<label for="descripcion" class="control-label" th:text="#{web.numero_movil}">[Numero de Movil]</label>
+		                           	<div class="controls">
+		                            	<input type="tel" size="15" maxLength="15" class="validate[required] text-input" name="numeroMovil" id="numeroMovil" th:field="*{numeroMovil}" placeholder="600600600" />
+		                         	</div>
+								</div>                			
+                			
+                			</div>
+                		</div>
+                	
+                		<div class="row">                		
+                			<div class="span10">                	
+		                           
+		                      	<div class="form-actions no-margin-bottom">
+		                        	<input type="submit" value="[Grabar]" class="btn btn-primary" th:value="#{web.grabar}" />
+		                           	<input type="reset" value="[Limpiar]" class="btn btn-primary" th:value="#{web.limpiar}" />
+		                    	</div>
+		                    	
+		                    </div>
+		           		</div>
+                    	                   		
+                	</fieldset>
+            	</form>	
+			
+			</div>
+		</div>		
+		
+	</section>
+		
+</body>
+</html>

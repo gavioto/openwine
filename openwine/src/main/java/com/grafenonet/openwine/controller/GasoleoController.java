@@ -17,8 +17,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.grafenonet.openwine.caderno.domain.Gasoleo;
-import com.grafenonet.openwine.caderno.service.GasoleoService;
+import com.grafenonet.openwine.cuaderno.domain.Gasoleo;
+import com.grafenonet.openwine.cuaderno.service.GasoleoService;
 
 @Controller
 public class GasoleoController {
@@ -27,16 +27,15 @@ public class GasoleoController {
 	private static DateFormat DATE_FORMAT = new SimpleDateFormat("dd/MM/yyy");
 	
 	@Autowired
-	GasoleoService ticketGasoilService;
+	GasoleoService gasoleoService;
 	
 	@RequestMapping(value = "/caderno/gasoleo", method = RequestMethod.GET)
 	public String gasoleo(Model model) {
 		LOG.debug("Iniciando controlador gasoleo ...");
 
 		Integer year = Calendar.getInstance().get(Calendar.YEAR);
-		year = year - 1;
 		
-		List<Gasoleo> lista = ticketGasoilService.findAll(year);
+		List<Gasoleo> lista = gasoleoService.list(year);
 		
 		model.addAttribute("moduleTitle", "Tickets de Gasóleo");
 		model.addAttribute("tickets", lista);
@@ -53,25 +52,25 @@ public class GasoleoController {
 		Calendar calendar = Calendar.getInstance();
 		Integer year = calendar.get(Calendar.YEAR);
 		String today = DATE_FORMAT.format(calendar.getTime());
-		Gasoleo ticket = new Gasoleo();
+		Gasoleo gasoleo = new Gasoleo();
 		
 		model.addAttribute("moduleTitle", "Novo ticket de gasóleo:");
 		model.addAttribute("year", year.toString());
 		model.addAttribute("today", today);
-		model.addAttribute("ticket", ticket);
+		model.addAttribute("ticket", gasoleo);
 		
 		
 		return "caderno/gasoleo/novo";
 	}
 	
 	@RequestMapping(value = "/caderno/gasoleo/novo", method = RequestMethod.POST)
-	public String create(@Valid @ModelAttribute("ticket") Gasoleo ticket, BindingResult result) {
+	public String create(@Valid @ModelAttribute("ticket") Gasoleo gasoleo, BindingResult result) {
 		LOG.debug("Iniciando controlador create ...");
 		
 		if (result.hasErrors()) {
 			return null;
 		}
-		this.ticketGasoilService.save(ticket);
+		this.gasoleoService.create(gasoleo);
 		
 		LOG.debug("Finalizando controlador ticket gasoleo.");
 		

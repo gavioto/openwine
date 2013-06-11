@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="utf-8">
+	<title>OpenWine :: GrafenoNet</title>
+	<meta name="viewport" content="width=device-width, inital-scale=1.0">
+	<meta name="description" content="">
+	<meta name="author" content="GrafenoNet">
+	
+	<link rel="stylesheet" type="text/css" href="../../resources/css/default.css" th:href="@{/resources/css/default.css}" />    
+	<link rel="stylesheet" type="text/css" href="../../resources/css/bootstrap.min.css" th:href="@{/resources/css/bootstrap.min.css}" />    
+	<link rel="stylesheet" type="text/css" href="../../resources/css/bootstrap-responsive.min.css" th:href="@{/resources/css/bootstrap-responsive.min.css}" />
+ 		
+ 	<link rel="shortcut icon" href="../../resources/favicon.ico" th:href="@{/resources/favicon.ico}" />
+</head>
+
+<body>
+	
+	<div id="wrap">
+			
+		<!-- menu superior begin -->
+		<div th:include="default/navbar.html :: navbar"></div>
+		<!-- menu superior end -->
+		
+		<!-- content begin -->
+		<div class="container-fluid">
+			<div class="row-fluid">
+				
+				<!-- menu left begin -->
+				<div th:include="default/menu.html :: navbar"></div>
+				<!-- menu left end -->
+				
+				<!-- body begin -->
+				<div class="span9">
+					<div class="row-fluid">
+						<div class="container-fluid">												
+							<decorator:body />
+						</div>
+					</div>
+				</div>
+				<!-- body end -->
+				
+			</div>
+		</div>		
+		
+		<hr>	
+		
+	</div>
+	
+	<!-- footer begin -->
+	<footer>
+		<div class="container">
+			<div th:include="default/footer.html :: footer"></div>
+		</div> 
+	</footer>	
+	<!-- footer end -->
+	
+	<script type="text/javascript" src="../../resources/js/jquery-1.9.1.js" th:src="@{/resources/js/jquery-1.9.1.js}"></script>
+	<script type="text/javascript" src="../../resources/js/jquery-ui.js" th:src="@{/resources/js/jquery-ui.js}"></script>
+	<script type="text/javascript" src="../../resources/js/bootstrap.min.js" th:src="@{/resources/js/bootstrap.min.js}"></script>
+	<script type="text/javascript" src="../../resources/js/demo.js" th:src="@{/resources/js/demo.js}"></script>
+	<script type="text/javascript" src="../../resources/js/json2.js" th:src="@{/resources/js/json2.js}"></script>
+	<script type="text/javascript" src="../../resources/js/date.format.js" th:src="@{/resources/js/date.format.js}"></script>
+		
+</body>	
+</html>	

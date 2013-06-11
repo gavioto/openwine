@@ -1,35 +1,33 @@
 package com.grafenonet.openwine.maestros.domain;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
-import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.NotNull;
+import javax.xml.bind.annotation.XmlTransient;
 
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import com.grafenonet.openwine.domain.IGenericDomain;
+import com.grafenonet.openwine.core.domain.BaseEntity;
+import com.grafenonet.openwine.core.domain.IGenericDomain;
 
 @Entity
 @Table(name = "usuario")
-public class Usuario implements UserDetails, Serializable, IGenericDomain {
+public class Usuario extends BaseEntity implements UserDetails, Serializable, IGenericDomain {
 	private static final long serialVersionUID = 1L;
 	
 	@Id
@@ -73,35 +71,20 @@ public class Usuario implements UserDetails, Serializable, IGenericDomain {
 	@Column(name = "numero_movil", length=15, nullable = true)
 	@Length(max = 15)
 	private String numeroMovil;
-		
-	@Column(name = "fecha_alta", nullable = false)
-	private Date fechaAlta;
 	
-	@Column(name = "fecha_modificacion", nullable = true)
-	private Date fechaModificacion;
+	@ManyToOne
+	@JoinColumn(name = "id_rol")
+	@NotNull
+	@NotEmpty(message = "Campo 'rol' no especificado.")
+	@XmlTransient
+	private Rol rol;	
 	
-	@Column(name = "fecha_baja", nullable = true)
-	private Date fechaBaja;
-	
-	@Column(name = "usuario_alta", length=20, nullable = false)
-	@NotEmpty(message = "Campo 'usuario_alta' no especificado.")
-	@Length(max = 20)
-	private String usuarioAlta;
-	
-	@Column(name = "usuario_modificacion", length=20, nullable = true)
-	@Length(max = 20)
-	private String usuarioModificacion;
-	
-	@Column(name = "usuario_baja", length=20, nullable = true)
-	@Length(max = 20)
-	private String usuarioBaja;	
-	
-	@ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.MERGE} )
-	@JoinTable(name="usuario_rol",
-		joinColumns = {@JoinColumn(name="id_usuario")},
-		inverseJoinColumns = {@JoinColumn(name="id_rol")}
-	)
-	private List<Rol> roles = new ArrayList<Rol>();
+//	@ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.MERGE} )
+//	@JoinTable(name="usuario_rol",
+//		joinColumns = {@JoinColumn(name="id_usuario")},
+//		inverseJoinColumns = {@JoinColumn(name="id_rol")}
+//	)
+//	private List<Rol> roles = new ArrayList<Rol>();
 	
 	public Integer getId() {
 		return id;
@@ -174,62 +157,22 @@ public class Usuario implements UserDetails, Serializable, IGenericDomain {
 	public void setNumeroMovil(String numeroMovil) {
 		this.numeroMovil = numeroMovil;
 	}
-
-	public Date getFechaAlta() {
-		return fechaAlta;
+	
+	public Rol getRol() {
+		return rol;
 	}
 
-	public void setFechaAlta(Date fechaAlta) {
-		this.fechaAlta = fechaAlta;
-	}
+	public void setRol(Rol rol) {
+		this.rol = rol;
+	}	
 
-	public Date getFechaModificacion() {
-		return fechaModificacion;
-	}
-
-	public void setFechaModificacion(Date fechaModificacion) {
-		this.fechaModificacion = fechaModificacion;
-	}
-
-	public Date getFechaBaja() {
-		return fechaBaja;
-	}
-
-	public void setFechaBaja(Date fechaBaja) {
-		this.fechaBaja = fechaBaja;
-	}
-
-	public String getUsuarioAlta() {
-		return usuarioAlta;
-	}
-
-	public void setUsuarioAlta(String usuarioAlta) {
-		this.usuarioAlta = usuarioAlta;
-	}
-
-	public String getUsuarioModificacion() {
-		return usuarioModificacion;
-	}
-
-	public void setUsuarioModificacion(String usuarioModificacion) {
-		this.usuarioModificacion = usuarioModificacion;
-	}
-
-	public String getUsuarioBaja() {
-		return usuarioBaja;
-	}
-
-	public void setUsuarioBaja(String usuarioBaja) {
-		this.usuarioBaja = usuarioBaja;
-	}
-
-	public List<Rol> getRoles() {
-		return roles;
-	}
-
-	public void setRoles(List<Rol> roles) {
-		this.roles = roles;
-	}
+//	public List<Rol> getRoles() {
+//		return roles;
+//	}
+//
+//	public void setRoles(List<Rol> roles) {
+//		this.roles = roles;
+//	}
 
 	@Override
 	public String toString() {
@@ -272,8 +215,7 @@ public class Usuario implements UserDetails, Serializable, IGenericDomain {
 
 	@Override
 	public boolean isEnabled() {
-		// TODO Auto-generated method stub
-		return false;
+		return getFechaBaja() == null;
 	}
 
 }

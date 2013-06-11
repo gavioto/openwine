@@ -15,8 +15,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.grafenonet.openwine.caderno.domain.Gasoleo;
-import com.grafenonet.openwine.caderno.service.GasoleoService;
+import com.grafenonet.openwine.cuaderno.domain.Gasoleo;
+import com.grafenonet.openwine.cuaderno.service.GasoleoService;
 
 /**
  * Handles requests for the application home page.

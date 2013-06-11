@@ -22,7 +22,7 @@
 		<beans:property name="packagesToScan">
 			<beans:list>
 				<beans:value>com.grafenonet.openwine.maestros.domain</beans:value>
-				<beans:value>com.grafenonet.openwine.caderno.domain</beans:value>
+				<beans:value>com.grafenonet.openwine.cuaderno.domain</beans:value>
 			</beans:list>
 		</beans:property>
 		<beans:property name="hibernateProperties">

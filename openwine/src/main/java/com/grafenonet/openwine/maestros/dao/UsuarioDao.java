@@ -4,7 +4,7 @@ import javax.persistence.EntityNotFoundException;
 
 import org.springframework.dao.DataAccessException;
 
-import com.grafenonet.openwine.dao.hibernate.IGenericDao;
+import com.grafenonet.openwine.core.dao.hibernate.IGenericDao;
 import com.grafenonet.openwine.maestros.domain.Usuario;
 
 public interface UsuarioDao extends IGenericDao<Usuario> {

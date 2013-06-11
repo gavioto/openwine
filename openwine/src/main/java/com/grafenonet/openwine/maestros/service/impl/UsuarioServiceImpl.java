@@ -1,5 +1,6 @@
 package com.grafenonet.openwine.maestros.service.impl;
 
+import java.util.Date;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -19,13 +20,16 @@ public class UsuarioServiceImpl implements UsuarioService {
 	private static Logger LOG = LoggerFactory.getLogger(UsuarioServiceImpl.class);
 	
 	@Autowired
-	UsuarioDao usuarioDao;
+	private UsuarioDao usuarioDao;
 
 	@Override
 	public void create(Usuario usuario) {
 		LOG.debug("Iniciando crear usuario ...");
 		
-		this.usuarioDao.save(usuario);
+		usuario.setUsuarioAlta("admin");
+		usuario.setFechaAlta(new Date());
+		
+		this.usuarioDao.create(usuario);
 		
 		LOG.debug("Finalizando crear usuario.");
 	}
@@ -38,7 +42,10 @@ public class UsuarioServiceImpl implements UsuarioService {
 			LOG.debug(" - usuario = " + usuario.toString());
 		}
 		
-		this.usuarioDao.save(usuario);		
+		usuario.setUsuarioModificacion("admin");
+		usuario.setFechaModificacion(new Date());
+		
+		this.usuarioDao.update(usuario);		
 		
 		LOG.debug("-finalizando actualizar usuario.");
 	}
@@ -51,7 +58,10 @@ public class UsuarioServiceImpl implements UsuarioService {
 			LOG.debug(" - usuario = " + usuario.toString());
 		}		
 		
-		this.usuarioDao.save(usuario);
+		usuario.setUsuarioBaja("admin");
+		usuario.setFechaBaja(new Date());
+		
+		this.usuarioDao.create(usuario);
 		
 		LOG.debug("Finalizando borrar usuario.");
 	}
@@ -85,7 +95,7 @@ public class UsuarioServiceImpl implements UsuarioService {
 			throw new RuntimeException("Error al obtener el usuario '" + id + "'.");
 		}
 		
-		if (usuario.getFechaBaja() != null) {
+		if (usuario.isEnabled()) {
 			throw new RuntimeException("El usuario '" + id + "' está dado de baja.");
 		}
 		

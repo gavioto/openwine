@@ -44,7 +44,7 @@ public class ProvinciaServiceImpl implements ProvinciaService {
 		provincia.setUsuarioAlta("admin");
 		provincia.setFechaAlta(new Date());
 		
-		this.provinciaDao.save(provincia);
+		this.provinciaDao.create(provincia);
 		
 		if (provincia.getId() == null) {
 			throw new RuntimeException("Error al crear la provincia.");
@@ -77,7 +77,7 @@ public class ProvinciaServiceImpl implements ProvinciaService {
 		provincia.setUsuarioModificacion("admin");
 		provincia.setFechaModificacion(new Date());
 		
-		this.provinciaDao.save(provincia);
+		this.provinciaDao.create(provincia);
 		
 		LOG.debug("Finalizando actualizar provincia.");
 	}
@@ -107,7 +107,7 @@ public class ProvinciaServiceImpl implements ProvinciaService {
 		provincia.setUsuarioBaja("admin");
 		provincia.setFechaBaja(new Date());
 		
-		this.provinciaDao.save(provincia);
+		this.provinciaDao.create(provincia);
 		
 		if (provincia.getFechaBaja() == null) {
 			throw new RuntimeException("Error al dar de baja la provincia.");

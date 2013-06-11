@@ -31,7 +31,12 @@ public class LoginController {
 	
 	@RequestMapping(value = "/login", method=RequestMethod.GET)
 	public String login(ModelMap model) {
-		LOG.debug("Controller 'login'.");
+		LOG.debug("Iniciando controlador login GET ...");
+		
+		LoginUser login = new LoginUser();
+		model.addAttribute("loginUser", login);
+		
+		LOG.debug("Finalizando controlador login GET.");
 		return "login";
 	}
 	
@@ -56,21 +61,23 @@ public class LoginController {
 
 		final Authentication authentication = customAuthenticationProvider.authenticate(authRequest);
 		SecurityContextHolder.getContext().setAuthentication(authentication);
+		
+		String home = "";
 				
 		LOG.debug("Usuario autenticado: " + login.toString());		
 		return "redirect:home";
 	}	
 
-	@RequestMapping(value = "/signup", method=RequestMethod.POST)
-	public String signup(ModelMap model) {
-		LOG.debug("Controller 'signup'.");
-		return "signup";
-	}
-	
-	@RequestMapping(value = "/logout", method=RequestMethod.GET)
-	public String logoff(ModelMap model) {
-		LOG.debug("Controller 'logoff'.");
-		return "logoff";
-	}	
+//	@RequestMapping(value = "/signup", method=RequestMethod.POST)
+//	public String signup(ModelMap model) {
+//		LOG.debug("Controller 'signup'.");
+//		return "signup";
+//	}
+//	
+//	@RequestMapping(value = "/logout", method=RequestMethod.GET)
+//	public String logoff(ModelMap model) {
+//		LOG.debug("Controller 'logoff'.");
+//		return "logoff";
+//	}	
 	
 }

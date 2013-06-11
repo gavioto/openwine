@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" 
+				xmlns:th="http://www.thymeleaf.org"
+				xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout">
+<head th:fragment="headerFragment">
+	<meta charset="utf-8" />
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+	<title> :: Administracion :: OpenWine :: GrafenoNet</title>
+	<meta name="viewport" content="width=device-width, inital-scale=1.0" />
+	<meta name="description" content="" />
+	<meta name="author" content="GrafenoNet"/>
+	
+	<link rel="stylesheet" type="text/css" href="../../resources/css/default.css" th:href="@{/resources/css/default.css}" />    
+	<link rel="stylesheet" type="text/css" href="../../resources/css/bootstrap.min.css" th:href="@{/resources/css/bootstrap.min.css}" />    
+	<link rel="stylesheet" type="text/css" href="../../resources/css/bootstrap-responsive.min.css" th:href="@{/resources/css/bootstrap-responsive.min.css}" />
+ 		
+ 	<link rel="shortcut icon" href="../../resources/favicon.ico" th:href="@{/resources/favicon.ico}" />
+</head>
+
+<body>
+	<!-- wrap begin -->
+	<div id="wrap">
+
+		<!-- top navbar begin -->
+		<div id="navbar" th:fragment="navbarFragment">
+			<div class="navbar navbar-inverse navbar-fixed-top">
+				<div class="navbar-inner">
+					<div class="container-fluid">
+		
+						<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+						  <span class="icon-bar"></span>
+						  <span class="icon-bar"></span>
+						  <span class="icon-bar"></span>
+						</a>
+						
+						<a class="brand" href="#">OpenWine</a>
+						
+						<div class="nav-collapse collapse">  
+						  <ul class="nav">
+						    <li class="active"><a href="/admin" th:href="@{/admin}" th:text="#{navbar.admin.administracion}">[Administración]</a></li>
+						  </ul>
+						</div>
+						
+						
+						<div class="btn-group pull-right" >
+							<a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+								<i class="icon-user"></i><span class="hidden-phone">&nbsp;admin</span>
+								<span class="caret"></span>
+							</a>
+							<ul class="dropdown-menu">
+								<li><a href="/logout" th:href="@{/logout}" th:text="#{nabvar.admin.salir}">[Salir]</a></li>
+							</ul>
+						</div>
+		
+					</div>
+				</div>
+			</div>	
+		</div>
+		<!-- top navbar end -->
+		
+		<!-- main begin -->
+		<div class="container-fluid">
+			<div class="row-fluid">
+				
+				<!-- menu left begin -->
+				<div class="span3 main-menu-span" th:fragment="menuFragment">
+					<div class="well nav-collapse sidebar-nav">
+						<ul class="nav nav-tabs nav-stacked main-menu">
+							<li class="nav-header hidden-tablet"><span th:text="#{menu.admin.maestros}">[Maestros]</span></li>
+							<li><a class="ajax-link" href="../admin/maestros/usuario" th:href="@{/admin/maestros/usuario}"><i class="icon-home"></i>&nbsp;<span class="hidden-tablet" th:text="#{menu.admin.usuarios}">[Usuarios]</span></a></li>
+							<li><a class="ajax-link" href="../admin/maestros/pais" th:href="@{/admin/maestros/pais}"><i class="icon-eye-open"></i>&nbsp;<span class="hidden-tablet" th:text="#{menu.admin.paises}">[Paises]</span></a></li>
+							<li><a class="ajax-link" href="../admin/maestros/provincia" th:href="@{/admin/maestros/provincia}"><i class="icon-edit"></i>&nbsp;<span class="hidden-tablet" th:text="#{menu.admin.provincias}">[Provincias]</span></a></li>			
+							<li><a class="ajax-link" href="../admin/maestros/concello" th:href="@{/admin/maestros/concello}"><i class="icon-list-alt"></i>&nbsp;<span class="hidden-tablet" th:text="#{menu.admin.municipios}">[Municipios]</span></a></li>
+							<li class="nav-header hidden-tablet" th:text="#{menu.admin.cuaderno_campo}">[Cuaderno de Campo]</li>
+							<li><a class="ajax-link" href="../admin/cuaderno/patron" th:href="@{/admin/cuaderno/patron}"><i class="icon-home"></i>&nbsp;<span class="hidden-tablet" th:text="#{menu.admin.patrones}">[Patrones]</span></a></li>
+							<li><a class="ajax-link" href="../admin/cuaderno/plaga" th:href="@{/admin/cuaderno/plaga}"><i class="icon-eye-open"></i>&nbsp;<span class="hidden-tablet" th:text="#{menu.admin.plagas}">[Plagas]</span></a></li>
+							<li><a class="ajax-link" href="../admin/cuaderno/variedad" th:href="@{/admin/cuaderno/variedad}"><i class="icon-edit"></i>&nbsp;<span class="hidden-tablet" th:text="#{menu.admin.variedades}">[Variedades]</span></a></li>			
+						</ul>
+					</div>
+				</div>
+				<!-- menu left end -->
+				
+				<!-- content begin -->
+				<div class="span9">
+					<div class="row-fluid">
+						<div class="container-fluid">
+							<div class="row-fluid sortable">
+							
+								<div class="box">	
+								
+                            		<section layout:fragment="content"></section>
+                                      
+								</div>															
+							
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- content end -->
+			
+			</div>
+		</div>		
+		<!-- main end --> 
+		
+		<hr />	
+		
+	</div>
+	<!-- wrap end -->
+	
+	<!-- footer begin -->
+	<footer class="footer" th:fragment="footerFragment">
+		<div class="container"> 	    
+	    	<p align="center">&copy; <span th:text="${year}">[year]</span> by <a href="http://grafenonet.com/" th:href="@{http://www.grafenonet.com}" title="Grafeno Networks">GrafenoNet</a>. Code licensed under the <a href="http://www.apache.org/licenses/LICENSE-2.0" th:href="@{http://www.apache.org/licenses/LICENSE-2.0}" target="_blank">Apache License v2.0</a>.</p>
+	    	<p class="pull-right"><a href="#">Subir</a></p>
+		</div> 
+	</footer>	
+	<!-- footer end -->	
+
+	<!-- JavaScript includes -->
+	<script type="text/javascript" src="../../resources/js/jquery-1.9.1.js" th:src="@{/resources/js/jquery-1.9.1.js}"></script>
+	<script type="text/javascript" src="../../resources/js/jquery-ui.js" th:src="@{/resources/js/jquery-ui.js}"></script>
+	<script type="text/javascript" src="../../resources/js/bootstrap.min.js" th:src="@{/resources/js/bootstrap.min.js}"></script>
+	<script type="text/javascript" src="../../resources/js/demo.js" th:src="@{/resources/js/demo.js}"></script>
+	<script type="text/javascript" src="../../resources/js/json2.js" th:src="@{/resources/js/json2.js}"></script>
+	<script type="text/javascript" src="../../resources/js/date.format.js" th:src="@{/resources/js/date.format.js}"></script>
+		
+</body>
+	
+</html>	

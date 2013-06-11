@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" 
+				xmlns:th="http://www.thymeleaf.org"
+				xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+				layout:decorator="decorators/admin">
+
+<head>
+	<meta charset="utf-8" />
+	<title>Ver Patrón :: Maestros :: Administración :: OpenWine</title>	
+</head>
+
+<body>
+
+	<section layout:fragment="content">
+	
+		<header>
+            <div class="icons"><i class="icon-magic"></i></div>
+               	<h5 th:text="${moduleTitle}">[Titulo Modulo]</h5>
+               	<div class="toolbar">
+               	<ul class="nav nav-tabs">
+               		<li title="" class="icon index_collection_link">
+            			<a class="pjax" href="/admin/cuaderno/patron/lista.html" th:href="@{/admin/cuaderno/patron}" >
+              				<i class="icon-th-list"></i>
+              				<span th:text="#{web.lista}">[Lista]</span>
+            			</a>
+         				</li>
+          			<li title="" class="icon new_collection_link">
+            			<a class="pjax" href="/admin/cuaderno/patron/nuevo.html" th:href="@{/admin/cuaderno/patron/nuevo}" >
+              				<i class="icon-plus"></i>
+              				<span th:text="#{web.nuevo}">[Nuevo]</span>
+            			</a>
+          			</li>
+          			<li title="" class="active icon new_collection_link">
+            			<a class="pjax" href="#" >
+              				<i class="icon-zoom-in"></i>
+              				<span th:text="#{web.ver}">[Ver]</span>
+            			</a>
+          			</li>          			
+            	</ul>
+        	</div>
+		</header>	
+		
+     	<div class="body tab-content">
+			<div id="icon-container" class="tab-pane active">
+			
+           		<form id="form" class="form-horizontal" th:object="${patron}" th:action="@{/admin/cuaderno/patron}" method="get">
+                	<fieldset>
+                	
+                		<div class="row">
+                		
+	                    	<div class="control-group">
+	                        	<label for="nombre" class="control-label" th:text="#{web.nombre}">[nombre]</label>
+	                            <div class="controls">
+	                            	<input readonly="readonly" type="text" size="100" maxLength="100" class="validate[required] text-input" name="nombre" id="nombre" th:field="*{nombre}" th:value="${nombre}" />
+	                         	</div>
+	                      	</div>     
+	                      	
+	                      	<div class="control-group">
+	                        	<label for="descripcion" class="control-label" th:text="#{web.descripcion}">[descripcion]</label>
+	                            <div class="controls">
+	                            	<textarea readonly="readonly" rows="8" maxLength="2000" class="validate[required] text-input" name="descripcion" id="descripcion" th:field="*{descripcion}" th:value="${descipcion}" ></textarea>
+	                         	</div>
+	                      	</div>
+		                      	
+		          		</div> 
+		                      	
+						<div class="row">                		
+		                           
+	                      	<div class="form-actions no-margin-bottom">
+	                        	<input type="submit" value="[Volver]" class="btn btn-primary" th:value="#{web.volver}" />
+	                    	</div>
+	                    	
+		           		</div>
+                    	                   		
+                	</fieldset>
+            	</form>	
+			
+			</div>
+		</div>		
+		
+	</section>
+		
+</body>
+</html>

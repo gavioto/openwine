@@ -1,5 +1,7 @@
 package com.grafenonet.openwine.maestros.service.impl;
 
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,10 +21,9 @@ public class RolServiceImpl implements RolService {
 	@Autowired
 	private RolDao rolDao;
 	
-	@Override
 	@Transactional(readOnly = true)
 	public Rol get(Integer id) {
-		LOG.debug("Iniciando obtener rol ...");
+		LOG.debug("Iniciando obtener ...");
 		
 		if (LOG.isDebugEnabled()) {
 			LOG.debug(" - id = " + id);
@@ -34,8 +35,21 @@ public class RolServiceImpl implements RolService {
 			LOG.debug(" - rol = " + rol.toString());
 		}		
 		
-		LOG.debug("Finalizando obtener rol.");
+		LOG.debug("Finalizando obtener.");
 		return rol;
 	}
+
+	@Override
+	@Transactional(readOnly = true)
+	public List<Rol> list() {
+		LOG.debug("Iniciando listar ...");
+		
+		List<Rol> roles = this.rolDao.list();
+		
+		LOG.debug("Finalizando listar.");
+		return roles;
+	}
+	
+	
 
 }

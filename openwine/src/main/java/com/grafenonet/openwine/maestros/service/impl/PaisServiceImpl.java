@@ -43,7 +43,7 @@ public class PaisServiceImpl implements PaisService {
 		pais.setUsuarioAlta("admin");
 		pais.setFechaAlta(new Date());
 		
-		this.paisDao.save(pais);
+		this.paisDao.create(pais);
 		
 		if (pais.getId() == null) {
 			throw new RuntimeException("Error al crear el pais.");
@@ -75,7 +75,7 @@ public class PaisServiceImpl implements PaisService {
 		pais.setUsuarioModificacion("admin");
 		pais.setFechaModificacion(new Date());
 		
-		this.paisDao.save(pais);
+		this.paisDao.create(pais);
 			
 		LOG.debug("Finalizando actualizar pais.");				
 	}
@@ -102,7 +102,7 @@ public class PaisServiceImpl implements PaisService {
 		pais.setUsuarioBaja("admin");
 		pais.setFechaBaja(new Date());
 		
-		this.paisDao.save(pais);
+		this.paisDao.create(pais);
 		
 		if (pais.getFechaBaja() == null) {
 			throw new RuntimeException("Error al dar de baja el pais.");
