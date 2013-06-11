@@ -7,9 +7,6 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -17,18 +14,12 @@ import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import com.grafenonet.openwine.core.domain.BaseEntity;
-import com.grafenonet.openwine.core.domain.IGenericDomain;
 
 @Entity
 @Table(name = "pais")
-public class Pais extends BaseEntity implements Serializable, IGenericDomain {
+public class Pais extends BaseEntity implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
-	
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id_pais", nullable = false)
-	private Integer id;
 	
 	@Column(name = "codigo", length = 2, unique = true, nullable = false)
 	@NotEmpty(message = "Campo 'codigo' no especificado.")
@@ -42,14 +33,6 @@ public class Pais extends BaseEntity implements Serializable, IGenericDomain {
 	
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "pais", cascade = CascadeType.ALL)
 	private Set<Provincia> provincias;	
-
-	public Integer getId() {
-		return id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
-	}
 
 	public String getCodigo() {
 		return codigo;
@@ -77,7 +60,7 @@ public class Pais extends BaseEntity implements Serializable, IGenericDomain {
 
 	@Override
 	public String toString() {
-		return "Pais [id=" + id + ", codigo=" + codigo + ", nombre=" + nombre
+		return "Pais [id=" + getId() + ", codigo=" + codigo + ", nombre=" + nombre
 				+ "]";
 	}
 	

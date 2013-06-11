@@ -8,7 +8,7 @@ public enum ProductividadVariedad {
 	ALTA("Alta"),
 	MEDIA("Media"),
 	BAJA("Baja");
-
+	
 	private String descripcion;
 
 	public String getDescripcion() {

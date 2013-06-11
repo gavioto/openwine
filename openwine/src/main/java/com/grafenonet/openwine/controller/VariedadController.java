@@ -15,6 +15,7 @@ import org.springframework.validation.ValidationUtils;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -28,14 +29,13 @@ import com.grafenonet.openwine.cuaderno.validator.VariedadValidator;
 @Controller
 @RequestMapping(value = "/admin/cuaderno/variedad")
 public class VariedadController {
-	private static Logger LOG = LoggerFactory.getLogger(VariedadController.class);
-	
+	private static Logger LOG = LoggerFactory.getLogger(VariedadController.class);	
 	private final Integer YEAR = Calendar.getInstance().get(Calendar.YEAR);
 	
 	@Autowired
 	private VariedadService variedadService;
 	
-	@Autowired 
+	@Autowired
 	private VariedadValidator variedadValidator;	
 	
 	@ModelAttribute("tipos")
@@ -59,19 +59,18 @@ public class VariedadController {
 		
 		List<Variedad> variedades = variedadService.list();
 		
-		model.addAttribute("moduleTitle", "Gestión de variedades de vid");
+		model.addAttribute("moduleTitle", "Gestión de variedades.");
 		model.addAttribute("year", this.YEAR);
 		
 		model.addAttribute("variedades", variedades);
-		model.addAttribute("numRegistros", variedades != null ? variedades.size() : 0);
 		
 		LOG.debug("Finalizando controlador variedades.");
-		return "/admin/cuaderno/variedad/variedades";		
+		return "/admin/cuaderno/variedad/listarVariedad";		
 	}
 	
 	@RequestMapping(value = "/nuevo", method = RequestMethod.GET)
 	public String create(Model model) {
-		LOG.debug("Iniciando controlador variedades nueva GET ...");
+		LOG.debug("Iniciando controlador create.GET ...");
 		
 		Variedad variedad = new Variedad();
 		
@@ -80,25 +79,56 @@ public class VariedadController {
 		
 		model.addAttribute("variedad", variedad);
 		
-		LOG.debug("Finalizando controlador variedades nueva GET.");
-		return "/admin/cuaderno/variedad/nuevoVariedad";		
+		LOG.debug("Finalizando controlador create.GET.");
+		return "/admin/cuaderno/variedad/crearVariedad";		
 	}
 	
 	@RequestMapping(value = "/nuevo", method = RequestMethod.POST)
 	public String create(@Valid @ModelAttribute("variedad") Variedad variedad, BindingResult result) {
-		LOG.debug("Iniciando controlador variedades nueva POST ...");		
+		LOG.debug("Iniciando controlador create.POST ...");		
 		
 		ValidationUtils.invokeValidator(variedadValidator, variedad, result);		
 		if (result.hasErrors()) {
-			return "/admin/cuaderno/variedad/nuevoVariedad";
+			return "/admin/cuaderno/variedad/crearVariedad";
 		}
 		
 		this.variedadService.create(variedad);
 		
-		LOG.debug("Finalizando controlador variedades nueva POST.");
-		
+		LOG.debug("Finalizando controlador create.POST.");		
 		return "redirect:/admin/cuaderno/variedad";
 	}
+	
+	@RequestMapping(value = "/{id}/editar", method = RequestMethod.GET)
+	public String edit(@PathVariable("id") Integer id, Model model) {
+		LOG.debug("Iniciando controlador edit.GET ...");		
+		
+		Variedad variedad = this.variedadService.get(id);
+
+		model.addAttribute("moduleTitle", "Editar variedad"); 
+		model.addAttribute("year", this.YEAR);
+		
+		model.addAttribute("variedad", variedad);
+		
+		LOG.debug("Finalizando controlador edit.GET.");
+		return "/admin/cuaderno/variedad/editarVariedad";		
+	}	
+	
+	@RequestMapping(value = "/{id}/editar", method = RequestMethod.POST)
+	public String edit(@PathVariable("id") Integer id, @Valid @ModelAttribute("variedad") Variedad variedad, BindingResult result) {
+		LOG.debug("Iniciando controlador edit.POST ...");		
+		
+		ValidationUtils.invokeValidator(variedadValidator, variedad, result);
+		if (result.hasErrors()) {
+			return "/admin/cuaderno/variedad/editarVariedad";
+		}
+		
+		this.variedadService.update(variedad);
+
+		
+		LOG.debug("Finalizando controlador edit.POST.");
+		return "redirect:/admin/cuaderno/variedad";
+	}
+	
 	
 	@InitBinder
 	protected void initBinder(WebDataBinder binder) {

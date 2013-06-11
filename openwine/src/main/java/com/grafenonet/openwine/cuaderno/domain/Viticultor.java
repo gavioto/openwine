@@ -5,9 +5,6 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
@@ -19,19 +16,13 @@ import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import com.grafenonet.openwine.core.domain.BaseEntity;
-import com.grafenonet.openwine.core.domain.IGenericDomain;
 import com.grafenonet.openwine.maestros.domain.Municipio;
 
 @Entity
 @Table(name = "viticultor")
-public class Viticultor extends BaseEntity implements Serializable, IGenericDomain {
+public class Viticultor extends BaseEntity implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	
-	@Id
-	@Column(name = "id_viticultor")
-	@GeneratedValue(strategy = GenerationType.IDENTITY)	
-	private Integer id;	
 	
 	@Column(name = "nombre", length = 100, nullable = false)
 	@NotEmpty(message = "Campo 'nombre' no especificado.")
@@ -96,14 +87,6 @@ public class Viticultor extends BaseEntity implements Serializable, IGenericDoma
 	@Column(name = "fitosanitarios_fecha_validez", nullable = true)
 	private Date fitosanitariosFechaValidez;
 	
-	public Integer getId() {
-		return id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
-	}
-
 	public String getNombre() {
 		return nombre;
 	}
@@ -202,7 +185,7 @@ public class Viticultor extends BaseEntity implements Serializable, IGenericDoma
 
 	@Override
 	public String toString() {
-		return "Viticultor [id=" + id + ", nombre=" + nombre + ", apellidos="
+		return "Viticultor [id=" + getId() + ", nombre=" + nombre + ", apellidos="
 				+ apellidos + ", nif=" + nif + "]";
 	}
 	

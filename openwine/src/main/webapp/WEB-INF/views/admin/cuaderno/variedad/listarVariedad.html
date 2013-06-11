@@ -20,7 +20,7 @@
                 <div class="toolbar">
                 	<ul class="nav nav-tabs">
                        	<li title="" class="active icon index_collection_link">
-	            			<a class="pjax" href="/admin/cuaderno/variedad/lista.html" th:href="@{/variedad}" >
+	            			<a class="pjax" href="#" >
 	              				<i class="icon-th-list"></i>
 	              				<span>Lista</span>
 	            			</a>
@@ -59,17 +59,27 @@
 						                        			<tr>
 						                        				<th th:text="#{web.nombre}">[Nombre]</th>
 						                        				<th th:text="#{web.tipo}">[Tipo]</th>
+						                        				<th th:text="#{web.productividad}">[Productividad]</th>
+						                        				<th th:text="#{web.maduracion}">[Maduracion]</th>						                        				
 						                        				<th>&nbsp;</th>
 						                        			</tr>
 						                        		</thead>
 						                        		<tbody>
 												      		<tr th:each="variedad : ${variedades}">
 												      			<td th:text="${variedad.nombre}">[nombre]</td>
-												      			<td th:text="${variedad.tipo}">[tipo]</td>
+												      			<td th:text="${variedad.tipoVariedad.descripcion}">[tipo]</td>
+												      			<td th:text="${variedad.productividad.descripcion}">[productividad]</td>
+												      			<td th:text="${variedad.maduracion.descripcion}">[maduracion]</td>
 												      			<td>
-												      				<button class="btn view"><i class="icon-view"></i></button>
-												      				<button class="btn edit"><i class="icon-edit"></i></button>
-												      				<button class="btn btn-danger remove"><i class="icon-remove"></i></button>
+																	<a class="btn btn-info" href="/admin/cuaderno/variedad/verVariedad.html" th:href="@{'/admin/cuaderno/variedad/' + ${variedad.id}}">
+																		<i class="icon-zoom-in icon-white"></i>
+																	</a>&nbsp;
+												      				<a class="btn btn-info" href="/admin/cuaderno/variedad/editarVariedad.html" th:href="@{'/admin/cuaderno/variedad/' + ${variedad.id} + '/editar'}">
+																		<i class="icon-edit icon-white"></i>
+																	</a>&nbsp;
+																	<a class="btn btn-info" href="/admin/cuaderno/variedad/borrarVariedad.html" th:href="@{'/admin/cuaderno/variedad/' + ${variedad.id} + '/borrar'}">
+																		<i class="icon-remove"></i>
+																	</a>
 												      			</td>
 												      		</tr> 				                        		
 						                        		</tbody>

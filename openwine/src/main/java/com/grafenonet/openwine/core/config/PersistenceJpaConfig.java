@@ -89,6 +89,8 @@ public class PersistenceJpaConfig {
 				setProperty("hibernate.show_sql", env.getProperty("jpa.show_sql"));
 				setProperty("hibernate.hbm2ddl.auto", env.getProperty("jpa.hbm2ddl.auto"));
 				setProperty("hibernate.dialect", env.getProperty("jpa.dialect"));
+				setProperty("hibernate.connection.charset", env.getProperty("jpa.connection.charset"));
+				setProperty("hibernate.connection.characterEncoding", env.getProperty("jpa.connection.characterencoding"));
 			}
 		};
 	}	

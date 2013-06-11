@@ -61,9 +61,7 @@ public class LoginController {
 
 		final Authentication authentication = customAuthenticationProvider.authenticate(authRequest);
 		SecurityContextHolder.getContext().setAuthentication(authentication);
-		
-		String home = "";
-				
+						
 		LOG.debug("Usuario autenticado: " + login.toString());		
 		return "redirect:home";
 	}	

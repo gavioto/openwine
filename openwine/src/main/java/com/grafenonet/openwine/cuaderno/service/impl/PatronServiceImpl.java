@@ -55,7 +55,7 @@ public class PatronServiceImpl implements PatronService {
 		
 		if (LOG.isDebugEnabled()) {
 			LOG.debug(" - patron = " + patron.toString());
-		}
+		}			
 				
 		this.patronDao.update(patron);
 		
@@ -77,7 +77,7 @@ public class PatronServiceImpl implements PatronService {
 			LOG.debug(" - patron = " + patron.toString());
 		}
 		
-		this.patronDao.update(patron);
+		this.patronDao.delete(patron);
 		
 		LOG.debug("Finalizando servicio borrar.");		
 	}

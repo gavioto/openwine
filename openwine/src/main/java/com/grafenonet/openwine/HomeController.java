@@ -45,6 +45,7 @@ public class HomeController {
 		
 		model.addAttribute("serverTime", formattedDate );
 		model.addAttribute("tickets", tickets);
+		model.addAttribute("year", year);
 		//model.addAttribute("tickets", ticketGasoilService.findAll(year));
 		
 		LOG.debug("Finalizando controlador home ...");

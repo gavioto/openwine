@@ -8,7 +8,7 @@ public enum MaduracionVariedad {
 	TEMPRANA("Temprana"),
 	MEDIA("Media"),
 	TARDIA("Tardía");
-	
+
 	private String descripcion;
 
 	public String getDescripcion() {

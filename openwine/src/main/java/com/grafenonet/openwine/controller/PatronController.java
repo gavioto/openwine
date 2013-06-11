@@ -15,8 +15,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.ModelAndView;
 
 import com.grafenonet.openwine.cuaderno.domain.Patron;
 import com.grafenonet.openwine.cuaderno.service.PatronService;
@@ -42,7 +40,7 @@ public class PatronController {
 		model.addAttribute("patrones", patrones);
 		
 		LOG.debug("Finalizando controlador listar.");
-		return "/admin/cuaderno/patron/listarPatrones";
+		return "/admin/cuaderno/patron/listarPatrons";
 	}
 
 	@RequestMapping(value = "/nuevo", method = RequestMethod.GET)
@@ -119,7 +117,21 @@ public class PatronController {
 
 		
 		LOG.debug("Finalizando controlador edit.POST.");
-		return "redirect:/admin/cuaderno/patron/listarPatrones";		
+		return "redirect:/admin/cuaderno/patron";
 	}
 
+	@RequestMapping(value = "/{id}/borrar", method = RequestMethod.GET)
+	public String delete(@PathVariable("id") Integer id, Model model) {
+		LOG.debug("Iniciando controlador delete ...");		
+		
+		Patron patron = this.patronService.get(id);
+		if (patron == null || patron.getId() == null) {
+			throw new RuntimeException("Patrón no existe");
+		}
+
+		this.patronService.delete(patron);
+		
+		LOG.debug("Finalizando controlador delete.");
+		return "redirect:/admin/cuaderno/patron";
+	}	
 }

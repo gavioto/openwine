@@ -7,9 +7,6 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
@@ -21,18 +18,12 @@ import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import com.grafenonet.openwine.core.domain.BaseEntity;
-import com.grafenonet.openwine.core.domain.IGenericDomain;
 
 @Entity
 @Table(name = "provincia")
-public class Provincia extends BaseEntity implements Serializable, IGenericDomain {
+public class Provincia extends BaseEntity implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
-	
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id_provincia", nullable = false)
-	private Integer id;
 	
 	@Column(name = "codigo", length = 2, unique = true, nullable = false)
 	@NotEmpty(message = "Campo 'codigo' no especificado.")
@@ -54,14 +45,6 @@ public class Provincia extends BaseEntity implements Serializable, IGenericDomai
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "id", cascade = CascadeType.ALL)
 	@XmlTransient
 	private Set<Municipio> municipios;	
-	
-	public Integer getId() {
-		return id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
-	}
 
 	public String getCodigo() {
 		return codigo;
@@ -97,7 +80,7 @@ public class Provincia extends BaseEntity implements Serializable, IGenericDomai
 
 	@Override
 	public String toString() {
-		return "Provincia [id=" + id + ", codigo=" + codigo + ", nombre="
+		return "Provincia [id=" + getId() + ", codigo=" + codigo + ", nombre="
 				+ nombre + ", pais=" + pais + "]";
 	}	
 }

@@ -14,7 +14,6 @@ import org.slf4j.LoggerFactory;
 
 import com.grafenonet.openwine.core.domain.BaseEntity;
 
-//IGenericDomain
 public abstract class GenericDaoJpa<T extends BaseEntity> implements IGenericDao<T>{
 	private static Logger LOG = LoggerFactory.getLogger(GenericDaoJpa.class);
 	
@@ -61,7 +60,14 @@ public abstract class GenericDaoJpa<T extends BaseEntity> implements IGenericDao
 		if (LOG.isDebugEnabled()) {
 			LOG.debug("Iniciando update ...");
 			LOG.debug(" - objeto = " + object.toString());
-		}		
+		}
+		
+		T older = get(object.getId());
+		if (older == null) {
+			throw new RuntimeException("Elemento no encontrado.");
+		}
+		object.setFechaAlta(older.getFechaAlta());
+		object.setUsuarioAlta(older.getUsuarioAlta());		
 		
 		object.setFechaModificacion(new Date());
 		object.setUsuarioModificacion("admin");
@@ -80,6 +86,15 @@ public abstract class GenericDaoJpa<T extends BaseEntity> implements IGenericDao
 			LOG.debug("Iniciando delete ...");
 			LOG.debug(" - objeto = " + object.toString());
 		}
+		
+		T older = get(object.getId());
+		if (older == null) {
+			throw new RuntimeException("Elemento no encontrado.");
+		}
+		object.setFechaAlta(older.getFechaAlta());
+		object.setUsuarioAlta(older.getUsuarioAlta());
+		object.setFechaModificacion(older.getFechaModificacion());
+		object.setUsuarioModificacion(older.getUsuarioModificacion());
 		
 		object.setFechaBaja(new Date());
 		object.setUsuarioBaja("admin");

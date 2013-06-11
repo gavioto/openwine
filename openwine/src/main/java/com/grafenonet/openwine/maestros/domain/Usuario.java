@@ -6,9 +6,6 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
@@ -23,18 +20,12 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import com.grafenonet.openwine.core.domain.BaseEntity;
-import com.grafenonet.openwine.core.domain.IGenericDomain;
 
 @Entity
 @Table(name = "usuario")
-public class Usuario extends BaseEntity implements UserDetails, Serializable, IGenericDomain {
+public class Usuario extends BaseEntity implements UserDetails, Serializable {
 	private static final long serialVersionUID = 1L;
 	
-	@Id
-	@Column(name = "id_usuario")
-	@GeneratedValue(strategy = GenerationType.IDENTITY)	
-	private Integer id;
-
 	@Column(name = "username", length=20, unique=true, nullable = false)
 	@NotEmpty(message = "Campo 'username' no especificado.")
 	@Length(min = 4, max = 20)
@@ -79,21 +70,6 @@ public class Usuario extends BaseEntity implements UserDetails, Serializable, IG
 	@XmlTransient
 	private Rol rol;	
 	
-//	@ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.MERGE} )
-//	@JoinTable(name="usuario_rol",
-//		joinColumns = {@JoinColumn(name="id_usuario")},
-//		inverseJoinColumns = {@JoinColumn(name="id_rol")}
-//	)
-//	private List<Rol> roles = new ArrayList<Rol>();
-	
-	public Integer getId() {
-		return id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
-	}
-
 	public String getUsername() {
 		return username;
 	}
@@ -166,17 +142,9 @@ public class Usuario extends BaseEntity implements UserDetails, Serializable, IG
 		this.rol = rol;
 	}	
 
-//	public List<Rol> getRoles() {
-//		return roles;
-//	}
-//
-//	public void setRoles(List<Rol> roles) {
-//		this.roles = roles;
-//	}
-
 	@Override
 	public String toString() {
-		return "Usuario [id=" + id + ", username=" + username + ", email="
+		return "Usuario [id=" + getId() + ", username=" + username + ", email="
 				+ email + ", nombre=" + nombre + ", apellidos=" + apellidos
 				+ "]";
 	}

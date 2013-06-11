@@ -6,7 +6,10 @@
 
 <head>
 	<meta charset="utf-8" />
-	<title>Patrones :: Cuaderno :: Administración :: OpenWine</title>   		
+	<title>Patrones :: Cuaderno :: Administración :: OpenWine</title>
+	
+	<script type="text/javascript">
+	</script>   		
 </head>
 
 <body>
@@ -71,7 +74,7 @@
 												      				<a class="btn btn-info" href="/admin/cuaderno/patron/editarPatron.html" th:href="@{'/admin/cuaderno/patron/' + ${patron.id} + '/editar'}">
 																		<i class="icon-edit icon-white"></i>
 																	</a>&nbsp;
-																	<a class="btn btn-info" href="/admin/cuaderno/patron/borrar">
+																	<a class="btn btn-info" href="/admin/cuaderno/patron/borrarPatron.html" th:href="@{'/admin/cuaderno/patron/' + ${patron.id} + '/borrar'}">
 																		<i class="icon-remove"></i>
 																	</a>
 												      			</td>

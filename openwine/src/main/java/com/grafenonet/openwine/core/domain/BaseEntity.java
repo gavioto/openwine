@@ -3,13 +3,20 @@ package com.grafenonet.openwine.core.domain;
 import java.util.Date;
 
 import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 
 import org.hibernate.validator.constraints.Length;
-import org.hibernate.validator.constraints.NotEmpty;
 
 @MappedSuperclass
 public class BaseEntity {
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id")
+	private Integer id;		
 
 	@Column(name = "fecha_alta", nullable = true)
 	private Date fechaAlta;
@@ -31,6 +38,14 @@ public class BaseEntity {
 	@Column(name = "usuario_baja", length=20, nullable = true)
 	@Length(max = 20)
 	private String usuarioBaja;
+	
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}	
 	
 	public Date getFechaAlta() {
 		return fechaAlta;

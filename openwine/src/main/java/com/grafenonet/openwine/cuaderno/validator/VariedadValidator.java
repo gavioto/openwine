@@ -21,11 +21,11 @@ public class VariedadValidator implements Validator {
 		if (variedad == null) {
 			errors.reject("Datos nulos");
 		}
-		ValidationUtils.rejectIfEmpty(errors, "tipoVariedad", "Campo 'tipo variedad' vacio.");
-		ValidationUtils.rejectIfEmpty(errors, "nombre", "Campo 'nombre' vacio.");
-		ValidationUtils.rejectIfEmpty(errors, "descripcion", "Campo 'descripcion' vacio.");
-		ValidationUtils.rejectIfEmpty(errors, "productividad", "Campo 'productividad' vacio.");
-		ValidationUtils.rejectIfEmpty(errors, "maduracion", "Campo 'maduracion' vacio.");
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "tipoVariedad", "Campo 'tipo variedad' vacio.");
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "nombre", "Campo 'nombre' vacio.");
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "descripcion", "Campo 'descripcion' vacio.");
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "productividad", "Campo 'productividad' vacio.");
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "maduracion", "Campo 'maduracion' vacio.");
 	}
 
 }

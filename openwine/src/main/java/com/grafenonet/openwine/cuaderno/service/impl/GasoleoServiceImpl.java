@@ -35,7 +35,7 @@ public class GasoleoServiceImpl implements GasoleoService {
 			LOG.debug(" - litros = " + gasoleo.getLitros());
 		}
 		
-		gasoleoDao.create(gasoleo);
+		this.gasoleoDao.create(gasoleo);
 		
 		LOG.debug("Finalizando servicio crear.");
 	}

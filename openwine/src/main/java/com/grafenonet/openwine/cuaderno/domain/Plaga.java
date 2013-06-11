@@ -4,9 +4,6 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
 
@@ -14,20 +11,14 @@ import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import com.grafenonet.openwine.core.domain.BaseEntity;
-import com.grafenonet.openwine.core.domain.IGenericDomain;
 
 @Entity
 @Table(name="plaga")
-public class Plaga extends BaseEntity implements Serializable, IGenericDomain {
+public class Plaga extends BaseEntity implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
-	
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id_plaga", nullable = false)
-	private Integer id;	
 
-	@Column(name = "nombre", length = 100, nullable = false)
+	@Column(name = "nombre", length = 100, unique=true, nullable = false)
 	@NotEmpty(message = "Campo 'nombre' no especificado.")
 	@Length(max=100)	
 	@Size(min = 4, max = 100)
@@ -38,14 +29,6 @@ public class Plaga extends BaseEntity implements Serializable, IGenericDomain {
 	@Length(max=2000)	
 	@Size(min = 4, max = 2000)
 	private String descripcion;	
-	
-	public Integer getId() {
-		return id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
-	}
 
 	public String getNombre() {
 		return nombre;
@@ -65,7 +48,7 @@ public class Plaga extends BaseEntity implements Serializable, IGenericDomain {
 
 	@Override
 	public String toString() {
-		return "Plaga [id=" + id + ", nombre=" + nombre + ", descripcion="
+		return "Plaga [id=" + getId() + ", nombre=" + nombre + ", descripcion="
 				+ descripcion + "]";
 	}	
 }

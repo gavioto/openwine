@@ -1,7 +1,6 @@
 package com.grafenonet.openwine.cuaderno.service.impl;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -38,10 +37,6 @@ public class VariedadServiceImpl implements VariedadService {
 			LOG.debug(" - variedad = " + variedad.toString());
 		}
 		
-		// trazabilidad
-		variedad.setUsuarioAlta("admin");
-		variedad.setFechaAlta(new Date());
-		
 		this.variedadDao.create(variedad);
 		
 		LOG.debug("Finalizando servicio crear.");			
@@ -62,10 +57,6 @@ public class VariedadServiceImpl implements VariedadService {
 			LOG.debug(" - variedad = " + variedad.toString());
 		}
 		
-		// trazabilidad
-		variedad.setUsuarioModificacion("admin");
-		variedad.setFechaModificacion(new Date());
-		
 		this.variedadDao.update(variedad);		
 		
 		LOG.debug("Finalizando servicio actualizar.");			
@@ -85,10 +76,6 @@ public class VariedadServiceImpl implements VariedadService {
 		if (LOG.isDebugEnabled()) {
 			LOG.debug(" - variedad = " + variedad.toString());
 		}
-		
-		// trazabilidad
-		variedad.setUsuarioBaja("admin");
-		variedad.setFechaBaja(new Date());
 		
 		this.variedadDao.update(variedad);
 		
