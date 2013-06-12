@@ -38,6 +38,9 @@ public class PatronServiceImpl implements PatronService {
 		}
 	
 		this.patronDao.create(patron);
+		if (patron.getId() == null) {
+			throw new RuntimeException("No se ha podido crear el patrón.");
+		}
 		
 		LOG.debug("Finalizando servicio crear.");		
 	}
@@ -78,6 +81,9 @@ public class PatronServiceImpl implements PatronService {
 		}
 		
 		this.patronDao.delete(patron);
+		if (patron.isEnabled()) {
+			throw new RuntimeException("No se ha podido borrar el patrón.");
+		}
 		
 		LOG.debug("Finalizando servicio borrar.");		
 	}

@@ -37,6 +37,11 @@ public class PlagaServiceImpl implements PlagaService {
 			LOG.debug(" - plaga = " + plaga.toString());
 		}
 		
+		this.plagaDao.create(plaga);
+		if (plaga.getId() == null) {
+			throw new RuntimeException("Error al crear la plaga");
+		}
+		
 		LOG.debug("Finalizando servicio crear.");		
 	}
 	
@@ -54,6 +59,8 @@ public class PlagaServiceImpl implements PlagaService {
 		if (LOG.isDebugEnabled()) {
 			LOG.debug(" - plaga = " + plaga.toString());
 		}
+		
+		this.plagaDao.update(plaga);
 		
 		LOG.debug("Finalizando servicio actualizar.");		
 	}
@@ -73,6 +80,8 @@ public class PlagaServiceImpl implements PlagaService {
 			LOG.debug(" - plaga = " + plaga.toString());
 		}
 		
+		this.plagaDao.delete(plaga);
+		
 		LOG.debug("Finalizando servicio borrar.");
 	}
 	
@@ -89,6 +98,11 @@ public class PlagaServiceImpl implements PlagaService {
 			LOG.debug(" - id = " + id);
 		}
 		
+		plaga = this.plagaDao.get(id);
+		if (plaga == null || plaga.getId() == null) {
+			throw new RuntimeException("Plaga no encontrada");
+		}
+		
 		
 		LOG.debug("Finalizando servicio obtener id.");
 		return plaga;
@@ -103,6 +117,7 @@ public class PlagaServiceImpl implements PlagaService {
 		List<Plaga> plagas = new ArrayList<Plaga>();
 		LOG.debug("Iniciando servicio listar ...");
 		
+		plagas = this.plagaDao.list();
 		
 		LOG.debug("Finalizando servicio listar.");
 		return plagas;

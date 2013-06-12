@@ -49,6 +49,7 @@ public abstract class GenericDaoJpa<T extends BaseEntity> implements IGenericDao
 		object.setUsuarioAlta("admin");
 		
 		this.getEntityManager().persist(object);
+		this.getEntityManager().flush();
 		
 		if (LOG.isDebugEnabled()) {
 			LOG.debug("Finalizando create.");
@@ -86,15 +87,6 @@ public abstract class GenericDaoJpa<T extends BaseEntity> implements IGenericDao
 			LOG.debug("Iniciando delete ...");
 			LOG.debug(" - objeto = " + object.toString());
 		}
-		
-		T older = get(object.getId());
-		if (older == null) {
-			throw new RuntimeException("Elemento no encontrado.");
-		}
-		object.setFechaAlta(older.getFechaAlta());
-		object.setUsuarioAlta(older.getUsuarioAlta());
-		object.setFechaModificacion(older.getFechaModificacion());
-		object.setUsuarioModificacion(older.getUsuarioModificacion());
 		
 		object.setFechaBaja(new Date());
 		object.setUsuarioBaja("admin");

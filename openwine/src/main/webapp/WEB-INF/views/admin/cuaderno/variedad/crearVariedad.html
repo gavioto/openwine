@@ -43,9 +43,9 @@
                 		<div class="row">
                 	
 	                    	<div class="control-group">
-	                        	<label for="tipoVariedad" class="control-label" th:text="#{web.tipo}">[Tipo]</label>
+	                        	<label for="tipo" class="control-label" th:text="#{web.tipo}">[Tipo]</label>
 	                            <div class="controls">
-	                            	<select name="tipoVariedad" id="tipoVariedad" th:field="*{tipoVariedad}" class="validate[required]" th:remove="all-but-first">
+	                            	<select name="tipo" id="tipo" th:field="*{tipo}" class="validate[required]" th:remove="all-but-first" autofocus="autofocus">
 	                                	<option th:each="tipo : ${tipos}" th:value="${tipo}" th:text="${tipo.descripcion}" >[Tipo Variedad]</option>
 									</select>
 	                         	</div>
@@ -64,20 +64,29 @@
 	                            	<textarea rows="8" maxLength="2000" class="validate[required] text-input" name="descripcion" id="descripcion" th:field="*{descripcion}" th:value="${descipcion}" ></textarea>
 	                         	</div>
 							</div>
+
+	                       	<div class="control-group">
+	                        	<label for="calificacion" class="control-label" th:text="#{web.calificacion}">[Calificación]</label>
+	                          	<div class="controls">
+	                            	<select name="calificacion" id="calificacion" th:field="*{calificacion}" class="validate[required]" th:remove="all-but-first">
+	                                	<option th:each="calificacion : ${calificaciones}" th:value="${calificacion}" th:text="${calificacion.descripcion}" >[Calificación]</option>
+									</select>
+	                         	</div>
+	                     	</div>
 	                           
 	                       	<div class="control-group">
-	                        	<label for="productividadVariedad" class="control-label" th:text="#{web.productividad}">[Productividad]</label>
+	                        	<label for="productividad" class="control-label" th:text="#{web.productividad}">[Productividad]</label>
 	                          	<div class="controls">
-	                            	<select name="productividadVariedad" id="productividadVariedad" th:field="*{productividad}" class="validate[required]" th:remove="all-but-first">
+	                            	<select name="productividad" id="productividad" th:field="*{productividad}" class="validate[required]" th:remove="all-but-first">
 	                                	<option th:each="productividad : ${productividades}" th:value="${productividad}" th:text="${productividad.descripcion}" >[Productividad]</option>
 									</select>
 	                         	</div>
 	                     	</div>     
 	                        	
 	                      	<div class="control-group">
-	                      		<label for="maduracionVariedad" class="control-label" th:text="#{web.maduracion}">[Maduración]</label>
+	                      		<label for="maduracion" class="control-label" th:text="#{web.maduracion}">[Maduración]</label>
 	                           	<div class="controls">
-	                            	<select name="maduracionVariedad" id="maduracionVariedad" th:field="*{maduracion}" class="validate[required]" th:remove="all-but-first">
+	                            	<select name="maduracion" id="maduracion" th:field="*{maduracion}" class="validate[required]" th:remove="all-but-first">
 	                                	<option th:each="maduracion : ${maduraciones}" th:value="${maduracion}" th:text="${maduracion.descripcion}" >[maduracion]</option>
 									</select>
 	                         	</div>

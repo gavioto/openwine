@@ -13,6 +13,7 @@ import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import com.grafenonet.openwine.core.domain.BaseEntity;
+import com.grafenonet.openwine.cuaderno.enums.CalificacionVariedad;
 import com.grafenonet.openwine.cuaderno.enums.MaduracionVariedad;
 import com.grafenonet.openwine.cuaderno.enums.ProductividadVariedad;
 import com.grafenonet.openwine.cuaderno.enums.TipoVariedad;
@@ -25,7 +26,7 @@ public class Variedad extends BaseEntity implements Serializable {
 	
 	@Column(name = "tipo_variedad", length=20, nullable = false)
 	@Enumerated(EnumType.STRING)
-	private TipoVariedad tipoVariedad;
+	private TipoVariedad tipo;
 	
 	@Column(name = "nombre", length = 100, unique=true, nullable = false)
 	@NotEmpty(message = "Campo 'nombre' no especificado.")
@@ -39,6 +40,10 @@ public class Variedad extends BaseEntity implements Serializable {
 	@Size(min = 4, max = 2000)
 	private String descripcion;	
 	
+	@Column(name = "calificacion", length=20, nullable = false)
+	@Enumerated(EnumType.STRING)
+	private CalificacionVariedad calificacion;
+	
 	@Column(name = "productividad", length=40, nullable = false)
 	@Enumerated(EnumType.STRING)
 	private ProductividadVariedad productividad;	
@@ -47,12 +52,12 @@ public class Variedad extends BaseEntity implements Serializable {
 	@Enumerated(EnumType.STRING)
 	private MaduracionVariedad maduracion;
 
-	public TipoVariedad getTipoVariedad() {
-		return tipoVariedad;
+	public TipoVariedad getTipo() {
+		return tipo;
 	}
 
-	public void setTipoVariedad(TipoVariedad tipoVariedad) {
-		this.tipoVariedad = tipoVariedad;
+	public void setTipo(TipoVariedad tipo) {
+		this.tipo = tipo;
 	}
 
 	public String getNombre() {
@@ -70,6 +75,14 @@ public class Variedad extends BaseEntity implements Serializable {
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
 	}
+	
+	public CalificacionVariedad getCalificacion() {
+		return calificacion;
+	}
+
+	public void setCalificacion(CalificacionVariedad calificacion) {
+		this.calificacion = calificacion;
+	}	
 
 	public ProductividadVariedad getProductividad() {
 		return productividad;
@@ -86,12 +99,12 @@ public class Variedad extends BaseEntity implements Serializable {
 	public void setMaduracion(MaduracionVariedad maduracion) {
 		this.maduracion = maduracion;
 	}
-	
+
 	@Override
 	public String toString() {
-		return "Variedad [id=" + getId() + ", tipoVariedad=" + tipoVariedad
-				+ ", nombre=" + nombre + ", descripcion=" + descripcion
-				+ ", productividad=" + productividad + ", maduracion="
-				+ maduracion + "]";
-	}	
+		return "Variedad [id=" + getId() + ", tipoVariedad=" + tipo + ", nombre=" + nombre
+				+ ", calificacion=" + calificacion + ", productividad="
+				+ productividad + ", maduracion=" + maduracion + "]";
+	}
+	
 }

@@ -6,7 +6,7 @@
 
 <head>
 	<meta charset="utf-8" />
-	<title>Editar Patrón :: Maestros :: Administración :: OpenWine</title>	
+	<title>Editar Plaga :: Maestros :: Administración :: OpenWine</title>	
 </head>
 
 <body>
@@ -19,13 +19,13 @@
                	<div class="toolbar">
                	<ul class="nav nav-tabs">
                		<li title="" class="icon index_collection_link">
-            			<a class="pjax" href="/admin/cuaderno/patron/lista.html" th:href="@{/admin/cuaderno/patron}" >
+            			<a class="pjax" href="/admin/cuaderno/plaga/lista.html" th:href="@{/admin/cuaderno/plaga}" >
               				<i class="icon-th-list"></i>
               				<span th:text="#{web.lista}">[Lista]</span>
             			</a>
          				</li>
           			<li title="" class="icon new_collection_link">
-            			<a class="pjax" href="/admin/cuaderno/patron/nuevo.html" th:href="@{/admin/cuaderno/patron/nuevo}" >
+            			<a class="pjax" href="/admin/cuaderno/plaga/crearPlaga.html" th:href="@{/admin/cuaderno/plaga/nuevo}" >
               				<i class="icon-plus"></i>
               				<span th:text="#{web.nuevo}">[Nuevo]</span>
             			</a>
@@ -43,7 +43,7 @@
      	<div class="body tab-content">
 			<div id="icon-container" class="tab-pane active">
 			
-           		<form id="form" class="form-horizontal" th:object="${patron}" th:action="@{'/admin/cuaderno/patron/' + ${patron.id} + '/editar'}" method="post">
+           		<form id="form" class="form-horizontal" th:object="${plaga}" th:action="@{'/admin/cuaderno/plaga/' + ${plaga.id} + '/editar'}" method="post">
            			<input type="hidden" name="id" id="id" th:field="*{id}" th:value="${id}" />
                 	<fieldset>
                 	

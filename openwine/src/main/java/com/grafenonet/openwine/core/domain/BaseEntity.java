@@ -93,6 +93,10 @@ public class BaseEntity {
 
 	public void setUsuarioBaja(String usuarioBaja) {
 		this.usuarioBaja = usuarioBaja;
-	}	
+	}
+	
+	public boolean isEnabled() {
+		return this.usuarioBaja == null ? false : true;
+	}
 	
 }

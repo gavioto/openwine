@@ -1,10 +1,121 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" 
+				xmlns:th="http://www.thymeleaf.org"
+				xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+				layout:decorator="decorators/admin">
+
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+	<meta charset="utf-8" />
+	<title>Ver Variedad :: Cuaderno :: Administración :: OpenWine</title>	
 </head>
+
 <body>
 
+	<section layout:fragment="content">
+	
+		<header>
+            <div class="icons"><i class="icon-magic"></i></div>
+               	<h5 th:text="${moduleTitle}">[Titulo Modulo]</h5>
+               	<div class="toolbar">
+               	<ul class="nav nav-tabs">
+               		<li title="" class="icon index_collection_link">
+            			<a class="pjax" href="/admin/cuaderno/variedad/listarVariedad.html" th:href="@{/admin/cuaderno/variedad}" >
+              				<i class="icon-th-list"></i>
+              				<span th:text="#{web.lista}">[Lista]</span>
+            			</a>
+         				</li>
+          			<li title="" class="icon new_collection_link">
+            			<a class="pjax" href="/admin/cuaderno/variedad/crearVariedad.html" th:href="@{/admin/cuaderno/variedad/nuevo}" >
+              				<i class="icon-plus"></i>
+              				<span th:text="#{web.nuevo}">[Nuevo]</span>
+            			</a>
+          			</li>
+          			<li title="" class="active icon new_collection_link">
+            			<a class="pjax" href="#" >
+              				<i class="icon-edit"></i>
+              				<span th:text="#{web.ver}">[Ver]</span>
+            			</a>
+          			</li>          			
+            	</ul>
+        	</div>
+		</header>	
+		
+     	<div class="body tab-content">
+			<div id="icon-container" class="tab-pane active">
+			
+           		<form id="form" class="form-horizontal" th:object="${variedad}" th:action="@{/admin/cuaderno/variedad}" method="get">
+                	<fieldset>
+                	
+                		<div class="row">
+                		
+	                    	<div class="control-group">
+	                        	<label for="tipo" class="control-label" th:text="#{web.tipo}">[Tipo]</label>
+	                            <div class="controls">
+	                            	<select name="tipo" id="tipo" th:field="*{tipo}" class="validate[required]" th:remove="all-but-first" disabled="disabled" >
+	                                	<option th:each="tipo : ${tipos}" th:value="${tipo}" th:text="${tipo.descripcion}" >[Tipo Variedad]</option>
+									</select>
+	                         	</div>
+	                      	</div>                		
+                		                		
+	                    	<div class="control-group">
+	                        	<label for="nombre" class="control-label" th:text="#{web.nombre}">[nombre]</label>
+	                            <div class="controls">
+	                            	<input type="text" size="100" maxLength="100" class="validate[required] text-input" name="nombre" id="nombre" th:field="*{nombre}" th:value="${nombre}" readonly="readonly" />
+	                         	</div>
+	                      	</div>     
+	                      	
+	                      	<div class="control-group">
+	                        	<label for="descripcion" class="control-label" th:text="#{web.descripcion}">[descripcion]</label>
+	                            <div class="controls">
+	                            	<textarea rows="8" maxLength="2000" class="validate[required] text-input" name="descripcion" id="descripcion" th:field="*{descripcion}" th:value="${descipcion}" readonly="readonly" ></textarea>
+	                         	</div>
+	                      	</div>
+	                      	
+	                       	<div class="control-group">
+	                        	<label for="calificacion" class="control-label" th:text="#{web.calificacion}">[Calificacion]</label>
+	                          	<div class="controls">
+	                            	<select name="calificacion" id="calificacion" th:field="*{calificacion}" class="validate[required]" th:remove="all-but-first" disabled="disabled" >
+	                                	<option th:each="calificacion : ${calificaciones}" th:value="${calificacion}" th:text="${calificacion.descripcion}" >[Calificacion]</option>
+									</select>
+	                         	</div>
+	                     	</div>	                      	
+	                      	
+	                       	<div class="control-group">
+	                        	<label for="productividad" class="control-label" th:text="#{web.productividad}">[Productividad]</label>
+	                          	<div class="controls">
+	                            	<select name="productividad" id="productividad" th:field="*{productividad}" class="validate[required]" th:remove="all-but-first" disabled="disabled">
+	                                	<option th:each="productividad : ${productividades}" th:value="${productividad}" th:text="${productividad.descripcion}" >[Productividad]</option>
+									</select>
+	                         	</div>
+	                     	</div>     
+	                        	
+	                      	<div class="control-group">
+	                      		<label for="maduracion" class="control-label" th:text="#{web.maduracion}">[Maduración]</label>
+	                           	<div class="controls">
+	                            	<select name="maduracion" id="maduracion" th:field="*{maduracion}" class="validate[required]" th:remove="all-but-first" disabled="disabled">
+	                                	<option th:each="maduracion : ${maduraciones}" th:value="${maduracion}" th:text="${maduracion.descripcion}" >[maduracion]</option>
+									</select>
+	                         	</div>
+	                     	</div>	                      	
+		                      	
+		          		</div> 
+		                      	
+						<div class="row">                		
+		                           
+	                      	<div class="form-actions no-margin-bottom">
+	                        	<input type="submit" value="[Grabar]" class="btn btn-primary" th:value="#{web.grabar}" />
+	                           	<input type="submit" value="[Volver]" class="btn btn-primary" th:value="#{web.volver}" />
+	                    	</div>
+	                    	
+		           		</div>
+                    	                   		
+                	</fieldset>                	
+            	</form>	
+			
+			</div>
+		</div>		
+		
+	</section>
+		
 </body>
 </html>

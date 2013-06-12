@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.grafenonet.openwine.cuaderno.domain.Variedad;
+import com.grafenonet.openwine.cuaderno.enums.CalificacionVariedad;
 import com.grafenonet.openwine.cuaderno.enums.MaduracionVariedad;
 import com.grafenonet.openwine.cuaderno.enums.ProductividadVariedad;
 import com.grafenonet.openwine.cuaderno.enums.TipoVariedad;
@@ -51,6 +52,11 @@ public class VariedadController {
 	@ModelAttribute("maduraciones")
 	public List<MaduracionVariedad> populateMaduracion() {
 		return MaduracionVariedad.asList();
+	}
+	
+	@ModelAttribute("calificaciones")
+	public List<CalificacionVariedad> populateCalificacion() {
+		return CalificacionVariedad.asList();
 	}
 	
 	@RequestMapping(value = "", method = RequestMethod.GET)
@@ -129,6 +135,35 @@ public class VariedadController {
 		return "redirect:/admin/cuaderno/variedad";
 	}
 	
+	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
+	public String view(@PathVariable("id") Integer id, Model model) {
+		LOG.debug("Iniciando controlador view ...");		
+	
+		Variedad variedad = this.variedadService.get(id);
+
+		model.addAttribute("moduleTitle", "Ver Variedad"); 
+		model.addAttribute("year", this.YEAR);
+		
+		model.addAttribute("variedad", variedad);
+		
+		LOG.debug("Finalizando controlador view.");
+		return "/admin/cuaderno/variedad/verVariedad";
+	}	
+	
+	@RequestMapping(value = "/{id}/borrar", method = RequestMethod.GET)
+	public String delete(@PathVariable("id") Integer id, Model model) {
+		LOG.debug("Iniciando controlador delete ...");		
+		
+		Variedad variedad = this.variedadService.get(id);
+		if (variedad == null || variedad.getId() == null) {
+			throw new RuntimeException("Variedad no existe");
+		}
+
+		this.variedadService.delete(variedad);
+		
+		LOG.debug("Finalizando controlador delete.");
+		return "redirect:/admin/cuaderno/variedad";
+	}	
 	
 	@InitBinder
 	protected void initBinder(WebDataBinder binder) {

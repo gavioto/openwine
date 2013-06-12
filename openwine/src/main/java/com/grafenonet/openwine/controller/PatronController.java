@@ -40,7 +40,7 @@ public class PatronController {
 		model.addAttribute("patrones", patrones);
 		
 		LOG.debug("Finalizando controlador listar.");
-		return "/admin/cuaderno/patron/listarPatrons";
+		return "/admin/cuaderno/patron/listarPatron";
 	}
 
 	@RequestMapping(value = "/nuevo", method = RequestMethod.GET)
@@ -63,12 +63,12 @@ public class PatronController {
 		LOG.debug("Iniciando controlador create.POST ...");
 		
 		if (result.hasErrors()) {
-			return "/admin/cuaderno/patron/nuevoPatron";
+			return "/admin/cuaderno/patron/crearPatron";
 		}
 		
 		this.patronService.create(patron);
 		if (patron == null || patron.getId() == null) {
-			return "/admin/maestros/usuario/nuevoUsuario";
+			return "/admin/cuaderno/patron/crearPatron";
 		}		
 		
 		LOG.debug("Finalizando controlador create.POST.");

@@ -6,7 +6,7 @@
 
 <head>
 	<meta charset="utf-8" />
-	<title>Editar Patrón :: Maestros :: Administración :: OpenWine</title>	
+	<title>Crear Plaga :: Maestros :: Administración :: OpenWine</title>	
 </head>
 
 <body>
@@ -19,23 +19,17 @@
                	<div class="toolbar">
                	<ul class="nav nav-tabs">
                		<li title="" class="icon index_collection_link">
-            			<a class="pjax" href="/admin/cuaderno/patron/lista.html" th:href="@{/admin/cuaderno/patron}" >
+            			<a class="pjax" href="/admin/cuaderno/plaga/listarPlaga.html" th:href="@{/admin/cuaderno/plaga}" >
               				<i class="icon-th-list"></i>
               				<span th:text="#{web.lista}">[Lista]</span>
             			</a>
          				</li>
-          			<li title="" class="icon new_collection_link">
-            			<a class="pjax" href="/admin/cuaderno/patron/nuevo.html" th:href="@{/admin/cuaderno/patron/nuevo}" >
+          			<li title="" class="active icon new_collection_link">
+            			<a class="pjax" href="#" >
               				<i class="icon-plus"></i>
               				<span th:text="#{web.nuevo}">[Nuevo]</span>
             			</a>
           			</li>
-          			<li title="" class="active icon new_collection_link">
-            			<a class="pjax" href="#" >
-              				<i class="icon-edit"></i>
-              				<span th:text="#{web.editar}">[Editar]</span>
-            			</a>
-          			</li>          			
             	</ul>
         	</div>
 		</header>	
@@ -43,8 +37,7 @@
      	<div class="body tab-content">
 			<div id="icon-container" class="tab-pane active">
 			
-           		<form id="form" class="form-horizontal" th:object="${patron}" th:action="@{'/admin/cuaderno/patron/' + ${patron.id} + '/editar'}" method="post">
-           			<input type="hidden" name="id" id="id" th:field="*{id}" th:value="${id}" />
+           		<form id="form" class="form-horizontal" th:object="${plaga}" th:action="@{/admin/cuaderno/plaga/nuevo}" method="post">
                 	<fieldset>
                 	
                 		<div class="row">
@@ -69,12 +62,12 @@
 		                           
 	                      	<div class="form-actions no-margin-bottom">
 	                        	<input type="submit" value="[Grabar]" class="btn btn-primary" th:value="#{web.grabar}" />
-	                           	<input type="submit" value="[Volver]" class="btn btn-primary" th:value="#{web.volver}" />
+	                           	<input type="reset" value="[Limpiar]" class="btn btn-primary" th:value="#{web.limpiar}" />
 	                    	</div>
 	                    	
 		           		</div>
                     	                   		
-                	</fieldset>                	
+                	</fieldset>
             	</form>	
 			
 			</div>
