@@ -9,6 +9,15 @@
 	<title>Patrones :: Cuaderno :: Administración :: OpenWine</title>
 	
 	<script type="text/javascript">
+
+	$(document).ready(function() {
+	    // check name availability on focus lost
+	    $('#showModal').click(function() {
+	    	$("#genericModal").modal("show");
+	    });
+	});
+	
+
 	</script>   		
 </head>
 
@@ -68,10 +77,10 @@
 												      			<td th:text="${patron.nombre}">[nombre]</td>
 												      			<td th:text="${patron.descripcion}">[descripcion]</td>
 												      			<td>
-												      				<a class="btn btn-info" href="/admin/cuaderno/patron/verPatron.html" th:href="@{'/admin/cuaderno/patron/' + ${patron.id}}">
+												      				<a class="btn btn-info" href="/admin/cuaderno/patron/verPatron.html" th:href="@{'/admin/cuaderno/patron/' + ${patron.id}}" >
 																		<i class="icon-zoom-in icon-white"></i>
 																	</a>&nbsp;
-												      				<a class="btn btn-info" href="/admin/cuaderno/patron/editarPatron.html" th:href="@{'/admin/cuaderno/patron/' + ${patron.id} + '/editar'}">
+								      								<a class="btn btn-info" href="/admin/cuaderno/patron/editarPatron.html" th:href="@{'/admin/cuaderno/patron/' + ${patron.id} + '/editar'}">
 																		<i class="icon-edit icon-white"></i>
 																	</a>&nbsp;
 																	<a class="btn btn-info" href="/admin/cuaderno/patron/borrarPatron.html" th:href="@{'/admin/cuaderno/patron/' + ${patron.id} + '/borrar'}">
@@ -95,7 +104,12 @@
          
          </section>                       
 		
-
+				<div id="genericModal" class="modal hide" tabindex="-1"
+					role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+					<div class="modal-body">
+						<p>One fine body</p>
+					</div>
+				</div>
 	
 </body>
 </html>

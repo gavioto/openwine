@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.grafenonet.openwine.cuaderno.domain.Patron;
 import com.grafenonet.openwine.cuaderno.service.PatronService;
@@ -62,20 +64,20 @@ public class PatronController {
 	}
 	
 	@RequestMapping(value = "/nuevo", method = RequestMethod.POST)
-	public String create(@Valid @ModelAttribute("patron") Patron patron, BindingResult result) {
+	public ModelAndView create(@Valid @ModelAttribute("patron") Patron patron, BindingResult result, final RedirectAttributes redirectAttributes) {
 		LOG.debug("Iniciando controlador create.POST ...");
 		
 		if (result.hasErrors()) {
-			return "/admin/cuaderno/patron/crearPatron";
+			return new ModelAndView("/admin/cuaderno/patron/crearPatron");
 		}
 		
 		this.patronService.create(patron);
 		if (patron == null || patron.getId() == null) {
-			return "/admin/cuaderno/patron/crearPatron";
+			return new ModelAndView("/admin/cuaderno/patron/crearPatron");
 		}		
 		
 		LOG.debug("Finalizando controlador create.POST.");
-		return "redirect:/admin/cuaderno/patron";
+		return new ModelAndView("redirect:/admin/cuaderno/patron");
 	}
 	
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
@@ -107,18 +109,18 @@ public class PatronController {
 	}
 	
 	@RequestMapping(value = "/{id}/editar", method = RequestMethod.POST)
-	public String edit(@PathVariable("id") Integer id, @Valid @ModelAttribute("patron") Patron patron, BindingResult result) {
+	public ModelAndView edit(@PathVariable("id") Integer id, @Valid @ModelAttribute("patron") Patron patron, BindingResult result, final RedirectAttributes redirectAttributes) {
 		LOG.debug("Iniciando controlador edit.POST ...");		
 		
 		if (result.hasErrors()) {
-			return "/admin/cuaderno/patron/editarPatron";
+			return new ModelAndView("/admin/cuaderno/patron/editarPatron");
 		}
 		
 		this.patronService.update(patron);
 
 		
 		LOG.debug("Finalizando controlador edit.POST.");
-		return "redirect:/admin/cuaderno/patron";
+		return new ModelAndView("redirect:/admin/cuaderno/patron");
 	}
 
 	@RequestMapping(value = "/{id}/borrar", method = RequestMethod.GET)

@@ -12,7 +12,7 @@
 	<!-- DispatcherServlet Context: defines this servlet's request-processing infrastructure -->
 	
 	<!-- Enables the Spring MVC @Controller programming model -->
-	<annotation-driven />
+	<annotation-driven validator="validator" />
 		
 	<context:annotation-config />
 	<context:component-scan base-package="com.grafenonet.openwine" />	
@@ -60,7 +60,11 @@
 	<!-- Internacionalizacion -->
 	<beans:bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
       	<beans:property name="basename" value="Messages" />
-   </beans:bean>
+   	</beans:bean>
+   
+   	<beans:bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean">
+   		<beans:property name="messageInterpolator" ref="customMessageSourceInterpolator" />
+   	</beans:bean>
 
 	<!-- Imports user-defined @Controller beans that process client requests
 	<beans:import resource="controllers.xml" />	

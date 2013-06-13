@@ -52,14 +52,16 @@
 	                    	<div class="control-group">
 	                        	<label for="nombre" class="control-label" th:text="#{web.nombre}">[nombre]</label>
 	                            <div class="controls">
-	                            	<input type="text" size="100" maxLength="100" class="validate[required] text-input" name="nombre" id="nombre" th:field="*{nombre}" th:value="${nombre}" autofocus="autofocus" />
+	                            	<input type="text" size="100" maxLength="100" class="validate[required] text-input span8" name="nombre" id="nombre" th:field="*{nombre}" th:value="${nombre}" autofocus="autofocus" />
+	                            	<span class="label label-warning" th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}">[valor incorrecto]</span>
 	                         	</div>
 	                      	</div>     
 	                      	
 	                      	<div class="control-group">
 	                        	<label for="descripcion" class="control-label" th:text="#{web.descripcion}">[descripcion]</label>
 	                            <div class="controls">
-	                            	<textarea rows="8" maxLength="2000" class="validate[required] text-input" name="descripcion" id="descripcion" th:field="*{descripcion}" th:value="${descipcion}" ></textarea>
+	                            	<textarea rows="8" maxLength="2000" class="validate[required] text-input span8" name="descripcion" id="descripcion" th:field="*{descripcion}" th:value="${descipcion}" ></textarea>
+	                            	<span class="label label-warning" th:if="${#fields.hasErrors('descripcion')}" th:errors="*{descripcion}">[valor incorrecto]</span>
 	                         	</div>
 	                      	</div>
 		                      	
@@ -69,7 +71,7 @@
 		                           
 	                      	<div class="form-actions no-margin-bottom">
 	                        	<input type="submit" value="[Grabar]" class="btn btn-primary" th:value="#{web.grabar}" />
-	                           	<input type="submit" value="[Volver]" class="btn btn-primary" th:value="#{web.volver}" />
+	                           	<input type="submit" value="[Volver]" class="btn btn-primary" th:value="#{web.volver}" th:href="@{/admin/cuaderno/plaga}" />
 	                    	</div>
 	                    	
 		           		</div>

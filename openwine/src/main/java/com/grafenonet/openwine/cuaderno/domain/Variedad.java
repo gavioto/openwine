@@ -29,15 +29,15 @@ public class Variedad extends BaseEntity implements Serializable {
 	private TipoVariedad tipo;
 	
 	@Column(name = "nombre", length = 100, unique=true, nullable = false)
-	@NotEmpty(message = "Campo 'nombre' no especificado.")
+	@NotEmpty(message = "web.validate.campo_obligatorio")
 	@Length(max=100)	
-	@Size(min = 4, max = 100)
+	@Size(min = 4, max = 100, message="web.validate.tamano_campo")
 	private String nombre;
 
 	@Column(name = "descripcion", length = 2000, nullable = false)
-	@NotEmpty(message = "Campo 'descripcion' no especificado.")
+	@NotEmpty(message = "web.validate.campo_obligatorio")
 	@Length(max=2000)	
-	@Size(min = 4, max = 2000)
+	@Size(min = 4, max = 2000, message="web.validate.tamano_campo")
 	private String descripcion;	
 	
 	@Column(name = "calificacion", length=20, nullable = false)

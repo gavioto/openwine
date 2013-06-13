@@ -94,7 +94,7 @@ public class VariedadController {
 	}
 	
 	@RequestMapping(value = "/nuevo", method = RequestMethod.POST)
-	public ModelAndView create(@Valid @ModelAttribute("variedad") Variedad variedad, BindingResult result) {
+	public ModelAndView create(@Valid @ModelAttribute("variedad") Variedad variedad, BindingResult result, final RedirectAttributes redirectAttributes) {
 		LOG.debug("Iniciando controlador create.POST ...");		
 			
 		if (result.hasErrors()) {

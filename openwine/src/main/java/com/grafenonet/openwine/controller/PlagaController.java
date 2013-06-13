@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.grafenonet.openwine.cuaderno.domain.Plaga;
 import com.grafenonet.openwine.cuaderno.service.PlagaService;
@@ -62,20 +64,20 @@ public class PlagaController {
 	}
 	
 	@RequestMapping(value = "/nuevo", method = RequestMethod.POST)
-	public String create(@Valid @ModelAttribute("plaga") Plaga plaga, BindingResult result) {
+	public ModelAndView create(@Valid @ModelAttribute("plaga") Plaga plaga, BindingResult result, final RedirectAttributes redirectAttributes) {
 		LOG.debug("Iniciando controlador create.POST ...");
 		
 		if (result.hasErrors()) {
-			return "/admin/cuaderno/plaga/nuevoPlaga";
+			return new ModelAndView("/admin/cuaderno/plaga/crearPlaga");
 		}
 		
 		this.plagaService.create(plaga);
-		if (plaga == null) {// || plaga.getId() == null) {
-			return "/admin/cuaderno/plaga/crearPlaga";
+		if (plaga == null || plaga.getId() == null) {
+			return new ModelAndView("/admin/cuaderno/plaga/crearPlaga");
 		}		
 		
 		LOG.debug("Finalizando controlador create.POST.");
-		return "redirect:/admin/cuaderno/plaga";
+		return new ModelAndView("redirect:/admin/cuaderno/plaga");
 	}
 	
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
@@ -107,18 +109,18 @@ public class PlagaController {
 	}
 	
 	@RequestMapping(value = "/{id}/editar", method = RequestMethod.POST)
-	public String edit(@PathVariable("id") Integer id, @Valid @ModelAttribute("plaga") Plaga plaga, BindingResult result) {
+	public ModelAndView edit(@PathVariable("id") Integer id, @Valid @ModelAttribute("plaga") Plaga plaga, BindingResult result, final RedirectAttributes redirectAttributes) {
 		LOG.debug("Iniciando controlador edit.POST ...");		
 		
 		if (result.hasErrors()) {
-			return "/admin/cuaderno/plaga/editarPlaga";
+			return new ModelAndView("/admin/cuaderno/plaga/editarPlaga");
 		}
 		
 		this.plagaService.update(plaga);
 
 		
 		LOG.debug("Finalizando controlador edit.POST.");
-		return "redirect:/admin/cuaderno/plaga";
+		return new ModelAndView("redirect:/admin/cuaderno/plaga");
 	}
 
 	@RequestMapping(value = "/{id}/borrar", method = RequestMethod.GET)
