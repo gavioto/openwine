@@ -23,10 +23,15 @@ import com.grafenonet.openwine.cuaderno.service.PlagaService;
 @RequestMapping(value = "/admin/cuaderno/plaga")
 public class PlagaController {
 	private static Logger LOG = LoggerFactory.getLogger(PlagaController.class);
-	private final Integer YEAR = Calendar.getInstance().get(Calendar.YEAR);
 	
 	@Autowired
 	private PlagaService plagaService;
+	
+	@ModelAttribute("year")
+	public String populateYear() {
+		Integer year = Calendar.getInstance().get(Calendar.YEAR);
+		return year.toString();
+	}	
 	
 	@RequestMapping(value = "", method = RequestMethod.GET)
 	public String list(Model model) {
@@ -35,7 +40,6 @@ public class PlagaController {
 		List<Plaga> plagas = this.plagaService.list();	
 		
 		model.addAttribute("moduleTitle", "Gestión de plagas"); 
-		model.addAttribute("year", this.YEAR);
 		
 		model.addAttribute("plagas", plagas);
 		
@@ -50,7 +54,6 @@ public class PlagaController {
 		Plaga plaga = new Plaga();
 		
 		model.addAttribute("moduleTitle", "Nueva Plaga"); 
-		model.addAttribute("year", this.YEAR);
 		
 		model.addAttribute("plaga", plaga);
 		
@@ -82,7 +85,6 @@ public class PlagaController {
 		Plaga plaga = this.plagaService.get(id);
 
 		model.addAttribute("moduleTitle", "Ver plaga"); 
-		model.addAttribute("year", this.YEAR);
 		
 		model.addAttribute("plaga", plaga);
 		
@@ -97,7 +99,6 @@ public class PlagaController {
 		Plaga plaga = this.plagaService.get(id);
 
 		model.addAttribute("moduleTitle", "Editar plaga"); 
-		model.addAttribute("year", this.YEAR);
 		
 		model.addAttribute("plaga", plaga);
 		

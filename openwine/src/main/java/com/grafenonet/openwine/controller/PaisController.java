@@ -1,5 +1,6 @@
 package com.grafenonet.openwine.controller;
 
+import java.util.Calendar;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -7,6 +8,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -20,6 +22,12 @@ public class PaisController {
 	
 	@Autowired
 	PaisService paisService;
+	
+	@ModelAttribute("year")
+	public String populateYear() {
+		Integer year = Calendar.getInstance().get(Calendar.YEAR);
+		return year.toString();
+	}	
 	
 	@RequestMapping(value = "/admin/maestros/pais", method = RequestMethod.GET)
 	public String paises(Model model) {

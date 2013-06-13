@@ -29,12 +29,17 @@ public class GasoleoController {
 	@Autowired
 	GasoleoService gasoleoService;
 	
+	@ModelAttribute("year")
+	public String populateYear() {
+		Integer year = Calendar.getInstance().get(Calendar.YEAR);
+		return year.toString();
+	}	
+	
 	@RequestMapping(value = "/caderno/gasoleo", method = RequestMethod.GET)
-	public String gasoleo(Model model) {
+	public String list(Model model) {
 		LOG.debug("Iniciando controlador gasoleo ...");
 
-		Integer year = Calendar.getInstance().get(Calendar.YEAR);
-		
+		Integer year = Calendar.getInstance().get(Calendar.YEAR);		
 		List<Gasoleo> lista = gasoleoService.list(year);
 		
 		model.addAttribute("moduleTitle", "Tickets de Gasóleo");
@@ -55,7 +60,6 @@ public class GasoleoController {
 		Gasoleo gasoleo = new Gasoleo();
 		
 		model.addAttribute("moduleTitle", "Novo ticket de gasóleo:");
-		model.addAttribute("year", year.toString());
 		model.addAttribute("today", today);
 		model.addAttribute("ticket", gasoleo);
 		

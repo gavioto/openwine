@@ -1,5 +1,7 @@
 package com.grafenonet.openwine.controller;
 
+import java.util.Calendar;
+
 import javax.annotation.Resource;
 import javax.validation.Valid;
 
@@ -28,6 +30,12 @@ public class LoginController {
 	public LoginController() {
 		super();
 	}
+	
+	@ModelAttribute("year")
+	public String populateYear() {
+		Integer year = Calendar.getInstance().get(Calendar.YEAR);
+		return year.toString();
+	}	
 	
 	@RequestMapping(value = "/login", method=RequestMethod.GET)
 	public String login(ModelMap model) {

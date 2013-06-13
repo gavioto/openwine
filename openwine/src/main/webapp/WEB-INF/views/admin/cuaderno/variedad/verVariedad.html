@@ -51,7 +51,7 @@
 	                    	<div class="control-group">
 	                        	<label for="tipo" class="control-label" th:text="#{web.tipo}">[Tipo]</label>
 	                            <div class="controls">
-	                            	<select name="tipo" id="tipo" th:field="*{tipo}" class="validate[required]" th:remove="all-but-first" disabled="disabled" >
+	                            	<select name="tipo" id="tipo" th:field="*{tipo}" class="validate[required] span12" th:remove="all-but-first" disabled="disabled" >
 	                                	<option th:each="tipo : ${tipos}" th:value="${tipo}" th:text="${tipo.descripcion}" >[Tipo Variedad]</option>
 									</select>
 	                         	</div>
@@ -60,21 +60,21 @@
 	                    	<div class="control-group">
 	                        	<label for="nombre" class="control-label" th:text="#{web.nombre}">[nombre]</label>
 	                            <div class="controls">
-	                            	<input type="text" size="100" maxLength="100" class="validate[required] text-input" name="nombre" id="nombre" th:field="*{nombre}" th:value="${nombre}" readonly="readonly" />
+	                            	<input type="text" size="100" maxLength="100" class="validate[required] text-input span12" name="nombre" id="nombre" th:field="*{nombre}" th:value="${nombre}" readonly="readonly" />
 	                         	</div>
 	                      	</div>     
 	                      	
 	                      	<div class="control-group">
 	                        	<label for="descripcion" class="control-label" th:text="#{web.descripcion}">[descripcion]</label>
 	                            <div class="controls">
-	                            	<textarea rows="8" maxLength="2000" class="validate[required] text-input" name="descripcion" id="descripcion" th:field="*{descripcion}" th:value="${descipcion}" readonly="readonly" ></textarea>
+	                            	<textarea rows="8" maxLength="2000" class="validate[required] text-input span12" name="descripcion" id="descripcion" th:field="*{descripcion}" th:value="${descipcion}" readonly="readonly" ></textarea>
 	                         	</div>
 	                      	</div>
 	                      	
 	                       	<div class="control-group">
 	                        	<label for="calificacion" class="control-label" th:text="#{web.calificacion}">[Calificacion]</label>
 	                          	<div class="controls">
-	                            	<select name="calificacion" id="calificacion" th:field="*{calificacion}" class="validate[required]" th:remove="all-but-first" disabled="disabled" >
+	                            	<select name="calificacion" id="calificacion" th:field="*{calificacion}" class="validate[required] span12" th:remove="all-but-first" disabled="disabled" >
 	                                	<option th:each="calificacion : ${calificaciones}" th:value="${calificacion}" th:text="${calificacion.descripcion}" >[Calificacion]</option>
 									</select>
 	                         	</div>
@@ -83,7 +83,7 @@
 	                       	<div class="control-group">
 	                        	<label for="productividad" class="control-label" th:text="#{web.productividad}">[Productividad]</label>
 	                          	<div class="controls">
-	                            	<select name="productividad" id="productividad" th:field="*{productividad}" class="validate[required]" th:remove="all-but-first" disabled="disabled">
+	                            	<select name="productividad" id="productividad" th:field="*{productividad}" class="validate[required] span12" th:remove="all-but-first" disabled="disabled">
 	                                	<option th:each="productividad : ${productividades}" th:value="${productividad}" th:text="${productividad.descripcion}" >[Productividad]</option>
 									</select>
 	                         	</div>
@@ -92,7 +92,7 @@
 	                      	<div class="control-group">
 	                      		<label for="maduracion" class="control-label" th:text="#{web.maduracion}">[Maduración]</label>
 	                           	<div class="controls">
-	                            	<select name="maduracion" id="maduracion" th:field="*{maduracion}" class="validate[required]" th:remove="all-but-first" disabled="disabled">
+	                            	<select name="maduracion" id="maduracion" th:field="*{maduracion}" class="validate[required] span12" th:remove="all-but-first" disabled="disabled">
 	                                	<option th:each="maduracion : ${maduraciones}" th:value="${maduracion}" th:text="${maduracion.descripcion}" >[maduracion]</option>
 									</select>
 	                         	</div>
@@ -103,7 +103,6 @@
 						<div class="row">                		
 		                           
 	                      	<div class="form-actions no-margin-bottom">
-	                        	<input type="submit" value="[Grabar]" class="btn btn-primary" th:value="#{web.grabar}" />
 	                           	<input type="submit" value="[Volver]" class="btn btn-primary" th:value="#{web.volver}" />
 	                    	</div>
 	                    	

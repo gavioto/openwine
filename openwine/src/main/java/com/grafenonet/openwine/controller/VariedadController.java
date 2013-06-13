@@ -11,13 +11,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.ValidationUtils;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.grafenonet.openwine.cuaderno.domain.Variedad;
 import com.grafenonet.openwine.cuaderno.enums.CalificacionVariedad;
@@ -31,13 +32,18 @@ import com.grafenonet.openwine.cuaderno.validator.VariedadValidator;
 @RequestMapping(value = "/admin/cuaderno/variedad")
 public class VariedadController {
 	private static Logger LOG = LoggerFactory.getLogger(VariedadController.class);	
-	private final Integer YEAR = Calendar.getInstance().get(Calendar.YEAR);
 	
 	@Autowired
 	private VariedadService variedadService;
 	
 	@Autowired
 	private VariedadValidator variedadValidator;	
+	
+	@ModelAttribute("year")
+	public String populateYear() {
+		Integer year = Calendar.getInstance().get(Calendar.YEAR);
+		return year.toString();
+	}
 	
 	@ModelAttribute("tipos")
 	public List<TipoVariedad> populateTipoVariedad() {
@@ -66,7 +72,6 @@ public class VariedadController {
 		List<Variedad> variedades = variedadService.list();
 		
 		model.addAttribute("moduleTitle", "Gestión de variedades.");
-		model.addAttribute("year", this.YEAR);
 		
 		model.addAttribute("variedades", variedades);
 		
@@ -81,7 +86,6 @@ public class VariedadController {
 		Variedad variedad = new Variedad();
 		
 		model.addAttribute("moduleTitle", "Gestión de variedades de vid");		
-		model.addAttribute("year", this.YEAR);
 		
 		model.addAttribute("variedad", variedad);
 		
@@ -90,18 +94,24 @@ public class VariedadController {
 	}
 	
 	@RequestMapping(value = "/nuevo", method = RequestMethod.POST)
-	public String create(@Valid @ModelAttribute("variedad") Variedad variedad, BindingResult result) {
+	public ModelAndView create(@Valid @ModelAttribute("variedad") Variedad variedad, BindingResult result) {
 		LOG.debug("Iniciando controlador create.POST ...");		
-		
-		ValidationUtils.invokeValidator(variedadValidator, variedad, result);		
+			
 		if (result.hasErrors()) {
-			return "/admin/cuaderno/variedad/crearVariedad";
+			return new ModelAndView("/admin/cuaderno/variedad/crearVariedad");
 		}
 		
+		ModelAndView mav = new ModelAndView();
+		
 		this.variedadService.create(variedad);
+		if (variedad.getId() == null) {
+			return new ModelAndView("/admin/cuaderno/variedad/crearVariedad");
+		}
+		
+		mav.setViewName("redirect:/admin/cuaderno/variedad");
 		
 		LOG.debug("Finalizando controlador create.POST.");		
-		return "redirect:/admin/cuaderno/variedad";
+		return mav;
 	}
 	
 	@RequestMapping(value = "/{id}/editar", method = RequestMethod.GET)
@@ -111,7 +121,6 @@ public class VariedadController {
 		Variedad variedad = this.variedadService.get(id);
 
 		model.addAttribute("moduleTitle", "Editar variedad"); 
-		model.addAttribute("year", this.YEAR);
 		
 		model.addAttribute("variedad", variedad);
 		
@@ -120,19 +129,22 @@ public class VariedadController {
 	}	
 	
 	@RequestMapping(value = "/{id}/editar", method = RequestMethod.POST)
-	public String edit(@PathVariable("id") Integer id, @Valid @ModelAttribute("variedad") Variedad variedad, BindingResult result) {
+	public ModelAndView edit(@PathVariable("id") Integer id, @Valid @ModelAttribute("variedad") Variedad variedad, BindingResult result, final RedirectAttributes redirectAttributes) {
 		LOG.debug("Iniciando controlador edit.POST ...");		
 		
-		ValidationUtils.invokeValidator(variedadValidator, variedad, result);
 		if (result.hasErrors()) {
-			return "/admin/cuaderno/variedad/editarVariedad";
+			return new ModelAndView("/admin/cuaderno/variedad/editarVariedad");
 		}
 		
+		ModelAndView mav = new ModelAndView();
+		
 		this.variedadService.update(variedad);
+		
+		mav.setViewName("redirect:/admin/cuaderno/variedad");
 
 		
 		LOG.debug("Finalizando controlador edit.POST.");
-		return "redirect:/admin/cuaderno/variedad";
+		return mav;
 	}
 	
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
@@ -142,7 +154,6 @@ public class VariedadController {
 		Variedad variedad = this.variedadService.get(id);
 
 		model.addAttribute("moduleTitle", "Ver Variedad"); 
-		model.addAttribute("year", this.YEAR);
 		
 		model.addAttribute("variedad", variedad);
 		

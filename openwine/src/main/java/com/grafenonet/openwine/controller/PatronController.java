@@ -23,10 +23,15 @@ import com.grafenonet.openwine.cuaderno.service.PatronService;
 @RequestMapping(value = "/admin/cuaderno/patron")
 public class PatronController {
 	private static Logger LOG = LoggerFactory.getLogger(PatronController.class);
-	private final Integer YEAR = Calendar.getInstance().get(Calendar.YEAR);
 	
 	@Autowired
 	private PatronService patronService;
+	
+	@ModelAttribute("year")
+	public String populateYear() {
+		Integer year = Calendar.getInstance().get(Calendar.YEAR);
+		return year.toString();
+	}	
 	
 	@RequestMapping(value = "", method = RequestMethod.GET)
 	public String list(Model model) {
@@ -35,7 +40,6 @@ public class PatronController {
 		List<Patron> patrones = this.patronService.list();	
 		
 		model.addAttribute("moduleTitle", "Gestión de patrones"); 
-		model.addAttribute("year", this.YEAR);
 		
 		model.addAttribute("patrones", patrones);
 		
@@ -50,7 +54,6 @@ public class PatronController {
 		Patron patron = new Patron();
 		
 		model.addAttribute("moduleTitle", "Nuevo patrón"); 
-		model.addAttribute("year", this.YEAR);
 		
 		model.addAttribute("patron", patron);
 		
@@ -82,7 +85,6 @@ public class PatronController {
 		Patron patron = this.patronService.get(id);
 
 		model.addAttribute("moduleTitle", "Ver patrón"); 
-		model.addAttribute("year", this.YEAR);
 		
 		model.addAttribute("patron", patron);
 		
@@ -97,7 +99,6 @@ public class PatronController {
 		Patron patron = this.patronService.get(id);
 
 		model.addAttribute("moduleTitle", "Editar patrón"); 
-		model.addAttribute("year", this.YEAR);
 		
 		model.addAttribute("patron", patron);
 		

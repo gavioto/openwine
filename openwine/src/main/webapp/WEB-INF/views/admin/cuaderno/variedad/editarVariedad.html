@@ -44,7 +44,8 @@
 			<div id="icon-container" class="tab-pane active">
 			
            		<form id="form" class="form-horizontal" th:object="${variedad}" th:action="@{'/admin/cuaderno/variedad/' + ${variedad.id} + '/editar'}" method="post">
-           			<input type="hidden" name="id" id="id" th:field="*{id}" th:value="${id}" />
+           			<input type="hidden" name="id" id="id" th:field="*{id}" th:value="${id}" />   
+          			
                 	<fieldset>
                 	
                 		<div class="row">
@@ -52,50 +53,56 @@
 	                    	<div class="control-group">
 	                        	<label for="tipo" class="control-label" th:text="#{web.tipo}">[Tipo]</label>
 	                            <div class="controls">
-	                            	<select name="tipo" id="tipo" th:field="*{tipo}" class="validate[required]" th:remove="all-but-first" autofocus="autofocus">
-	                                	<option th:each="tipo : ${tipos}" th:value="${tipo}" th:text="${tipo.descripcion}" >[Tipo Variedad]</option>
+	                            	<select name="tipo" id="tipo" th:field="*{tipo}" class="validate[required] span8" th:remove="all-but-first" autofocus="autofocus">
+	                                	<option th:each="tipo : ${tipos}" th:value="${tipo}" th:text="${tipo.descripcion}" >[Tipo Variedad]</option>	                                	
 									</select>
+									<span class="label label-warning" th:if="${#fields.hasErrors('tipo')}" th:errors="*{tipo}">[valor incorrecto]</span>
 	                         	</div>
 	                      	</div>                		
                 		                		
 	                    	<div class="control-group">
 	                        	<label for="nombre" class="control-label" th:text="#{web.nombre}">[nombre]</label>
 	                            <div class="controls">
-	                            	<input type="text" size="100" maxLength="100" class="validate[required] text-input" name="nombre" id="nombre" th:field="*{nombre}" th:value="${nombre}" />
-	                         	</div>
+	                            	<input type="text" size="100" maxLength="100" class="validate[required] text-input span8" name="nombre" id="nombre" th:field="*{nombre}" th:value="${nombre}" />
+	                            	<span class="label label-warning" th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}">[valor incorrecto]</span>
+	                         	</div>	                         	                         		                         
 	                      	</div>     
 	                      	
 	                      	<div class="control-group">
 	                        	<label for="descripcion" class="control-label" th:text="#{web.descripcion}">[descripcion]</label>
 	                            <div class="controls">
-	                            	<textarea rows="8" maxLength="2000" class="validate[required] text-input" name="descripcion" id="descripcion" th:field="*{descripcion}" th:value="${descipcion}" ></textarea>
+	                            	<textarea rows="8" maxLength="2000" class="validate[required] text-input span8" name="descripcion" id="descripcion" th:field="*{descripcion}" th:value="${descipcion}" ></textarea>
+	                            	<span class="label label-warning" th:if="${#fields.hasErrors('descripcion')}" th:errors="*{descripcion}">[valor incorrecto]</span>
 	                         	</div>
 	                      	</div>
 	                      	
 	                       	<div class="control-group">
 	                        	<label for="calificacion" class="control-label" th:text="#{web.calificacion}">[Calificacion]</label>
 	                          	<div class="controls">
-	                            	<select name="calificacion" id="calificacion" th:field="*{calificacion}" class="validate[required]" th:remove="all-but-first">
+	                            	<select name="calificacion" id="calificacion" th:field="*{calificacion}" class="validate[required] span8" th:remove="all-but-first">
 	                                	<option th:each="calificacion : ${calificaciones}" th:value="${calificacion}" th:text="${calificacion.descripcion}" >[Calificacion]</option>
 									</select>
+									<span class="label label-warning" th:if="${#fields.hasErrors('calificacion')}" th:errors="*{calificacion}">[valor incorrecto]</span>
 	                         	</div>
 	                     	</div>	                      	
 	                      	
 	                       	<div class="control-group">
 	                        	<label for="productividad" class="control-label" th:text="#{web.productividad}">[Productividad]</label>
 	                          	<div class="controls">
-	                            	<select name="productividad" id="productividad" th:field="*{productividad}" class="validate[required]" th:remove="all-but-first">
+	                            	<select name="productividad" id="productividad" th:field="*{productividad}" class="validate[required] span8" th:remove="all-but-first">
 	                                	<option th:each="productividad : ${productividades}" th:value="${productividad}" th:text="${productividad.descripcion}" >[Productividad]</option>
 									</select>
+									<span class="label label-warning" th:if="${#fields.hasErrors('productividad')}" th:errors="*{productividad}">[valor incorrecto]</span>
 	                         	</div>
 	                     	</div>     
 	                        	
 	                      	<div class="control-group">
 	                      		<label for="maduracion" class="control-label" th:text="#{web.maduracion}">[Maduración]</label>
 	                           	<div class="controls">
-	                            	<select name="maduracion" id="maduracion" th:field="*{maduracion}" class="validate[required]" th:remove="all-but-first">
+	                            	<select name="maduracion" id="maduracion" th:field="*{maduracion}" class="validate[required] span8" th:remove="all-but-first">
 	                                	<option th:each="maduracion : ${maduraciones}" th:value="${maduracion}" th:text="${maduracion.descripcion}" >[maduracion]</option>
 									</select>
+									<span class="label label-warning" th:if="${#fields.hasErrors('maduracion')}" th:errors="*{maduracion}">[valor incorrecto]</span>
 	                         	</div>
 	                     	</div>	                      	
 		                      	
@@ -105,7 +112,7 @@
 		                           
 	                      	<div class="form-actions no-margin-bottom">
 	                        	<input type="submit" value="[Grabar]" class="btn btn-primary" th:value="#{web.grabar}" />
-	                           	<input type="submit" value="[Volver]" class="btn btn-primary" th:value="#{web.volver}" />
+	                           	<input type="submit" value="[Volver]" class="btn btn-primary" th:value="#{web.volver}" th:href="@{/admin/cuaderno/variedad}" />
 	                    	</div>
 	                    	
 		           		</div>
