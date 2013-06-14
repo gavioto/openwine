@@ -33,11 +33,11 @@ public class PlagaController {
 	public String populateYear() {
 		Integer year = Calendar.getInstance().get(Calendar.YEAR);
 		return year.toString();
-	}	
+	}
 	
 	@RequestMapping(value = "", method = RequestMethod.GET)
 	public String list(Model model) {
-		LOG.debug("Iniciando controlador listar ...");
+		LOG.debug("Iniciando controlador list ...");
 		
 		List<Plaga> plagas = this.plagaService.list();	
 		
@@ -45,7 +45,7 @@ public class PlagaController {
 		
 		model.addAttribute("plagas", plagas);
 		
-		LOG.debug("Finalizando controlador listar.");
+		LOG.debug("Finalizando controlador list.");
 		return "/admin/cuaderno/plaga/listarPlaga";
 	}
 

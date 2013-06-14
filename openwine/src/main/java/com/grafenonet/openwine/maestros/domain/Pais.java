@@ -22,13 +22,13 @@ public class Pais extends BaseEntity implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	@Column(name = "codigo", length = 2, unique = true, nullable = false)
-	@NotEmpty(message = "Campo 'codigo' no especificado.")
-	@Length(max=2)
+	@NotEmpty(message = "web.validate.campo_obligatorio")
+	@Length(max=2, message = "web.validate.tamano_maximo")
 	private String codigo;
 	
-	@Column(name = "nombre", length = 2, unique = true, nullable = false)
-	@NotEmpty(message = "Campo 'nombre' no especificado.")
-	@Length(max=250)
+	@Column(name = "nombre", length = 250, unique = true, nullable = false)
+	@NotEmpty(message = "web.validate.campo_obligatorio")
+	@Length(max=250, message = "web.validate.tamano_maximo")
 	private String nombre;
 	
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "pais", cascade = CascadeType.ALL)
@@ -57,7 +57,7 @@ public class Pais extends BaseEntity implements Serializable {
 	public void setProvincias(Set<Provincia> provincias) {
 		this.provincias = provincias;
 	}
-
+	
 	@Override
 	public String toString() {
 		return "Pais [id=" + getId() + ", codigo=" + codigo + ", nombre=" + nombre

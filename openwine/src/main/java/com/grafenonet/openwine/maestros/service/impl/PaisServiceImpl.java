@@ -1,7 +1,6 @@
 package com.grafenonet.openwine.maestros.service.impl;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -39,12 +38,8 @@ public class PaisServiceImpl implements PaisService {
 			LOG.debug(" - codigo = " + pais.getCodigo());
 			LOG.debug(" - nombre = " + pais.getNombre());
 		}		
-		
-		pais.setUsuarioAlta("admin");
-		pais.setFechaAlta(new Date());
-		
-		this.paisDao.create(pais);
-		
+				
+		this.paisDao.create(pais);		
 		if (pais.getId() == null) {
 			throw new RuntimeException("Error al crear el pais.");
 		}
@@ -72,10 +67,7 @@ public class PaisServiceImpl implements PaisService {
 			LOG.debug(" - nombre = " + pais.getNombre());
 		}
 		
-		pais.setUsuarioModificacion("admin");
-		pais.setFechaModificacion(new Date());
-		
-		this.paisDao.create(pais);
+		this.paisDao.update(pais);
 			
 		LOG.debug("Finalizando actualizar pais.");				
 	}
@@ -89,22 +81,15 @@ public class PaisServiceImpl implements PaisService {
 		
 		if (pais == null) {
 			throw new RuntimeException("El pais es nulo.");
-		}		
-		
-		if (pais.getProvincias() != null || !pais.getProvincias().isEmpty()) {
-			throw new RuntimeException("El pais tiene provincias asociadas.");
-		}		
+		}				
 		
 		if (LOG.isDebugEnabled()) {
 			LOG.debug(" - pais = " + pais.toString());
 		}
 		
-		pais.setUsuarioBaja("admin");
-		pais.setFechaBaja(new Date());
+		this.paisDao.delete(pais);
 		
-		this.paisDao.create(pais);
-		
-		if (pais.getFechaBaja() == null) {
+		if (!pais.isEnabled()) {
 			throw new RuntimeException("Error al dar de baja el pais.");
 		}
 			

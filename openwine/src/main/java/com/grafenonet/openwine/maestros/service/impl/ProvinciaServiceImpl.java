@@ -1,7 +1,6 @@
 package com.grafenonet.openwine.maestros.service.impl;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -41,9 +40,6 @@ public class ProvinciaServiceImpl implements ProvinciaService {
 			LOG.debug(" - pais = " + provincia.getPais().toString());
 		}		
 		
-		provincia.setUsuarioAlta("admin");
-		provincia.setFechaAlta(new Date());
-		
 		this.provinciaDao.create(provincia);
 		
 		if (provincia.getId() == null) {
@@ -74,10 +70,7 @@ public class ProvinciaServiceImpl implements ProvinciaService {
 			LOG.debug(" - pais = " + provincia.getPais().toString());
 		}		
 		
-		provincia.setUsuarioModificacion("admin");
-		provincia.setFechaModificacion(new Date());
-		
-		this.provinciaDao.create(provincia);
+		this.provinciaDao.update(provincia);
 		
 		LOG.debug("Finalizando actualizar provincia.");
 	}
@@ -104,10 +97,7 @@ public class ProvinciaServiceImpl implements ProvinciaService {
 			LOG.debug(" - pais = " + provincia.getPais().toString());
 		}		
 		
-		provincia.setUsuarioBaja("admin");
-		provincia.setFechaBaja(new Date());
-		
-		this.provinciaDao.create(provincia);
+		this.provinciaDao.delete(provincia);
 		
 		if (provincia.getFechaBaja() == null) {
 			throw new RuntimeException("Error al dar de baja la provincia.");

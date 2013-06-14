@@ -20,13 +20,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.grafenonet.openwine.cuaderno.controller.validator.VariedadValidator;
 import com.grafenonet.openwine.cuaderno.domain.Variedad;
 import com.grafenonet.openwine.cuaderno.enums.CalificacionVariedad;
 import com.grafenonet.openwine.cuaderno.enums.MaduracionVariedad;
 import com.grafenonet.openwine.cuaderno.enums.ProductividadVariedad;
 import com.grafenonet.openwine.cuaderno.enums.TipoVariedad;
 import com.grafenonet.openwine.cuaderno.service.VariedadService;
-import com.grafenonet.openwine.cuaderno.validator.VariedadValidator;
 
 @Controller
 @RequestMapping(value = "/admin/cuaderno/variedad")
@@ -67,7 +67,7 @@ public class VariedadController {
 	
 	@RequestMapping(value = "", method = RequestMethod.GET)
 	public String list(Model model) {
-		LOG.debug("Iniciando controlador variedades ...");
+		LOG.debug("Iniciando controlador list ...");
 		
 		List<Variedad> variedades = variedadService.list();
 		
@@ -75,7 +75,7 @@ public class VariedadController {
 		
 		model.addAttribute("variedades", variedades);
 		
-		LOG.debug("Finalizando controlador variedades.");
+		LOG.debug("Finalizando controlador list.");
 		return "/admin/cuaderno/variedad/listarVariedad";		
 	}
 	
@@ -85,7 +85,7 @@ public class VariedadController {
 		
 		Variedad variedad = new Variedad();
 		
-		model.addAttribute("moduleTitle", "Gestión de variedades de vid");		
+		model.addAttribute("moduleTitle", "Nueva variedad");		
 		
 		model.addAttribute("variedad", variedad);
 		

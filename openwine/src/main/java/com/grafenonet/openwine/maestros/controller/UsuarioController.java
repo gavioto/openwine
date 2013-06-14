@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.grafenonet.openwine.cuaderno.validator.UsuarioValidator;
+import com.grafenonet.openwine.maestros.controller.validator.UsuarioValidator;
 import com.grafenonet.openwine.maestros.domain.Rol;
 import com.grafenonet.openwine.maestros.domain.Usuario;
 import com.grafenonet.openwine.maestros.service.RolService;

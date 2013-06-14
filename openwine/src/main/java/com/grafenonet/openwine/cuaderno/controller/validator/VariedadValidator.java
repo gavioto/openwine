@@ -1,4 +1,4 @@
-package com.grafenonet.openwine.cuaderno.validator;
+package com.grafenonet.openwine.cuaderno.controller.validator;
 
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;

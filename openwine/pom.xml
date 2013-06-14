@@ -21,7 +21,7 @@
 		<org.aspectj-version>1.6.10</org.aspectj-version>
 		<!-- <org.slf4j-version>1.7.5</org.slf4j-version> -->
 		<org.slf4j-version>1.6.2</org.slf4j-version>
-		<org.thymeleaf.version>2.0.16</org.thymeleaf.version>
+		<org.thymeleaf.version>2.0.17</org.thymeleaf.version>
 		<thymeleafspringsecurity3.version>2.0.0</thymeleafspringsecurity3.version>
 		<thymeleaf-layout-dialect.version>1.0.6</thymeleaf-layout-dialect.version>
 		
