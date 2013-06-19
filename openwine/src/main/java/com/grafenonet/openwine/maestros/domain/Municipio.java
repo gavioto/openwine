@@ -22,13 +22,13 @@ public class Municipio extends BaseEntity implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	@Column(name = "codigo", length = 3, unique = true, nullable = false)
-	@NotEmpty(message = "Campo 'codigo' no especificado.")
-	@Length(max=3)	
+	@NotEmpty(message = "web.validate.campo_obligatorio")
+	@Length(max=3, message = "web.validate.tamano_maximo")	
 	private String codigo;
 	
 	@Column(name = "nombre", length = 250, nullable = false)
-	@NotEmpty(message = "Campo 'nombre' no especificado.")
-	@Length(max=250)	
+	@NotEmpty(message = "web.validate.campo_obligatorio")
+	@Length(max=250, message = "web.validate.tamano_maximo")	
 	private String nombre;
 	
 	@ManyToOne

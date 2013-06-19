@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" 
+				xmlns:th="http://www.thymeleaf.org"
+				xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+				layout:decorator="decorators/admin">
+
+<head>
+	<meta charset="utf-8" />
+	<title>Crear Municipio :: Maestros :: Administración :: OpenWine</title>	
+</head>
+
+<body>
+
+	<section layout:fragment="content">
+	
+		<header>
+            <div class="icons"><i class="icon-magic"></i></div>
+               	<h5 th:text="${moduleTitle}">[Titulo Modulo]</h5>
+               	<div class="toolbar">
+               	<ul class="nav nav-tabs">
+               		<li title="" class="icon index_collection_link">
+            			<a class="pjax" href="/admin/maestros/municipio/listarMunicipio.html" th:href="@{/admin/maestros/municipio}" >
+              				<i class="icon-th-list"></i>
+              				<span th:text="#{web.lista}">[Lista]</span>
+            			</a>
+         				</li>
+          			<li title="" class="active icon new_collection_link">
+            			<a class="pjax" href="#" >
+              				<i class="icon-plus"></i>
+              				<span th:text="#{web.nuevo}">[Nuevo]</span>
+            			</a>
+          			</li>
+            	</ul>
+        	</div>
+		</header>	
+		
+     	<div class="body tab-content">
+			<div id="icon-container" class="tab-pane active">
+			
+           		<form id="form" class="form-horizontal" th:object="${municipio}" th:action="@{/admin/maestros/municipio/nuevo}" method="post">
+                	<fieldset>
+                	
+                		<div class="row">
+                		
+	                    	<div class="control-group">
+	                        	<label for="codigo" class="control-label" th:text="#{web.codigo}">[codigo]</label>
+	                            <div class="controls">
+	                            	<input type="text" size="3" maxLength="3" class="validate[required] text-input span8" name="codigo" id="codigo" th:field="*{codigo}" th:value="${codigo}" autofocus="autofocus"/>
+	                            	<span class="label label-warning" th:if="${#fields.hasErrors('codigo')}" th:errors="*{codigo}">[valor incorrecto]</span>
+	                         	</div>
+	                      	</div>    
+	                      	
+	                      	<div class="control-group">
+	                       		<label for="nombre" class="control-label" th:text="#{web.nombre}">[nombre]</label>
+	                            <div class="controls">
+	                            	<input type="text" size="250" maxLength="250" class="validate[required] text-input span8" name="nombre" id="nombre" th:field="*{nombre}" th:value="${nombre}" />
+	                            	<span class="label label-warning" th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}">[valor incorrecto]</span>
+	                         	</div>
+	                      	</div>
+	                      	
+	                    	<div class="control-group">
+	                        	<label for="tipo" class="control-label" th:text="#{web.provincia}">[Provincia]</label>
+	                            <div class="controls">
+	                            	<select name="provincia" id="provincia" th:field="*{provincia}" class="validate[required] span8" th:remove="all-but-first" >
+	                                	<option th:each="provincia : ${provincias}" th:value="${provincia}" th:text="${'__${provincia.codigo}__' + ' - ' + '__${provincia.nombre}__'}" >[Provincia]</option>
+									</select>
+									<span class="label label-warning" th:if="${#fields.hasErrors('provincia')}" th:errors="*{provincia}">[valor incorrecto]</span>
+	                         	</div>	                    		
+	                      	</div>	                      	
+		                      	
+		          		</div> 
+		                      	
+						<div class="row">                		
+		                           
+	                      	<div class="form-actions no-margin-bottom">
+	                        	<input type="submit" value="[Grabar]" class="btn btn-primary" th:value="#{web.grabar}" />
+	                           	<input type="reset" value="[Limpiar]" class="btn btn-primary" th:value="#{web.limpiar}" />
+	                    	</div>
+	                    	
+		           		</div>
+                    	                   		
+                	</fieldset>
+            	</form>	
+			
+			</div>
+		</div>		
+		
+	</section>
+		
+</body>
+</html>

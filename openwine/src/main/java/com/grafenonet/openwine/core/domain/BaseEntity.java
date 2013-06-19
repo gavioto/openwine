@@ -1,5 +1,6 @@
 package com.grafenonet.openwine.core.domain;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -7,27 +8,34 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import org.hibernate.validator.constraints.Length;
 
 @MappedSuperclass
-public class BaseEntity {
+public class BaseEntity implements Serializable {
+	
+	private static final long serialVersionUID = 1L;
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
 	private Integer id;		
 
-	@Column(name = "fecha_alta", nullable = true)
+	@Column(name = "fecha_alta", nullable = true, updatable = false)
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date fechaAlta;
 	
 	@Column(name = "fecha_modificacion", nullable = true)
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date fechaModificacion;
 	
 	@Column(name = "fecha_baja", nullable = true)
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date fechaBaja;
 	
-	@Column(name = "usuario_alta", length=20, nullable = true)
+	@Column(name = "usuario_alta", length=20, nullable = true, updatable = false)
 	@Length(max = 20)
 	private String usuarioAlta;
 	
@@ -38,6 +46,9 @@ public class BaseEntity {
 	@Column(name = "usuario_baja", length=20, nullable = true)
 	@Length(max = 20)
 	private String usuarioBaja;
+	
+	//@Column(name = "activo", nullable = false, columnDefinition = "TINYINT(1)")
+	//private Boolean activo;
 	
 	public Integer getId() {
 		return id;

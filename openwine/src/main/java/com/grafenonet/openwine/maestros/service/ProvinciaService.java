@@ -6,14 +6,16 @@ import com.grafenonet.openwine.maestros.domain.Provincia;
 
 public interface ProvinciaService {
 
-	public abstract void create(Provincia provincia);
+	public void create(Provincia provincia);
 
-	public abstract void update(Provincia provincia);
+	public void update(Provincia provincia);
 
-	public abstract void delete(Provincia provincia);
+	public void delete(Provincia provincia);
 
-	public abstract Provincia get(Integer id);
+	public Provincia get(Integer id);
 
-	public abstract List<Provincia> list();
+	public List<Provincia> list();
+	
+	public List<Provincia> listByPais(Integer id);	
 
 }

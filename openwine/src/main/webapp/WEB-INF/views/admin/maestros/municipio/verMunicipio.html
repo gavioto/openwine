@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" 
+				xmlns:th="http://www.thymeleaf.org"
+				xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+				layout:decorator="decorators/admin">
+
+<head>
+	<meta charset="utf-8" />
+	<title>Ver Provincia :: Maestros :: Administración :: OpenWine</title>	
+</head>
+
+<body>
+
+	<section layout:fragment="content">
+	
+		<header>
+            <div class="icons"><i class="icon-magic"></i></div>
+               	<h5 th:text="${moduleTitle}">[Titulo Modulo]</h5>
+               	<div class="toolbar">
+               	<ul class="nav nav-tabs">
+               		<li title="" class="icon index_collection_link">
+            			<a class="pjax" href="/admin/maestros/provincia/listarProvincia.html" th:href="@{/admin/maestros/provincia}" >
+              				<i class="icon-th-list"></i>
+              				<span th:text="#{web.lista}">[Lista]</span>
+            			</a>
+         				</li>
+          			<li title="" class="icon new_collection_link">
+            			<a class="pjax" href="/admin/maestros/provincia/crearProvincia.html" th:href="@{/admin/maestros/provincia/nuevo}" >
+              				<i class="icon-plus"></i>
+              				<span th:text="#{web.nuevo}">[Nuevo]</span>
+            			</a>
+          			</li>
+          			<li title="" class="active icon new_collection_link">
+            			<a class="pjax" href="#" >
+              				<i class="icon-zoom-in"></i>
+              				<span th:text="#{web.ver}">[Ver]</span>
+            			</a>
+          			</li>          			
+            	</ul>
+        	</div>
+		</header>	
+		
+     	<div class="body tab-content">
+			<div id="icon-container" class="tab-pane active">
+			
+           		<form id="form" class="form-horizontal" th:object="${provincia}" th:action="@{/admin/maestros/provincia}" method="get">
+                	<fieldset>
+                	
+                		<div class="row">
+                		
+	                    	<div class="control-group">
+	                        	<label for="codigo" class="control-label" th:text="#{web.codigo}">[codigo]</label>
+	                            <div class="controls">
+	                            	<input readonly="readonly" type="text" size="2" maxLength="100" class="validate[required] text-input span12" name="codigo" id="codigo" th:field="*{codigo}" th:value="${codigo}" />
+	                         	</div>
+	                      	</div>    
+	                      	
+							<div class="control-group">
+	                       		<label for="nombre" class="control-label" th:text="#{web.nombre}">[nombre]</label>
+	                            <div class="controls">
+	                            	<input readonly="readonly" type="text" size="250" maxLength="250" class="validate[required] text-input span12" name="nombre" id="nombre" th:field="*{nombre}" th:value="${nombre}" />
+	                         	</div>
+	                      	</div>    
+	                      	
+	                    	<div class="control-group">
+	                        	<label for="tipo" class="control-label" th:text="#{web.pais}">[Pais]</label>
+	                            <div class="controls">
+	                            	<select name="pais" id="pais" th:field="*{pais}" class="validate[required] span8" th:remove="all-but-first" disabled="disabled">
+	                                	<option th:each="pais : ${paises}" th:value="${pais}" th:text="${'__${pais.codigo}__' + ' - ' + '__${pais.nombre}__'}" >[Pais]</option>
+									</select>
+	                         	</div>
+	                      	</div>		                      	 
+		                      	
+		          		</div> 
+		                      	
+						<div class="row">                		
+		                           
+	                      	<div class="form-actions no-margin-bottom">
+	                        	<input type="submit" value="[Volver]" class="btn btn-primary" th:value="#{web.volver}" />
+	                    	</div>
+	                    	
+		           		</div>
+                    	                   		
+                	</fieldset>
+            	</form>	
+			
+			</div>
+		</div>		
+		
+	</section>
+		
+</body>
+</html>

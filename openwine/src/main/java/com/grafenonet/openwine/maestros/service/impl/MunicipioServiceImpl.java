@@ -1,7 +1,6 @@
 package com.grafenonet.openwine.maestros.service.impl;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -21,7 +20,7 @@ public class MunicipioServiceImpl implements MunicipioService {
 	private static Logger LOG = LoggerFactory.getLogger(MunicipioServiceImpl.class);
 	
 	@Autowired
-	MunicipioDao municipioDao;
+	private MunicipioDao municipioDao;
 	
 	/* (non-Javadoc)
 	 * @see com.grafenonet.openwine.maestros.service.impl.MunicipioService#create(com.grafenonet.openwine.maestros.domain.Municipio)
@@ -40,9 +39,6 @@ public class MunicipioServiceImpl implements MunicipioService {
 			LOG.debug(" - nombre = " + municipio.getNombre());
 			LOG.debug(" - provincia = " + municipio.getProvincia().toString());
 		}		
-		
-		municipio.setUsuarioAlta("admin");
-		municipio.setFechaAlta(new Date());
 		
 		this.municipioDao.create(municipio);
 		
@@ -74,10 +70,7 @@ public class MunicipioServiceImpl implements MunicipioService {
 			LOG.debug(" - provincia = " + municipio.getProvincia().toString());
 		}		
 		
-		municipio.setUsuarioModificacion("admin");
-		municipio.setFechaModificacion(new Date());
-		
-		this.municipioDao.create(municipio);
+		this.municipioDao.update(municipio);
 		
 		LOG.debug("Finalizando actualizar municipio.");
 	}
@@ -100,10 +93,7 @@ public class MunicipioServiceImpl implements MunicipioService {
 			LOG.debug(" - provincia = " + municipio.getProvincia().toString());
 		}		
 		
-		municipio.setUsuarioBaja("admin");
-		municipio.setFechaBaja(new Date());
-		
-		this.municipioDao.create(municipio);
+		this.municipioDao.delete(municipio);
 		
 		if (municipio.getFechaBaja() == null) {
 			throw new RuntimeException("Error al dar de baja el municipio.");
@@ -156,6 +146,18 @@ public class MunicipioServiceImpl implements MunicipioService {
 		municipios = this.municipioDao.list();
 		
 		LOG.debug("Finalizando obtener municipios.");		
+		return municipios;
+	}
+
+	@Override
+	public List<Municipio> listByProvincia(Integer id) {
+		List<Municipio> municipios = new ArrayList<Municipio>();
+		
+		LOG.debug("Iniciando [listByProvincia] ...");
+		
+		municipios = this.municipioDao.listByProvincia(id);
+		
+		LOG.debug("Finalizando [listByProvincia].");		
 		return municipios;
 	}
 }

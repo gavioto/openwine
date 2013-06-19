@@ -1,4 +1,4 @@
-package com.grafenonet.openwine.controller;
+package com.grafenonet.openwine.maestros.controller;
 
 import java.util.Calendar;
 import java.util.List;

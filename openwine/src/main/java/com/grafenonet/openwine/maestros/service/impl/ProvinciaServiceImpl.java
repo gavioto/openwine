@@ -20,7 +20,7 @@ public class ProvinciaServiceImpl implements ProvinciaService {
 	private static Logger LOG = LoggerFactory.getLogger(ProvinciaServiceImpl.class);
 	
 	@Autowired
-	ProvinciaDao provinciaDao;
+	private ProvinciaDao provinciaDao;
 	
 	/* (non-Javadoc)
 	 * @see com.grafenonet.openwine.maestros.service.impl.ProvinciaService#create(com.grafenonet.openwine.maestros.domain.Provincia)
@@ -85,10 +85,6 @@ public class ProvinciaServiceImpl implements ProvinciaService {
 		if (provincia == null) {
 			throw new RuntimeException("La provincia es nula.");
 		}
-		
-		if (provincia.getMunicipios() != null || !provincia.getMunicipios().isEmpty()) {
-			throw new RuntimeException("La provincia tiene municipios asociados.");
-		}
 			
 		if (LOG.isDebugEnabled()) {
 			LOG.debug(" - id = " + provincia.getId());
@@ -125,7 +121,7 @@ public class ProvinciaServiceImpl implements ProvinciaService {
 			throw new RuntimeException("Error al obtener la provincia '" + id + "'.");
 		}
 		
-		if (provincia.getFechaBaja() != null) {
+		if (provincia.isEnabled()) {
 			throw new RuntimeException("La provincia '" + id + "' está dada de baja.");
 		}
 		
@@ -150,6 +146,18 @@ public class ProvinciaServiceImpl implements ProvinciaService {
 		provincias = this.provinciaDao.list();		
 			
 		LOG.debug("Finalizando obtener provincias.");					
+		return provincias;
+	}
+
+	@Override
+	public List<Provincia> listByPais(Integer id) {
+		List<Provincia> provincias = new ArrayList<Provincia>();
+		
+		LOG.debug("Iniciando [listByPais] ...");
+				
+		provincias = this.provinciaDao.listByPais(id)		;
+			
+		LOG.debug("Finalizando [listByPais].");					
 		return provincias;
 	}	
 }
